@@ -1,0 +1,22 @@
+<Workspaces>
+  <Id>00000000-0000-0000-0000-000000000000</Id>
+  <SingleViewWorkspace>
+    <ControllerModules>
+      <ControllerModule>
+        <Module>Agilent.OpenLab.OmegaController</Module>
+      </ControllerModule>
+    </ControllerModules>
+    <NavigationView>
+      <SubViews>
+        <DockingView>
+          <Tag>Layout 1</Tag>
+          <Modules>
+            <DockingModule>
+              <Module>Agilent.OpenLab.UiModule1</Module>
+            </DockingModule>
+          </Modules>
+        </DockingView>
+      </SubViews>
+    </NavigationView>
+  </SingleViewWorkspace>
+</Workspaces>
