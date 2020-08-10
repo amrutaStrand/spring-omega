@@ -13,7 +13,9 @@ namespace ClassLibrary1
 
         public static void RegisterUIControls(IUnityContainer container)
         {
-
+            container.RegisterType<IUIControl, StringControl>("String");
+            container.RegisterType<IUIControl, IntControl>("Int");
+            container.RegisterType<IUIControl, FloatControl>("Float");
         }
         /// <summary>
         /// 

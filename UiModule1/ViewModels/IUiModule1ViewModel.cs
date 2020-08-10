@@ -38,7 +38,7 @@
         /// <summary>
         /// 
         /// </summary>
-        UIElement UIControl { get; }
+        IUIControl UIControl { get; }
 
         #endregion
     }

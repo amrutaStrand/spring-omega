@@ -70,7 +70,7 @@
         /// </remarks>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            this.UIControlHost.Children.Add(Model.UIControl);
+            this.UIControlHost.Children.Add(Model.UIControl.GetUIElement());
         }
 
         /// <summary>

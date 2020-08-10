@@ -22,10 +22,7 @@ namespace ClassLibrary1
             UIElement.IsEnabled = isEnabled;
         }
 
-        public void SetParameters(Dictionary<string, object> valuePairs)
-        {
-            this.Parameters = valuePairs;
-        }
+        public abstract void SetParameters(Dictionary<string, object> valuePairs);
 
         public abstract void CreateUIElement();
         public abstract UIElement GetUIElement();

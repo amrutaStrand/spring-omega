@@ -38,7 +38,10 @@
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("Label", "Name");
             parameters.Add("Value", "Enter Name");
-            UIControl = UIControlFactory.GetUIControl("String", parameters);
+            //UIControl = UIControlFactory.GetUIControl("String", parameters);
+
+            UIControl = container.Resolve<IUIControl>("Int");
+            UIControl.SetParameters(parameters);
         }
 
         #endregion
@@ -58,7 +61,7 @@
         /// <summary>
         /// Test UI Control
         /// </summary>
-        public UIElement UIControl { get; set; }
+        public IUIControl UIControl { get; set; }
 
         #endregion
     }

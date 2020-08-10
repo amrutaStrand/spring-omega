@@ -74,6 +74,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+      <Project>{ec9a0909-04d1-46ca-bc71-7d14b8ab3ca1}</Project>
+      <Name>ClassLibrary1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OmegaApplication\OmegaApplication.csproj">
       <Project>{9b09005a-709b-4e43-994f-b6098984547e}</Project>
       <Name>OmegaApplication</Name>

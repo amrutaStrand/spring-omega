@@ -33,10 +33,10 @@ namespace ClassLibrary1
             return UIElement;
         }
 
-        public new void SetParameters(Dictionary<string, object> valuePairs)
+        public override void SetParameters(Dictionary<string, object> valuePairs)
         {
             Label.Content = valuePairs["Label"].ToString();
-            TextBox.Text = valuePairs["Value"].ToString();
+            Value = valuePairs["Value"].ToString();
         }
 
         public Label Label { get; set; }
