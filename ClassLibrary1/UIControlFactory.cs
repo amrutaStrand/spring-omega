@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Practices.Unity;
 
 namespace ClassLibrary1
 {
-    public class UIControlFactory
+    public class UIControlFactory //UIControlRegister
     {
+
+        public static void RegisterUIControls(IUnityContainer container)
+        {
+
+        }
         /// <summary>
         /// 
         /// </summary>

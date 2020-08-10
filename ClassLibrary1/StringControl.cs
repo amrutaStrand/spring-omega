@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ClassLibrary1
@@ -12,19 +13,24 @@ namespace ClassLibrary1
 
         public StringControl()
         {
-            InitializeLayout();
-            //Label.Content = label;
-            //TextBox.Text = defaultValue;
+            CreateUIElement();
         }
 
-        private void InitializeLayout()
+        public override void CreateUIElement()
         {
             Label = new Label() { Height=50, Width=100};
             TextBox = new TextBox() {Height=50, Width=100 };
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
-            this.AddChild(panel);
+            UIElement = panel;
+        }
+
+        public override UIElement GetUIElement()
+        {
+            if (UIElement == null)
+                CreateUIElement();
+            return UIElement;
         }
 
         public new void SetParameters(Dictionary<string, object> valuePairs)
@@ -48,7 +54,7 @@ namespace ClassLibrary1
 
         public override Dictionary<string, object> Parameters { get; set; }
 
-        public bool Validate(object val)
+        public override bool Validate(object val)
         {
             return val!=null;
         }

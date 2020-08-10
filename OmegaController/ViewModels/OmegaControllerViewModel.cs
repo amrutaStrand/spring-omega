@@ -3,7 +3,7 @@
     #region
 
     using Agilent.OpenLab.Framework.UI.Module;
-
+    using ClassLibrary1;
     using Microsoft.Practices.Unity;
 
     #endregion
@@ -21,6 +21,7 @@
         {
             this.InitializeCommands();
             this.SubscribeEvents();
+            UIControlFactory.RegisterUIControls(container);
         }
 
         #endregion                    

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ClassLibrary1
@@ -17,5 +18,7 @@ namespace ClassLibrary1
         Dictionary<string, object> Parameters { get; set; }
         void SetEnabled(bool isEnabled);
         void SetParameters(Dictionary<string, object> valuePairs);
+        void CreateUIElement();
+        UIElement GetUIElement();
     }
 }
