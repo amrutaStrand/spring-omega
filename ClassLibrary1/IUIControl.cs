@@ -16,6 +16,6 @@ namespace ClassLibrary1
         object Value { get; set; }
         Dictionary<string, object> Parameters { get; set; }
         void SetEnabled(bool isEnabled);
-
+        void SetParameters(Dictionary<string, object> valuePairs);
     }
 }

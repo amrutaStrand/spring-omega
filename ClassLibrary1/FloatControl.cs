@@ -7,20 +7,18 @@ using System.Windows.Controls;
 
 namespace ClassLibrary1
 {
-    public class StringControl : AbstractUIControl
+    public class FloatControl : AbstractUIControl
     {
 
-        public StringControl()
+        public FloatControl()
         {
             InitializeLayout();
-            //Label.Content = label;
-            //TextBox.Text = defaultValue;
         }
 
         private void InitializeLayout()
         {
-            Label = new Label() { Height=50, Width=100};
-            TextBox = new TextBox() {Height=50, Width=100 };
+            Label = new Label() { Height = 50, Width = 100 };
+            TextBox = new TextBox() { Height = 50, Width = 100 };
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
@@ -36,12 +34,12 @@ namespace ClassLibrary1
         public Label Label { get; set; }
         public TextBox TextBox { get; set; }
 
-        public override object Value 
+        public override object Value
         {
             get => this.TextBox.Text;
             set
             {
-                if(Validate(value))
+                if (Validate(value))
                     TextBox.Text = value.ToString();
             }
         }
@@ -50,7 +48,7 @@ namespace ClassLibrary1
 
         public bool Validate(object val)
         {
-            return val!=null;
+            return (val != null && val is float) ? true : false;
         }
     }
 }

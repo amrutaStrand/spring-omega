@@ -16,11 +16,16 @@ namespace ClassLibrary1
         /// <returns></returns>
         public static UIElement GetUIControl(string id, Dictionary<string, object> parameters)
         {
-            //if (id.Equals("String"))
-            
-            StringControl stringControl = new StringControl();
-            stringControl.SetParameters(parameters);
-            return stringControl;
+
+            IUIControl control = null;
+            if (id.Equals(CONSTANTS.STRING_COLUMN))
+                control = new StringControl();
+            if (id.Equals(CONSTANTS.INT_COLUMN))
+                control = new IntControl();
+            if (id.Equals(CONSTANTS.FLOAT_COLUMN))
+                control = new FloatControl();
+            control.SetParameters(parameters);
+            return control as UIElement;
         }
     }
 }

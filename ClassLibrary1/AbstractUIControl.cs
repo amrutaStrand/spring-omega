@@ -19,5 +19,9 @@ namespace ClassLibrary1
             this.IsEnabled = isEnabled;
         }
 
+        public void SetParameters(Dictionary<string, object> valuePairs)
+        {
+            this.Parameters = valuePairs;
+        }
     }
 }
