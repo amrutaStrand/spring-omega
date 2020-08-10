@@ -185,9 +185,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+    <ProjectReference Include="..\ClassLibrary1\OmegaUIControls.csproj">
       <Project>{ec9a0909-04d1-46ca-bc71-7d14b8ab3ca1}</Project>
-      <Name>ClassLibrary1</Name>
+      <Name>OmegaUIControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

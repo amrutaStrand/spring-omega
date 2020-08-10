@@ -3,7 +3,6 @@
     #region
 
     using System.Windows;
-    using ClassLibrary1;
 
     #endregion
 

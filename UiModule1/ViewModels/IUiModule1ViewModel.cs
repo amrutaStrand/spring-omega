@@ -4,8 +4,7 @@
 
     using Agilent.OpenLab.Framework.UI.Common.Commands;
     using Agilent.OpenLab.Framework.UI.Layout.ModuleInterfaces;
-    using ClassLibrary1;
-    using System.Windows;
+    using Agilent.OpenLab.Spring.Omega;
 
     #endregion
 

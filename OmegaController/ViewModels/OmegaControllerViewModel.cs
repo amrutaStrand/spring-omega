@@ -3,7 +3,7 @@
     #region
 
     using Agilent.OpenLab.Framework.UI.Module;
-    using ClassLibrary1;
+    using Agilent.OpenLab.Spring.Omega;
     using Microsoft.Practices.Unity;
 
     #endregion

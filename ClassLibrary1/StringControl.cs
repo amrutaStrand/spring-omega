@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace ClassLibrary1
+namespace Agilent.OpenLab.Spring.Omega
 {
     public class StringControl : AbstractUIControl
     {
