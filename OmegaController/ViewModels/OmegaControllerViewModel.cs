@@ -21,7 +21,7 @@
         {
             this.InitializeCommands();
             this.SubscribeEvents();
-            UIControlFactory.RegisterUIControls(container);
+            UIControlRegistry.RegisterUIControls(container);
         }
 
         #endregion                    

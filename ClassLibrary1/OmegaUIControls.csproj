@@ -62,7 +62,7 @@
     <Compile Include="IUIControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringControl.cs" />
-    <Compile Include="UIControlFactory.cs" />
+    <Compile Include="UIControlRegister.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

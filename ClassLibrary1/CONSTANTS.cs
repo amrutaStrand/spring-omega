@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Agilent.OpenLab.Spring.Omega
+﻿namespace Agilent.OpenLab.Spring.Omega
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CONSTANTS
     {
         public static string INT_COLUMN = "Int";
