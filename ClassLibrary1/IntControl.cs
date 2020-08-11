@@ -13,7 +13,7 @@
         /// <returns></returns>
         public override bool Validate(object val)
         {
-            return (val != null && val is int) ? true : false;
+            return (val != null && val is int) ? true : false; // validation message
         }
     }
 }

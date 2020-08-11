@@ -46,7 +46,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// Set the parameters of the UIElement
         /// </summary>
         /// <param name="valuePairs"></param>
-        public override void SetParameters(Dictionary<string, object> valuePairs)
+        public override void SetParameters(Dictionary<string, object> valuePairs) // IUIInput
         {
             Label.Content = valuePairs["Label"].ToString();
             Value = valuePairs["Value"].ToString();
@@ -71,9 +71,9 @@ namespace Agilent.OpenLab.Spring.Omega
             set
             {
                 if(Validate(value))
-                    TextBox.Text = value.ToString();
+                    TextBox.Text = value.ToString(); 
                 else
-                    MessageBox.Show("Enter Correct Value");
+                    MessageBox.Show("Enter Correct Value"); // Red star
             }
         }
         /// <summary>

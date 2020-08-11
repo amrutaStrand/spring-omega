@@ -38,7 +38,7 @@
             parameters.Add("Value", "Enter Name");
             //UIControl = UIControlFactory.GetUIControl("String", parameters);
 
-            UIControl = container.Resolve<IUIControl>("Int");
+            UIControl = container.Resolve<IUIControl>("String");
             UIControl.SetParameters(parameters);
         }
 

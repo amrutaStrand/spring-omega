@@ -59,6 +59,6 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public abstract bool Validate(object value);
+        public abstract bool Validate(object value); // validation messages
     }
 }
