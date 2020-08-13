@@ -51,6 +51,7 @@
     <Compile Include="FloatControl.cs" />
     <Compile Include="IntControl.cs" />
     <Compile Include="IUIControl.cs" />
+    <Compile Include="MessageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringControl.cs" />
     <Compile Include="UIControlRegistry.cs" />

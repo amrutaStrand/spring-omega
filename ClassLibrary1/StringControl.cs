@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -17,6 +18,8 @@ namespace Agilent.OpenLab.Spring.Omega
             CreateUIElement();
         }
 
+        protected Color BorderColor = Color.FromRgb(0, 0, 10);
+
         /// <summary>
         /// Creates the string UI Element
         /// Initializes the layout and updates the UIElement
@@ -24,7 +27,8 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             Label = new Label() { Height=50, Width=100};
-            TextBox = new TextBox() {Height=50, Width=100 };
+            var brush = new SolidColorBrush(BorderColor);
+            TextBox = new TextBox() {Height=50, Width=100, BorderBrush= brush};
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
@@ -70,10 +74,13 @@ namespace Agilent.OpenLab.Spring.Omega
             get => this.TextBox.Text;
             set
             {
-                if(Validate(value))
-                    TextBox.Text = value.ToString(); 
+                if (Validate(value))
+                    TextBox.Text = value.ToString();
                 else
+                {
                     MessageBox.Show(MessageInfo.STRING_ERROR_MESSAGE); // Red star
+                    BorderColor = Color.FromRgb(255, 0, 0);
+                }
             }
         }
         /// <summary>

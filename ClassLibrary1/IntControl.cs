@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -15,7 +16,11 @@ namespace Agilent.OpenLab.Spring.Omega
                 if (Validate(value))
                     TextBox.Text = value.ToString();
                 else
+                {
+                    this.BorderColor = Color.FromRgb(255, 0, 0);
                     MessageBox.Show(MessageInfo.INT_ERROR_MESSAGE); // Red star
+                    CreateUIElement();
+                }
             }
         }
         /// <summary>
