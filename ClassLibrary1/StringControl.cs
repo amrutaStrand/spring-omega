@@ -73,7 +73,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 if(Validate(value))
                     TextBox.Text = value.ToString(); 
                 else
-                    MessageBox.Show("Enter Correct Value"); // Red star
+                    MessageBox.Show(MessageInfo.STRING_ERROR_MESSAGE); // Red star
             }
         }
         /// <summary>
