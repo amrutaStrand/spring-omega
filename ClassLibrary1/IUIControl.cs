@@ -21,7 +21,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <summary>
         /// The Property for Parameters of the control
         /// </summary>
-        Dictionary<string, object> Parameters { get; set; }
+        IUIInput Input { get; set; }
         
         /// <summary>
         /// A method to enable / disable the UIControl
@@ -33,7 +33,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// A method to set the respective parameters to the UIControl
         /// </summary>
         /// <param name="valuePairs"></param>
-        void SetParameters(Dictionary<string, object> valuePairs);
+        void SetInput(IUIInput input);
         
         /// <summary>
         /// It creates a UIElements based on the parameter types

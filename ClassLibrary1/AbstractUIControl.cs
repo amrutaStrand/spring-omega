@@ -16,7 +16,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <summary>
         /// 
         /// </summary>
-        public abstract Dictionary<string, object> Parameters { get; set; }
+        public IUIInput Input { get; set; }
         
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// 
         /// </summary>
         /// <param name="valuePairs"></param>
-        public abstract void SetParameters(Dictionary<string, object> valuePairs);
+        public abstract void SetInput(IUIInput input);
 
         /// <summary>
         /// 

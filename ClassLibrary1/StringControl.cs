@@ -19,6 +19,7 @@ namespace Agilent.OpenLab.Spring.Omega
         }
 
         protected Color BorderColor = Color.FromRgb(0, 0, 10);
+        private string LabelContent = "";
 
         /// <summary>
         /// Creates the string UI Element
@@ -27,6 +28,7 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             Label = new Label() { Height=50, Width=100};
+            Label.Content = LabelContent;
             var brush = new SolidColorBrush(BorderColor);
             TextBox = new TextBox() {Height=50, Width=100, BorderBrush= brush};
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
@@ -50,10 +52,11 @@ namespace Agilent.OpenLab.Spring.Omega
         /// Set the parameters of the UIElement
         /// </summary>
         /// <param name="valuePairs"></param>
-        public override void SetParameters(Dictionary<string, object> valuePairs) // IUIInput
+        public override void SetInput(IUIInput input) // IUIInput
         {
-            Label.Content = valuePairs["Label"].ToString();
-            Value = valuePairs["Value"].ToString();
+            LabelContent = input.GetInput("Label").ToString();
+            Label.Content = LabelContent;
+            Value = input.GetInput("Value").ToString();
         }
 
         /// <summary>
@@ -83,10 +86,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 }
             }
         }
-        /// <summary>
-        /// Property to set and get the parameters of the string control
-        /// </summary>
-        public override Dictionary<string, object> Parameters { get; set; }
 
         /// <summary>
         /// The entered text in the textbox will be validated against the 

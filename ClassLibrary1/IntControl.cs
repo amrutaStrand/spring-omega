@@ -14,7 +14,10 @@ namespace Agilent.OpenLab.Spring.Omega
             set
             {
                 if (Validate(value))
+                {
                     TextBox.Text = value.ToString();
+                    this.BorderColor = Color.FromRgb(0, 0, 10);
+                }
                 else
                 {
                     this.BorderColor = Color.FromRgb(255, 0, 0);

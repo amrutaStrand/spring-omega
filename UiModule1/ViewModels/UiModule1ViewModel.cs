@@ -33,13 +33,13 @@
             this.View.Model = this;
             this.SubscribeEvents();
             this.InitializeCommands();
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("Label", "Name");
-            parameters.Add("Value", "Enter Name");
+            UIInput input = new UIInput();
+            input.AddInput("Label", "Name");
+            input.AddInput("Value", "Enter Name");
             //UIControl = UIControlFactory.GetUIControl("String", parameters);
 
             UIControl = container.Resolve<IUIControl>("Int");
-            UIControl.SetParameters(parameters);
+            UIControl.SetInput(input);
         }
 
         #endregion
