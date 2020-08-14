@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
@@ -21,6 +23,25 @@ namespace Agilent.OpenLab.Spring.Omega
         protected Color BorderColor = Color.FromRgb(0, 0, 10);
         private string LabelContent = "";
 
+        public delegate bool ValidateMessageDelegate(String message);
+
+        private ICommand textChanged;
+        /// <summary>
+        /// adds new files to the table.
+        /// </summary>
+        public ICommand TextChanged
+        {
+            get
+            {
+                return new CommandHandler(() => TextChangedEventHandler(), ()=>true);
+            }
+        }
+
+        private void TextChangedEventHandler()
+        {
+            this.Value = TextBox.Text;
+        }
+
         /// <summary>
         /// Creates the string UI Element
         /// Initializes the layout and updates the UIElement
@@ -31,6 +52,8 @@ namespace Agilent.OpenLab.Spring.Omega
             Label.Content = LabelContent;
             var brush = new SolidColorBrush(BorderColor);
             TextBox = new TextBox() {Height=50, Width=100, BorderBrush= brush};
+            CommandBinding x = new CommandBinding() { Command = TextChanged };
+            TextBox.CommandBindings.Add(x);
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
@@ -69,6 +92,11 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         public TextBox TextBox { get; set; }
 
+        static bool PrintTitle(String val)
+        {
+            return val.Length < 5;
+        }
+
         /// <summary>
         /// A property to get the text in the textbox
         /// </summary>
@@ -77,6 +105,8 @@ namespace Agilent.OpenLab.Spring.Omega
             get => this.TextBox.Text;
             set
             {
+                //TextBox.Text = value.ToString();
+                //if (ValidateMessage(PrintTitle))
                 if (Validate(value))
                     TextBox.Text = value.ToString();
                 else
@@ -97,6 +127,15 @@ namespace Agilent.OpenLab.Spring.Omega
         public override bool Validate(object val)
         {
             return val!=null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="processBook"></param>
+        public bool ValidateMessage(ValidateMessageDelegate validateMessage)
+        {
+            return validateMessage(this.Value.ToString());
         }
     }
 }

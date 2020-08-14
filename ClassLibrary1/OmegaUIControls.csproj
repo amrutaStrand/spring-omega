@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractUIControl.cs" />
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="CONSTANTS.cs" />
     <Compile Include="FloatControl.cs" />
     <Compile Include="IntControl.cs" />
