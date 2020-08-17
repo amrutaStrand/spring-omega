@@ -34,11 +34,12 @@
             this.SubscribeEvents();
             this.InitializeCommands();
             UIInput input = new UIInput();
-            input.AddInput("Label", "Name");
-            input.AddInput("Value", "Enter Name");
+            input.AddInput("RadioLabels", new List<string> { "Option A", "Option B", "Option C" });
+            //input.AddInput("Label", "Name");
+            //input.AddInput("Value", "Enter Name");
             //UIControl = UIControlFactory.GetUIControl("String", parameters);
 
-            UIControl = container.Resolve<IUIControl>("String");
+            UIControl = container.Resolve<IUIControl>("RadioPanel");
             UIControl.SetInput(input);
         }
 
