@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaController", "OmegaCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiModule1", "UiModule1\UiModule1.csproj", "{AF6AB015-D2B3-4C22-ABF6-AD81799200A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaUIControls", "ClassLibrary1\OmegaUIControls.csproj", "{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaUIControls", "OmegaUIControls\OmegaUIControls.csproj", "{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

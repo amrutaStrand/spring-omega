@@ -7,8 +7,8 @@
     <ProjectGuid>{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>OmegaUIControls</RootNamespace>
+    <AssemblyName>OmegaUIControls</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
