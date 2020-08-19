@@ -190,8 +190,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\OmegaUIControls.csproj">
-      <Project>{ec9a0909-04d1-46ca-bc71-7d14b8ab3ca1}</Project>
+    <ProjectReference Include="..\OmegaUIControls\OmegaUIControls.csproj">
+      <Project>{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}</Project>
       <Name>OmegaUIControls</Name>
     </ProjectReference>
   </ItemGroup>
