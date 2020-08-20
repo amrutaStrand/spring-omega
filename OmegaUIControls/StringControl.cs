@@ -42,18 +42,37 @@ namespace Agilent.OpenLab.Spring.Omega
             this.Value = TextBox.Text;
         }
 
+        private Style GetLabelStyle()
+        {
+            Style style = new Style(typeof(Label));
+            style.Setters.Add(new Setter(FrameworkElement.HeightProperty, 50));
+            style.Setters.Add(new Setter(FrameworkElement.WidthProperty, 100));
+            return style;
+        }
+
+        private Style GetTextBoxStyle()
+        {
+            Style style = new Style(typeof(Label));
+            style.Setters.Add(new Setter(FrameworkElement.HeightProperty, 50));
+            style.Setters.Add(new Setter(FrameworkElement.WidthProperty, 100));
+            var brush = new SolidColorBrush(BorderColor);
+            style.Setters.Add(new Setter(Control.BorderBrushProperty, brush));
+            return style;
+        }
+
         /// <summary>
         /// Creates the string UI Element
         /// Initializes the layout and updates the UIElement
         /// </summary>
         public override void CreateUIElement()
         {
-            Label = new Label() { Height=50, Width=100};
+            Label = new Label();
             Label.Content = LabelContent;
-            var brush = new SolidColorBrush(BorderColor);
-            TextBox = new TextBox() {Height=50, Width=100, BorderBrush= brush};
-            CommandBinding x = new CommandBinding() { Command = TextChanged };
-            TextBox.CommandBindings.Add(x);
+            Label.Style = GetLabelStyle();
+
+            TextBox = new TextBox() ;
+            TextBox.Style = GetTextBoxStyle();
+
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
