@@ -57,7 +57,7 @@
             //input.AddInput("Value", "Enter Name");
             //UIControl = UIControlFactory.GetUIControl("String", parameters);
 
-            UIControl = container.Resolve<IUIControl>("RadioPanel");
+            UIControl = container.Resolve<IUIControl>("RadioCard");
             UIControl.SetInput(input);
         }
 
