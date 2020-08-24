@@ -8,7 +8,7 @@ namespace Agilent.OpenLab.Spring.Omega
     {
         public override object Value { get; set; }
 
-        public Dictionary<string, UIElement> Options { get ; set ; }
+        public Dictionary<string, object> Options { get ; set ; }
 
         Dictionary<string, UIElement> Components { get; set; }
 
@@ -78,7 +78,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             RadioButton rb = (RadioButton)sender;
             Value = (string)rb.Content;
-            ((StackPanel)UIElement).Children.Add(Options[(string)rb.Content]);
+            ((StackPanel)UIElement).Children.Add(Components[(string)rb.Content]);
         }
 
         public override UIElement GetUIElement()
@@ -90,7 +90,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void SetInput(IUIInput input) // IUIInput
         {
-            Options = (Dictionary<string, UIElement>)input.GetInput("Options");
+            Options = (Dictionary<string, object>)input.GetInput("Options");
         }
 
         public override bool Validate(object value)
