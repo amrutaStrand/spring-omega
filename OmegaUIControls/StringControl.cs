@@ -45,16 +45,16 @@ namespace Agilent.OpenLab.Spring.Omega
         private Style GetLabelStyle()
         {
             Style style = new Style(typeof(Label));
-            style.Setters.Add(new Setter(FrameworkElement.HeightProperty, 50));
-            style.Setters.Add(new Setter(FrameworkElement.WidthProperty, 100));
+            style.Setters.Add(new Setter(FrameworkElement.HeightProperty, 50d));
+            style.Setters.Add(new Setter(FrameworkElement.WidthProperty, 100d));
             return style;
         }
 
         private Style GetTextBoxStyle()
         {
-            Style style = new Style(typeof(Label));
-            style.Setters.Add(new Setter(FrameworkElement.HeightProperty, 50));
-            style.Setters.Add(new Setter(FrameworkElement.WidthProperty, 100));
+            Style style = new Style(typeof(TextBox));
+            style.Setters.Add(new Setter(FrameworkElement.HeightProperty, 50d));
+            style.Setters.Add(new Setter(FrameworkElement.WidthProperty, 100d));
             var brush = new SolidColorBrush(BorderColor);
             style.Setters.Add(new Setter(Control.BorderBrushProperty, brush));
             return style;
