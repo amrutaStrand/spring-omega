@@ -36,28 +36,28 @@
             this.SubscribeEvents();
             this.InitializeCommands();
             UIInput input = new UIInput();
-            //UIInput input2 = new UIInput();
-            //input2.AddInput("Label", "Name");
-            //input2.AddInput("Value", "Enter Name");
-            Dictionary<string, UIElement> labels = new Dictionary<string, UIElement>();
+            UIInput input2 = new UIInput();
+            input2.AddInput("Label", "Name");
+            input2.AddInput("Value", "Enter Name");
+            Dictionary<string, object> labels = new Dictionary<string, object>();
             Label panel1 = new Label();
             panel1.Content = "Strand (Option A)";
             Label panel2 = new Label();
             panel2.Content = "Life (Option B)";
             Label panel3 = new Label();
             panel3.Content = "Sciences (Option C)";
-            //IUIControl panel4 = container.Resolve<IUIControl>("String");
-            //panel4.SetInput(input);
+            IUIControl panel4 = container.Resolve<IUIControl>("String");
+            panel4.SetInput(input2);
             labels.Add("Option A", panel1);
             labels.Add("Option B", panel2);
             labels.Add("Option C", panel3);
-            //labels.Add("Option D", (UIElement)panel4);
+            labels.Add("String Control", panel4);
             input.AddInput("Options", labels);
             //input.AddInput("Label", "Name");
             //input.AddInput("Value", "Enter Name");
             //UIControl = UIControlFactory.GetUIControl("String", parameters);
 
-            UIControl = container.Resolve<IUIControl>("RadioPanel");
+            UIControl = container.Resolve<IUIControl>("RadioCard");
             UIControl.SetInput(input);
         }
 
