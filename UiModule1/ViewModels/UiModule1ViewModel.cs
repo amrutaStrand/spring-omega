@@ -20,6 +20,8 @@
     {
         #region Constructors and Destructors
 
+        //private IUnityContainer _container;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UiModule1ViewModel"/> class.
         /// </summary>
@@ -35,10 +37,40 @@
             this.View.Model = this;
             this.SubscribeEvents();
             this.InitializeCommands();
+
+            CreateRadioCardControl();
+
+        }
+
+        private void CreateStringControl()
+        {
             UIInput input = new UIInput();
-            UIInput input2 = new UIInput();
-            input2.AddInput("Label", "Name");
-            input2.AddInput("Value", "Enter Name");
+            input.AddInput("Label", "Name");
+            input.AddInput("Value", "Enter Name");
+            UIControl = this.UnityContainer.Resolve<IUIControl>("String");
+            UIControl.SetInput(input);
+        }
+
+        private void CreateIntControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Label", "Name");
+            input.AddInput("Value", 10);
+            UIControl = this.UnityContainer.Resolve<IUIControl>("Int");
+            UIControl.SetInput(input);
+        }
+
+        private void CreateFloatControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Label", "Name");
+            input.AddInput("Value", 10f);
+            UIControl = this.UnityContainer.Resolve<IUIControl>("Float");
+            UIControl.SetInput(input);
+        }
+
+        private void CreateRadioCardControl()
+        {
             Dictionary<string, object> labels = new Dictionary<string, object>();
             Label panel1 = new Label();
             panel1.Content = "Strand (Option A)";
@@ -46,18 +78,24 @@
             panel2.Content = "Life (Option B)";
             Label panel3 = new Label();
             panel3.Content = "Sciences (Option C)";
-            IUIControl panel4 = container.Resolve<IUIControl>("String");
+
+
+            UIInput input2 = new UIInput();
+            input2.AddInput("Label", "Name");
+            input2.AddInput("Value", "Enter Name");
+            IUIControl panel4 = this.UnityContainer.Resolve<IUIControl>("String");
             panel4.SetInput(input2);
+
+
             labels.Add("Option A", panel1);
             labels.Add("Option B", panel2);
             labels.Add("Option C", panel3);
             labels.Add("String Control", panel4);
+            UIInput input = new UIInput();
             input.AddInput("Options", labels);
-            //input.AddInput("Label", "Name");
-            //input.AddInput("Value", "Enter Name");
-            //UIControl = UIControlFactory.GetUIControl("String", parameters);
 
-            UIControl = container.Resolve<IUIControl>("RadioCard");
+
+            UIControl = this.UnityContainer.Resolve<IUIControl>("RadioCard");
             UIControl.SetInput(input);
         }
 
