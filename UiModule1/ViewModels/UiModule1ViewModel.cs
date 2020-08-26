@@ -87,7 +87,7 @@
 
             UIInput input3 = new UIInput();
             input3.AddInput("Description", "This is a Boolean Control");
-            IUIControl panel5 = container.Resolve<IUIControl>("Boolean");
+            IUIControl panel5 = this.UnityContainer.Resolve<IUIControl>("Boolean");
             panel5.SetInput(input3);
 
             labels.Add("Option A", panel1);
