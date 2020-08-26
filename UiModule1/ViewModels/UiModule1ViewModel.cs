@@ -38,68 +38,71 @@
             this.SubscribeEvents();
             this.InitializeCommands();
 
-            CreateRadioCardControl();
+            UIControl = CreateRadioCardControl();
 
         }
 
-        private void CreateStringControl()
+        private IUIControl CreateStringControl()
         {
             UIInput input = new UIInput();
             input.AddInput("Label", "Name");
             input.AddInput("Value", "Enter Name");
-            UIControl = this.UnityContainer.Resolve<IUIControl>("String");
-            UIControl.SetInput(input);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("String");
+            panel.SetInput(input);
+            return panel;
         }
 
-        private void CreateIntControl()
+        private IUIControl CreateIntControl()
         {
             UIInput input = new UIInput();
             input.AddInput("Label", "Name");
             input.AddInput("Value", 10);
-            UIControl = this.UnityContainer.Resolve<IUIControl>("Int");
-            UIControl.SetInput(input);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Int");
+            panel.SetInput(input);
+            return panel;
         }
 
-        private void CreateFloatControl()
+        private IUIControl CreateFloatControl()
         {
             UIInput input = new UIInput();
             input.AddInput("Label", "Name");
             input.AddInput("Value", 10f);
-            UIControl = this.UnityContainer.Resolve<IUIControl>("Float");
-            UIControl.SetInput(input);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Float");
+            panel.SetInput(input);
+            return panel;
         }
 
-        private void CreateRadioCardControl()
+        private IUIControl CreateBooleanControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "This is a Boolean Control");
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Boolean");
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private IUIControl CreateRadioCardControl()
         {
             Dictionary<string, object> labels = new Dictionary<string, object>();
-            Label panel1 = new Label();
-            panel1.Content = "Strand (Option A)";
-            Label panel2 = new Label();
-            panel2.Content = "Life (Option B)";
-            Label panel3 = new Label();
-            panel3.Content = "Sciences (Option C)";
 
-            UIInput input2 = new UIInput();
-            input2.AddInput("Label", "Name");
-            input2.AddInput("Value", "Enter Name");
-            IUIControl panel4 = this.UnityContainer.Resolve<IUIControl>("String");
-            panel4.SetInput(input2);
+            IUIControl StringControl = CreateStringControl();
 
-            UIInput input3 = new UIInput();
-            input3.AddInput("Description", "This is a Boolean Control");
-            IUIControl panel5 = this.UnityContainer.Resolve<IUIControl>("Boolean");
-            panel5.SetInput(input3);
+            IUIControl IntControl = CreateIntControl();
 
-            labels.Add("Option A", panel1);
-            labels.Add("Option B", panel2);
-            labels.Add("Option C", panel3);
-            labels.Add("String Control", panel4);
-            labels.Add("Boolean Control", panel5);
+            IUIControl FloatControl = CreateFloatControl();
+
+            IUIControl BooleanControl = CreateBooleanControl();
+
+            labels.Add("String Control", StringControl);
+            labels.Add("Int Control", IntControl);
+            labels.Add("Float Control", FloatControl);
+            labels.Add("Boolean Control", BooleanControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 
-            UIControl = this.UnityContainer.Resolve<IUIControl>("RadioCard");
-            UIControl.SetInput(input);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("RadioCard");
+            panel.SetInput(input);
+            return panel;
         }
 
         #endregion

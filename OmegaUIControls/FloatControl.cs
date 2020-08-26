@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -26,7 +27,9 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <returns></returns>
         public override bool Validate(object val)
         {
-            return (val != null && val is float) ? true : false;
+            if (val == null)
+                return false;
+            return float.TryParse(val.ToString(), out float test);
         }
     }
 }

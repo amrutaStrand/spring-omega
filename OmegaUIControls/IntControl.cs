@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
@@ -34,7 +35,9 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <returns></returns>
         public override bool Validate(object val)
         {
-            return (val != null && val is int) ? true : false; // validation message
+            if (val == null)
+                return false;
+            return Int32.TryParse(val.ToString(), out int test);
         }
     }
 }
