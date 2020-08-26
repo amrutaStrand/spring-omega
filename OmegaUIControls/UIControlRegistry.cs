@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using OmegaUIControls;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -17,6 +18,7 @@ namespace Agilent.OpenLab.Spring.Omega
             container.RegisterType<IUIControl, IntControl>("Int");
             container.RegisterType<IUIControl, FloatControl>("Float");
             container.RegisterType<IUIControl, RadioCardUIControl>("RadioCard");
+            container.RegisterType<IUIControl, BooleanControl>("Boolean");
         }
     }
 }

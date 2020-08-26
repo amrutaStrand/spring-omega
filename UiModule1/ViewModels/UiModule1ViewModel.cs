@@ -39,6 +39,8 @@
             UIInput input2 = new UIInput();
             input2.AddInput("Label", "Name");
             input2.AddInput("Value", "Enter Name");
+            UIInput input3 = new UIInput();
+            input3.AddInput("Description", "This is a Boolean Control");
             Dictionary<string, object> labels = new Dictionary<string, object>();
             Label panel1 = new Label();
             panel1.Content = "Strand (Option A)";
@@ -48,10 +50,13 @@
             panel3.Content = "Sciences (Option C)";
             IUIControl panel4 = container.Resolve<IUIControl>("String");
             panel4.SetInput(input2);
+            IUIControl panel5 = container.Resolve<IUIControl>("Boolean");
+            panel5.SetInput(input3);
             labels.Add("Option A", panel1);
             labels.Add("Option B", panel2);
             labels.Add("Option C", panel3);
             labels.Add("String Control", panel4);
+            labels.Add("Boolean Control", panel5);
             input.AddInput("Options", labels);
             //input.AddInput("Label", "Name");
             //input.AddInput("Value", "Enter Name");
