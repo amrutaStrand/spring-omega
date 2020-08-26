@@ -23,21 +23,9 @@ namespace OmegaUIControls
             UIElement = panel;
         }
 
-        public override UIElement GetUIElement()
-        {
-            if (UIElement == null)
-                CreateUIElement();
-            return UIElement;
-        }
-
         public override void SetInput(IUIInput input)
         {
             Input = input;
-        }
-
-        public override bool Validate(object value)
-        {
-            return true;
         }
     }
 }

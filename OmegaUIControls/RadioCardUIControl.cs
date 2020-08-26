@@ -81,21 +81,9 @@ namespace Agilent.OpenLab.Spring.Omega
             ((StackPanel)UIElement).Children.Add(Components[(string)rb.Content]);
         }
 
-        public override UIElement GetUIElement()
-        {
-            if (UIElement == null)
-                CreateUIElement();
-            return UIElement;
-        }
-
         public override void SetInput(IUIInput input) // IUIInput
         {
             Options = (Dictionary<string, object>)input.GetInput("Options");
-        }
-
-        public override bool Validate(object value)
-        {
-            return true;
         }
     }
 }

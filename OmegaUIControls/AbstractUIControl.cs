@@ -47,18 +47,26 @@ namespace Agilent.OpenLab.Spring.Omega
         /// 
         /// </summary>
         public abstract void CreateUIElement();
-        
+
         /// <summary>
-        /// 
+        /// Get's the UIElement if it is already created otherwise create one
         /// </summary>
         /// <returns></returns>
-        public abstract UIElement GetUIElement();
+        public virtual UIElement GetUIElement()
+        {
+            if (UIElement == null)
+                CreateUIElement();
+            return UIElement;
+        }
         
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public abstract bool Validate(object value); // validation messages
+        public virtual bool Validate(object value) // validation messages
+        {
+            return true;
+        }
     }
 }

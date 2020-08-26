@@ -80,17 +80,6 @@ namespace Agilent.OpenLab.Spring.Omega
         }
 
         /// <summary>
-        /// Get's the UIElement if it is already created otherwise create one
-        /// </summary>
-        /// <returns></returns>
-        public override UIElement GetUIElement()
-        {
-            if (UIElement == null)
-                CreateUIElement();
-            return UIElement;
-        }
-
-        /// <summary>
         /// Set the parameters of the UIElement
         /// </summary>
         /// <param name="valuePairs"></param>
