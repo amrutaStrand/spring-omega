@@ -58,6 +58,7 @@
     <Compile Include="OmegaUIUtils\LayoutPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioCardUIControl.cs" />
+    <Compile Include="SliderControl.cs" />
     <Compile Include="StringControl.cs" />
     <Compile Include="UIControlRegistry.cs" />
     <Compile Include="UIInput.cs" />
