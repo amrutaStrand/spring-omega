@@ -15,5 +15,7 @@ namespace Agilent.OpenLab.Spring.Omega
         //int GetIntInput(string key);
         void AddInput(string key, object value);
 
+        bool HasParameter(string key);
+
     }
 }

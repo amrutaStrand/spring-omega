@@ -30,6 +30,10 @@ namespace Agilent.OpenLab.Spring.Omega
             return Parameters[key];
         }
 
+        public bool HasParameter(string key)
+        {
+            return Parameters.ContainsKey(key);
+        }
     }
 
     [Serializable()]

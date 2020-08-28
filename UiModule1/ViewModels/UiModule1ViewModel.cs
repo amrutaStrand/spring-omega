@@ -81,6 +81,16 @@
             return panel;
         }
 
+        private IUIControl CreateSliderControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "This is a basic slider control");
+            input.AddInput("allowTextBox", true);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Slider");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateRadioCardControl()
         {
             Dictionary<string, object> labels = new Dictionary<string, object>();
@@ -93,10 +103,13 @@
 
             IUIControl BooleanControl = CreateBooleanControl();
 
+            IUIControl SliderControl = CreateSliderControl();
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
+            labels.Add("Slider Control", SliderControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 
