@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Agilent.OpenLab.Spring.Omega;
+using OmegaUIControls.OmegaUIUtils;
 
 namespace OmegaUIControls
 {
@@ -40,15 +41,7 @@ namespace OmegaUIControls
 
         public override void CreateUIElement()
         {
-            var panel = new Grid();
-            ColumnDefinition col1 = new ColumnDefinition();
-            ColumnDefinition col2 = new ColumnDefinition();
-            ColumnDefinition col3 = new ColumnDefinition();
-            ColumnDefinition col4 = new ColumnDefinition();
-            panel.ColumnDefinitions.Add(col1);
-            panel.ColumnDefinitions.Add(col2);
-            panel.ColumnDefinitions.Add(col3);
-            panel.ColumnDefinitions.Add(col4);
+            var panel = allowText? new LayoutPanel(1,3) : new LayoutPanel(1, 2);
 
             addLabel(panel);
             addSlider(panel);
@@ -63,7 +56,7 @@ namespace OmegaUIControls
             UIElement = panel;
         }
 
-        private void addText(Grid panel)
+        private void addText(LayoutPanel panel)
         {
             if (!allowText)
             {
@@ -73,7 +66,7 @@ namespace OmegaUIControls
             textBox.Text = slider.Value.ToString();
             textBox.TextChanged += TextBox_TextChanged;
             textBox.Width = 50;
-            panel.Children.Add(textBox);
+            panel.Add(textBox, 1);
             Grid.SetColumn(textBox, 2);
         }
 
@@ -81,15 +74,17 @@ namespace OmegaUIControls
         {
             double value;
             bool s = Double.TryParse(textBox.Text, out value);
-            slider.Value = s ? value : 0;
+            if (s)
+                slider.Value = value;
+            //slider.Value = s ? value : 0;
         }
 
-        private void addSlider(Grid panel)
+        private void addSlider(LayoutPanel panel)
         {
             slider = new Slider();
             slider.Minimum = 0;
             slider.Maximum = 100;
-            slider.IsSnapToTickEnabled = true;
+            //slider.IsSnapToTickEnabled = true;
 
             if(labels != null)
             {
@@ -114,11 +109,10 @@ namespace OmegaUIControls
                 }
             }
 
-            slider.ValueChanged += Slider_ValueChanged;
+            if(allowText)
+                slider.ValueChanged += Slider_ValueChanged;
 
-            panel.Children.Add(slider);
-            Grid.SetColumn(slider, 1);
-            panel.ColumnDefinitions[1].Width = new GridLength(width);
+            panel.Add(slider, width);
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -126,11 +120,11 @@ namespace OmegaUIControls
             textBox.Text = slider.Value.ToString();
         }
 
-        private void addLabel(Grid panel)
+        private void addLabel(LayoutPanel panel)
         {
             label = new Label();
             label.Content = Input.GetInput("Description");
-            panel.Children.Add(label);
+            panel.Add(label, 1);
             Grid.SetColumn(label, 0);
         }
 
@@ -154,8 +148,7 @@ namespace OmegaUIControls
 
             allowText = Input.HasParameter("allowTextBox") ? (bool)Input.GetInput("allowTextBox") : false;
 
-            //width = Input.HasParameter("width") ? (double)Input.GetInput("width") : (allowText ? 0.3 : 0.6);
-            width = 200;
+            width = Input.HasParameter("width") ? (double)Input.GetInput("width") : (allowText ? 1 : 2);
 
             tickPlacement = Input.HasParameter("tickPlacement") ? (string)Input.GetInput("tickPlacement") : null;
 

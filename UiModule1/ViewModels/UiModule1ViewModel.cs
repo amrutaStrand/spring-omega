@@ -84,8 +84,9 @@
         private IUIControl CreateSliderControl()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "This is a basic slider control");
+            input.AddInput("Description", "Strand slider control");
             input.AddInput("allowTextBox", true);
+            input.AddInput("tickPlacement", "bottom");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Slider");
             panel.SetInput(input);
             return panel;
