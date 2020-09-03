@@ -87,6 +87,10 @@
             input.AddInput("Description", "Strand slider control");
             input.AddInput("allowTextBox", true);
             input.AddInput("tickPlacement", "bottom");
+            input.AddInput("min", 50);
+            input.AddInput("max", 150);
+            input.AddInput("sliderType", "int");
+            input.AddInput("adjustMinMax", false);
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Slider");
             panel.SetInput(input);
             return panel;

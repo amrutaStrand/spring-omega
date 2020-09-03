@@ -8,6 +8,10 @@ using System.Windows.Controls;
 
 namespace OmegaUIControls.OmegaUIUtils
 {
+    /// <summary>
+    /// A grid panel inside a border with given number of rows and columns. By default, star sizing is used to
+    /// size the rows and columns with equal height / width.
+    /// </summary>
     class LayoutPanel : Border
     {
         private Grid grid;

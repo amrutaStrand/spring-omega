@@ -19,9 +19,11 @@ namespace OmegaUIControls
     //5. rightLabel (string) : text that should display on the right side of the slider
     //6. allowTextBox (bool) : if this value is true then it will add a textfield next to slider and
     //                      the value of the textField is the slider current value
-    //7. width
+    //7. width (double) : relative to textBox and label (1 means equal, 2 means double, etc.)
     //8. tickPlacement : "top" or "bottom"
     //9. tickSpace
+    //10.adjustMinMax (bool) : if set to true, the min/max values are upadated when the value inside the
+    //                          TextBox is out of the current range
     class SliderControl : AbstractUIControl
     {
         protected string sliderType;
@@ -32,59 +34,144 @@ namespace OmegaUIControls
         protected double width;
         protected string tickPlacement;
         protected int tickSpace;
+        protected bool adjustMinMax;
+        protected bool localChange;
 
         protected Label label;
         protected Slider slider;
         protected TextBox textBox;
 
-        public override object Value { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private object value;
+        public override object Value
+        {
+            get
+            {
+                float f = SliderValue;
+                if (sliderType.Equals("int"))
+                    value = (int)f;
+                else if (sliderType.Equals("float"))
+                    value = f;
+                return value;
+            }
+            set
+            {
+                float val;
+                bool isAllowed = float.TryParse(value.ToString(), out val);
+                if (!isAllowed)
+                {
+                    //Throw some error like "Please enter a number!"
+                }
+                //float val = Convert.ToSingle(value);
+                if (adjustMinMax)
+                    UpdateSliderRange(val);
+                else
+                {
+                    if (val < min)
+                        val = min;
+                    else if (val > max)
+                        val = max;
+                }
+                SetValue(val);
+            }
+        }
+
+        //Sets the slider position, textBox value and the value field. Unlike the set method of the Value prop,
+        //it calls the SetValue method without checking if the value is between min and max.
+        public void SetValueExplicitly(object explicitValue)
+        {
+            float val = Convert.ToSingle(explicitValue);
+            if (adjustMinMax)
+                UpdateSliderRange(val);
+            SetValue(val);
+        }
+
+        private void SetValue(float value)
+        {
+            if (Convert.ToSingle(this.value) == value)
+                return;
+
+            if (sliderType.Equals("int"))
+                this.value = (int)value;
+            else if (sliderType.Equals("float"))
+                this.value = value;
+
+            SliderValue = value;
+
+            if (allowText)
+                textBox.Text = (this.value).ToString();
+        }
+
+        protected float SliderValue
+        {
+            get
+            {
+                float fraction = (float)(slider.Value/slider.Maximum);
+                return min + fraction * (max - min);
+            }
+            set
+            {
+                float fraction = (value - min) / (max - min);
+                slider.Value = fraction * (slider.Maximum);
+            }
+        }
 
         public override void CreateUIElement()
         {
             var panel = allowText? new LayoutPanel(1,3) : new LayoutPanel(1, 2);
 
-            addLabel(panel);
-            addSlider(panel);
-            addText(panel);
+            AddLabel(panel);
+            AddSlider(panel);
+            AddText(panel);
 
-            var panel1 = new Slider();
-            panel1.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.TopLeft;
-            panel1.Maximum = 200;
-            panel1.Width = 100;
-            panel1.TickFrequency = 10;
+            this.value = min;
+            textBox.Text = Value.ToString();
+
+            //var panel1 = new Slider();
+            //panel1.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.TopLeft;
+            //panel1.Maximum = 200;
+            //panel1.Width = 100;
+            //panel1.TickFrequency = 10;
 
             UIElement = panel;
         }
 
-        private void addText(LayoutPanel panel)
+        private void AddText(LayoutPanel panel)
         {
             if (!allowText)
             {
                 return;
             }
             textBox = new TextBox();
-            textBox.Text = slider.Value.ToString();
-            textBox.TextChanged += TextBox_TextChanged;
+            textBox.LostFocus += TextBox_LostFocus;
             textBox.Width = 50;
             panel.Add(textBox, 1);
             Grid.SetColumn(textBox, 2);
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            double value;
-            bool s = Double.TryParse(textBox.Text, out value);
-            if (s)
-                slider.Value = value;
-            //slider.Value = s ? value : 0;
+            float cur;
+            float last = Convert.ToSingle(value);
+            bool isAllowed = float.TryParse(textBox.Text, out cur);
+            if (!isAllowed)
+            {
+                textBox.Text = Value.ToString();
+                SliderValue = last;
+                MessageBox.Show("Please enter a number!");
+            }
+            else if (cur != last)
+            {
+                UpdateSliderRange(cur);
+                SetValue(cur);
+            }
         }
 
-        private void addSlider(LayoutPanel panel)
+        private void AddSlider(LayoutPanel panel)
         {
             slider = new Slider();
             slider.Minimum = 0;
             slider.Maximum = 100;
-            //slider.IsSnapToTickEnabled = true;
+            slider.Value = 0;
 
             if(labels != null)
             {
@@ -117,10 +204,13 @@ namespace OmegaUIControls
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            textBox.Text = slider.Value.ToString();
+            //textBox.Text = slider.Value.ToString();
+            //if (localChange)
+            //    return;
+            SetValue(SliderValue);
         }
 
-        private void addLabel(LayoutPanel panel)
+        private void AddLabel(LayoutPanel panel)
         {
             label = new Label();
             label.Content = Input.GetInput("Description");
@@ -132,11 +222,13 @@ namespace OmegaUIControls
         {
             Input = input;
 
+            localChange = false;
+
             sliderType = Input.HasParameter("sliderType") ? (string)Input.GetInput("sliderType") : "float";
 
-            min = Input.HasParameter("min") ? (float)Input.GetInput("min") : 0;
+            min = Input.HasParameter("min") ? Convert.ToSingle(Input.GetInput("min")) : 0f;
 
-            max = Input.HasParameter("max") ? (float)Input.GetInput("max") : 100;
+            max = Input.HasParameter("max") ? Convert.ToSingle(Input.GetInput("max")) : 100f;
 
             labels = Input.HasParameter("labelTable") ? (Hashtable)Input.GetInput("labelTable") : new Hashtable();
 
@@ -153,6 +245,42 @@ namespace OmegaUIControls
             tickPlacement = Input.HasParameter("tickPlacement") ? (string)Input.GetInput("tickPlacement") : null;
 
             tickSpace = Input.HasParameter("tickSpace") ? (int)Input.GetInput("tickSpace") : 25;
+
+            adjustMinMax = Input.HasParameter("adjustMinMax") ? (bool)Input.GetInput("adjustMinMax") : false;
+        }
+
+        public void UpdateRange(float min, float max)
+        {
+            this.min = min;
+            this.max = max;
+            //Input.AddInput("min", min);
+            //Input.AddInput("max", max);
+        }
+
+        public void UpdateSliderRange(float val)
+        {
+            if (adjustMinMax)
+            {
+                if (val < min)
+                {
+                    min = val;
+                    //Input.AddInput("min", min);
+                }
+                else if (val > max)
+                {
+                    max = val;
+                    //Input.AddInput("max", max);
+                }
+            }
+            else
+            {
+                textBox.Text = Value.ToString();
+            }
+        }
+
+        public void UpdateDescription(string desc)
+        {
+            label.Content = desc;
         }
     }
 }
