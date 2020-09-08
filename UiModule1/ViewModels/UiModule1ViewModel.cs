@@ -86,12 +86,26 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "Strand slider control");
             input.AddInput("allowTextBox", true);
-            input.AddInput("tickPlacement", "bottom");
             input.AddInput("min", 50);
             input.AddInput("max", 150);
             input.AddInput("sliderType", "int");
             input.AddInput("adjustMinMax", false);
+            input.AddInput("tickPlacement", "bottom");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Slider");
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private IUIControl CreateXamSliderControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Xam slider control");
+            input.AddInput("allowTextBox", true);
+            input.AddInput("min", 50);
+            input.AddInput("max", 150);
+            input.AddInput("sliderType", "int");
+            input.AddInput("adjustMinMax", false);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("XamSlider");
             panel.SetInput(input);
             return panel;
         }
@@ -110,11 +124,14 @@
 
             IUIControl SliderControl = CreateSliderControl();
 
+            IUIControl XamSliderControl = CreateXamSliderControl();
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
             labels.Add("Slider Control", SliderControl);
+            labels.Add("XamSlider Control", XamSliderControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 

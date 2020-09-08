@@ -20,6 +20,7 @@ namespace Agilent.OpenLab.Spring.Omega
             container.RegisterType<IUIControl, RadioCardUIControl>("RadioCard");
             container.RegisterType<IUIControl, BooleanControl>("Boolean");
             container.RegisterType<IUIControl, SliderControl>("Slider");
+            container.RegisterType<IUIControl, XamSliderControl>("XamSlider");
         }
     }
 }

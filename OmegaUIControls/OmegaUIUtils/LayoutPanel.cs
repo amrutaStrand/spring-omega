@@ -55,8 +55,8 @@ namespace OmegaUIControls.OmegaUIUtils
             grid = new Grid();
             this.Child = grid;
             this.Padding = new System.Windows.Thickness(3);
-            this.Width = 400;
-            this.Height = 30;
+            grid.Width = 400;
+            grid.Height = 30;
         }
 
         public void Add(UIElement comp, double weight)
@@ -72,6 +72,12 @@ namespace OmegaUIControls.OmegaUIUtils
                 grid.ColumnDefinitions[curCol].Width = new GridLength(weight, GridUnitType.Star);
             Grid.SetColumn(comp, curCol);
             curCol++;
+        }
+
+        public void ChangeDimension(double h, double w)
+        {
+            grid.Height = h;
+            grid.Width = w;
         }
 
         private void addRows(int r)
