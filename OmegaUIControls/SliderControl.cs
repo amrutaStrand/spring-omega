@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using Agilent.OpenLab.Spring.Omega;
 using OmegaUIControls.OmegaUIUtils;
 
@@ -61,7 +62,6 @@ namespace OmegaUIControls
                 {
                     //Throw some error like "Please enter a number!"
                 }
-                //float val = Convert.ToSingle(value);
                 if (adjustMinMax)
                     UpdateSliderRange(val);
                 else
@@ -87,8 +87,13 @@ namespace OmegaUIControls
 
         private void SetValue(float value)
         {
+            localChange = true;
+
             if (Convert.ToSingle(this.value) == value)
+            {
+                localChange = false;
                 return;
+            }
 
             if (sliderType.Equals("int"))
                 this.value = (int)value;
@@ -99,8 +104,12 @@ namespace OmegaUIControls
 
             if (allowText)
                 textBox.Text = (this.value).ToString();
+
+            localChange = false;
         }
 
+        //While setting this prop, absolute value is converted into % and in the get method,
+        //% is converted back into absolute value
         protected float SliderValue
         {
             get
@@ -173,7 +182,7 @@ namespace OmegaUIControls
             slider.Maximum = 100;
             slider.Value = 0;
 
-            if(labels != null)
+            if (labels != null)
             {
                 //set custom labels to the slider
             }
@@ -204,9 +213,8 @@ namespace OmegaUIControls
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //textBox.Text = slider.Value.ToString();
-            //if (localChange)
-            //    return;
+            if (localChange)
+                return;
             SetValue(SliderValue);
         }
 
