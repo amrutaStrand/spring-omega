@@ -17,30 +17,15 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         public StringControl()
         {
+            BorderColor = Color.FromRgb(0, 0, 10);
             CreateUIElement();
         }
 
-        protected Color BorderColor = Color.FromRgb(0, 0, 10);
+        protected Color BorderColor;
         private string LabelContent = "";
 
         public delegate bool ValidateMessageDelegate(String message);
 
-        private ICommand textChanged;
-        /// <summary>
-        /// adds new files to the table.
-        /// </summary>
-        public ICommand TextChanged
-        {
-            get
-            {
-                return new CommandHandler(() => TextChangedEventHandler(), ()=>true);
-            }
-        }
-
-        private void TextChangedEventHandler()
-        {
-            this.Value = TextBox.Text;
-        }
 
         private Style GetLabelStyle()
         {
@@ -72,11 +57,17 @@ namespace Agilent.OpenLab.Spring.Omega
 
             TextBox = new TextBox() ;
             TextBox.Style = GetTextBoxStyle();
+            TextBox.LostFocus += this.HandleTextChanged;
 
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
             UIElement = panel;
+        }
+
+        private void HandleTextChanged(object sender, RoutedEventArgs e)
+        {
+            Validate(TextBox.Text);
         }
 
         /// <summary>
@@ -87,7 +78,8 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             LabelContent = input.GetInput("Label").ToString();
             Label.Content = LabelContent;
-            Value = input.GetInput("Value").ToString();
+            if (input.HasParameter("Value"))
+               Validate(input.GetInput("Value"));
         }
 
         /// <summary>
@@ -100,29 +92,26 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         public TextBox TextBox { get; set; }
 
-        static bool PrintTitle(String val)
+
+        public virtual void SetValue(object val)
         {
-            return val.Length < 5;
+            Value = val.ToString();
         }
 
-        /// <summary>
-        /// A property to get the text in the textbox
-        /// </summary>
-        public override object Value 
+        public void Validate(object val)
         {
-            get => this.TextBox.Text;
-            set
+            if (IsValid(val))
             {
-                //TextBox.Text = value.ToString();
-                //if (ValidateMessage(PrintTitle))
-                if (Validate(value))
-                    TextBox.Text = value.ToString();
-                else
-                {
-                    MessageBox.Show(MessageInfo.STRING_ERROR_MESSAGE); // Red star
-                    BorderColor = Color.FromRgb(255, 0, 0);
-                }
+                BorderColor = Color.FromRgb(255, 255, 0);
+                SetValue(val);
             }
+            else
+            {
+                ShowValidationError();
+                BorderColor = Color.FromRgb(255, 0, 0);
+                CreateUIElement();
+            }
+
         }
 
         /// <summary>
@@ -132,15 +121,21 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public override bool Validate(object val)
+        public override bool IsValid(object val)
         {
             return val!=null;
         }
 
+        public override void ShowValidationError()
+        {
+            MessageBox.Show(MessageInfo.STRING_ERROR_MESSAGE);
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="processBook"></param>
+        /// <param name="validateMessage"></param>
         public bool ValidateMessage(ValidateMessageDelegate validateMessage)
         {
             return validateMessage(this.Value.ToString());
