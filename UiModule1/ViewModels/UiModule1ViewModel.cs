@@ -4,6 +4,7 @@
 
     using Agilent.OpenLab.Framework.UI.Module;
     using Agilent.OpenLab.Spring.Omega;
+    using global::OpenLab.Agilent.Spring.Algorithm;
     using Microsoft.Practices.Unity;
     using System.Collections.Generic;
     using System.Windows;
@@ -150,6 +151,14 @@
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("RadioCard");
             panel.SetInput(input);
             return panel;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void TestImputation()
+        {
+            TestAlgorithm.TestImputationAlgorithm(this.UnityContainer);
         }
 
         #endregion
