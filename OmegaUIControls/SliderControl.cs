@@ -152,7 +152,7 @@ namespace OmegaUIControls
             }
             textBox = new TextBox();
             textBox.LostFocus += TextBox_LostFocus;
-            textBox.Width = 50;
+            textBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             panel.Add(textBox, 1);
             Grid.SetColumn(textBox, 2);
         }
@@ -222,6 +222,7 @@ namespace OmegaUIControls
         {
             label = new Label();
             label.Content = Input.GetInput("Description");
+            label.RenderSize = UIConstants.LABEL_PREFERRED_SIZE;
             panel.Add(label, 1);
             Grid.SetColumn(label, 0);
         }
