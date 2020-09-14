@@ -80,6 +80,7 @@ namespace OmegaUIControls
             SetValue(val);
         }
 
+        //This method is called when Value prop is set or slider is changed
         private void SetValue(float value)
         {
             localChange = true;
@@ -134,6 +135,7 @@ namespace OmegaUIControls
             UIElement = panel;
         }
 
+        //Adds a text box to show value corresponding to the slider. Called by the CreateUIElement method.
         private void AddText(LayoutPanel panel)
         {
             if (!allowText)
@@ -142,7 +144,7 @@ namespace OmegaUIControls
             }
             textBox = new TextBox();
             textBox.LostFocus += TextBox_LostFocus;
-            textBox.Width = 50;
+            textBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             panel.Add(textBox, 1);
             Grid.SetColumn(textBox, 2);
         }
@@ -160,11 +162,11 @@ namespace OmegaUIControls
             }
             else if (cur != last)
             {
-                UpdateSliderRange(cur);
-                SetValue(cur);
+                Value = cur;
             }
         }
 
+        //Adds a xam numeric slider. Called by the CreateUIElement method.
         private void AddSlider(LayoutPanel panel)
         {
             slider = new XamNumericSlider()
@@ -209,7 +211,7 @@ namespace OmegaUIControls
             SetValue(SliderValue);
         }
 
-        //Method to create Data Template programmatically
+        //Called by the AddSlider method to set the DataTemplate of the slider labels.
         private DataTemplate CreateTemplate(Type viewType)
         {
             const string xamlTemplate = "<DataTemplate><Border><{0} {1} {2}/></Border></DataTemplate>";
@@ -222,10 +224,12 @@ namespace OmegaUIControls
             return template;
         }
 
+        //Adds a label to show the Description of the slider.
         private void AddLabel(LayoutPanel panel)
         {
             label = new Label();
             label.Content = Input.GetInput("Description");
+            label.RenderSize = UIConstants.LABEL_PREFERRED_SIZE;
 
             panel.Add(label, 1);
             Grid.SetColumn(label, 0);
@@ -268,6 +272,7 @@ namespace OmegaUIControls
             //Input.AddInput("max", max);
         }
 
+        //Updates the range of the slider i.e. min and max values of the slider
         public void UpdateSliderRange(float val)
         {
             if (adjustMinMax)
