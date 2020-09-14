@@ -114,6 +114,9 @@
         {
             UIInput input = new UIInput();
             input.AddInput("Description", "Range slider control");
+            input.AddInput("allowTextBox", true);
+            input.AddInput("sliderType", "int");
+            input.AddInput("adjustMinMax", false);
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("RangeSlider");
             panel.SetInput(input);
             return panel;

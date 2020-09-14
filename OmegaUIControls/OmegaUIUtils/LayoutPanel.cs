@@ -12,10 +12,11 @@ namespace OmegaUIControls.OmegaUIUtils
     /// A grid panel inside a border with given number of rows and columns. By default, star sizing is used to
     /// size the rows and columns with equal height / width.
     /// </summary>
-    class LayoutPanel : Border
+    class LayoutPanel : GroupBox
     {
         private Grid grid;
         private int curCol = 0;
+        private int curRow = 0;
         public LayoutPanel(int rows, int cols) : base()
         {
             init();
@@ -53,10 +54,18 @@ namespace OmegaUIControls.OmegaUIUtils
         private void init()
         {
             grid = new Grid();
-            this.Child = grid;
+            this.Content = grid;
+            this.BorderThickness = new System.Windows.Thickness(0);
+            //this.Child = grid;
             this.Padding = new System.Windows.Thickness(3);
-            grid.Width = 400;
-            grid.Height = 30;
+            this.Width = 400;
+            this.Height = 30;
+        }
+
+        public void AddBorder(string header)
+        {
+            this.BorderThickness = new System.Windows.Thickness(1);
+            this.Header = header;
         }
 
         public void Add(UIElement comp, double weight)
@@ -76,8 +85,8 @@ namespace OmegaUIControls.OmegaUIUtils
 
         public void ChangeDimension(double h, double w)
         {
-            grid.Height = h;
-            grid.Width = w;
+            this.Height = h;
+            this.Width = w;
         }
 
         private void addRows(int r)
