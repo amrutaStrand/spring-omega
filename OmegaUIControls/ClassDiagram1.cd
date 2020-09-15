@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Agilent.OpenLab.Spring.Omega.AbstractUIControl" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAAAEAEAAAEAABAAAAAAAgAAAQAIA=</HashCode>
+      <FileName>AbstractUIControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.CommandHandler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAEAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>CommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.CONSTANTS" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CONSTANTS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.FloatControl" Collapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>FloatControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.IntControl" Collapsed="true">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>IntControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.MessageInfo" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAgAAAEAA=</HashCode>
+      <FileName>MessageInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.RadioCardPanel" Collapsed="true">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAIAEAAEAAAAIABABAAgAAAAgAgBQAAA=</HashCode>
+      <FileName>RadioCardPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.StringControl" Collapsed="true">
+    <Position X="4.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAKAQAAAAEUEAAACAAABAACAAAAgAAQQAAA=</HashCode>
+      <FileName>StringControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.UIControlRegistry" Collapsed="true">
+    <Position X="10.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIControlRegistry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.UIInput" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>UIInput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.InvalidKeyException" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIControl" Collapsed="true">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAEAAAAAEAABAAAAAAAgAAAQAIA=</HashCode>
+      <FileName>IUIControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIInput" Collapsed="true">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>IUIInput.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

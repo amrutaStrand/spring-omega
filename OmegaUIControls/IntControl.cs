@@ -9,35 +9,28 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public class IntControl : StringControl
     {
-        public override object Value
+
+        public override void SetValue(object val)
         {
-            get => int.Parse(this.TextBox.Text);
-            set
-            {
-                if (Validate(value))
-                {
-                    TextBox.Text = value.ToString();
-                    this.BorderColor = Color.FromRgb(0, 0, 10);
-                }
-                else
-                {
-                    this.BorderColor = Color.FromRgb(255, 0, 0);
-                    MessageBox.Show(MessageInfo.INT_ERROR_MESSAGE); // Red star
-                    CreateUIElement();
-                }
-            }
+            Value = int.Parse(val.ToString());
         }
+
         /// <summary>
         /// The Entered text should be of int type and not to be a null value.
         /// It returns false which states that the validation failed.
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public override bool Validate(object val)
+        public override bool IsValid(object val)
         {
             if (val == null)
                 return false;
             return Int32.TryParse(val.ToString(), out int test);
+        }
+
+        public override void ShowValidationError()
+        {
+            MessageBox.Show(MessageInfo.INT_ERROR_MESSAGE);
         }
     }
 }

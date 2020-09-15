@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Agilent.OpenLab.Spring.Omega.AbstractUIControl" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAAAEAEAAAEAABAAAAAAAgAAAQAIA=</HashCode>
+      <FileName>AbstractUIControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.FloatControl" Collapsed="true">
+    <Position X="6.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>FloatControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.IntControl" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>IntControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.RadioCardUIControl" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAEAAAAAAAAABABAAgAAAAgAgBQAAA=</HashCode>
+      <FileName>RadioCardUIControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.StringControl" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAEAKAQABAAEQEAAACAAABAACAAAAgAAQQAAA=</HashCode>
+      <FileName>StringControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.UIControlRegistry" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIControlRegistry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.UIInput" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>UIInput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OmegaUIControls.BooleanControl" Collapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAgAAEQAAA=</HashCode>
+      <FileName>BooleanControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.SliderControl" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAABAAIAAAAgAAAQAAA=</HashCode>
+      <FileName>SliderControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIControl" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAEAAAAAEAABAAAAAAAgAAAQAIA=</HashCode>
+      <FileName>IUIControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIInput" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>IUIInput.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

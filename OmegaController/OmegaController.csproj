@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Agilent.OpenLab.OmegaController</RootNamespace>
     <AssemblyName>Agilent.OpenLab.OmegaController</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -185,6 +185,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\algorithmrep\algorithm\algorithm.csproj">
+      <Project>{3d538642-a490-4999-99b7-eaf6d4564d30}</Project>
+      <Name>algorithm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OmegaUIControls\OmegaUIControls.csproj">
       <Project>{ec9a0909-04d1-46ca-bc71-7d14b8ab3ca1}</Project>
       <Name>OmegaUIControls</Name>

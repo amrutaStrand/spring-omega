@@ -8,28 +8,27 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public class FloatControl : StringControl
     {
-        public override object Value
+        public override void SetValue(object val)
         {
-            get => float.Parse(this.TextBox.Text);
-            set
-            {
-                if (Validate(value))
-                    TextBox.Text = value.ToString();
-                else
-                    MessageBox.Show(MessageInfo.FLOAT_ERROR_MESSAGE); // Red star
-            }
+            Value = float.Parse(val.ToString());
         }
+
         /// <summary>
         /// The Entered text should be of float type and not to be a null value.
         /// It returns false which states that the validation failed.
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public override bool Validate(object val)
+        public override bool IsValid(object val)
         {
             if (val == null)
                 return false;
             return float.TryParse(val.ToString(), out float test);
+        }
+
+        public override void ShowValidationError()
+        {
+            MessageBox.Show(MessageInfo.FLOAT_ERROR_MESSAGE);
         }
     }
 }

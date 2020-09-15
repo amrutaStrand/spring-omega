@@ -11,7 +11,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <summary>
         /// 
         /// </summary>
-        public abstract object Value { get; set; }
+        public virtual object Value { get; set; }
         
         /// <summary>
         /// 
@@ -64,9 +64,15 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public virtual bool Validate(object value) // validation messages
+        public virtual bool IsValid(object value) // validation messages
         {
             return true;
         }
+
+        public virtual void ShowValidationError()
+        {
+
+        }
+
     }
 }
