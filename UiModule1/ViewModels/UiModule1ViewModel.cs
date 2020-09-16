@@ -123,6 +123,16 @@
             return panel;
         }
 
+        private IUIControl CreateListControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "List control");
+            input.AddInput("options", new List<object> {"Test1", "Test2", "Test3", "Test4", "Test5" });
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("List");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateRadioCardControl()
         {
             Dictionary<string, object> labels = new Dictionary<string, object>();
@@ -141,13 +151,16 @@
 
             IUIControl RangeSliderControl = CreateRangeSliderControl();
 
+            IUIControl ListControl = CreateListControl();
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
-            labels.Add("Slider Control", SliderControl);
+            //labels.Add("Slider Control", SliderControl);
             labels.Add("Xam Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
+            labels.Add("List Control", ListControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 

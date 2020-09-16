@@ -52,10 +52,22 @@
     <Compile Include="BooleanControl.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="CONSTANTS.cs" />
+    <Compile Include="Cube\AbstractIntArray.cs" />
+    <Compile Include="Cube\AbstractIntIterator.cs" />
+    <Compile Include="Cube\AbstractIntSet.cs" />
+    <Compile Include="Cube\ArrayUtil.cs" />
+    <Compile Include="Cube\BitSetIntSet.cs" />
+    <Compile Include="Cube\DefaultIntArray.cs" />
+    <Compile Include="Cube\IndexedIntArray.cs" />
+    <Compile Include="Cube\IntArray.cs" />
+    <Compile Include="Cube\IntIterator.cs" />
+    <Compile Include="Cube\IntSet.cs" />
+    <Compile Include="Cube\SortedIntArray.cs" />
     <Compile Include="FloatControl.cs" />
     <Compile Include="IntControl.cs" />
     <Compile Include="IUIControl.cs" />
     <Compile Include="IUIInput.cs" />
+    <Compile Include="ListControl.cs" />
     <Compile Include="MessageInfo.cs" />
     <Compile Include="OmegaUIUtils\LayoutPanel.cs" />
     <Compile Include="OmegaUIUtils\UIConstants.cs" />
@@ -76,5 +88,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
