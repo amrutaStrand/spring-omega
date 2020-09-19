@@ -48,6 +48,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractUIContainer.cs" />
     <Compile Include="AbstractUIControl.cs" />
     <Compile Include="BooleanControl.cs" />
     <Compile Include="CommandHandler.cs" />
@@ -64,7 +65,9 @@
     <Compile Include="Cube\IntSet.cs" />
     <Compile Include="Cube\SortedIntArray.cs" />
     <Compile Include="FloatControl.cs" />
+    <Compile Include="GroupControl.cs" />
     <Compile Include="IntControl.cs" />
+    <Compile Include="IUIContainer.cs" />
     <Compile Include="IUIControl.cs" />
     <Compile Include="IUIInput.cs" />
     <Compile Include="ListControl.cs" />
