@@ -11,10 +11,15 @@ using System.ComponentModel;
 
 namespace OmegaUIControls
 {
-    //Parameters of this class are
-    //1. options (Map or List) : items to be added in the left side list    
-    //2. leftlabel (String) : Label to be added to left side list.
-    //3. rightlabel (String) : Label to be added to right side list.
+    /// <summary>
+    /// Parameters of this class are<list type="bullet" >
+    /// <item>options (Map or List) : items to be added in the left side list</item>
+    /// <item>leftlabel (String) : Label to be added to left side list</item>
+    /// <item>rightlabel (String) : Label to be added to right side list</item>
+    /// <item>showBorder (bool)</item>
+    /// <item>Description (String) : header to be shown in the border</item>
+    ///</list>
+    /// </summary>
     class ListControl : AbstractUIControl
     {
         private IList<object> elements;
@@ -22,26 +27,49 @@ namespace OmegaUIControls
         private ObservableCollection<object> leftElements;
         //private IList<object> rightElements;
         private ObservableCollection<object> rightElements;
-        private SortedIntArray left;
-        private SortedIntArray right;
 
         private ListBox leftList;
         private ListBox rightList;
-        protected IntArray disabledIndices;
 
+        /// <summary>
+        /// The Value property of a ListControl is a list of selected objects which are part of the rightList.
+        /// </summary>
+        public override object Value
+        {
+            get
+            {
+                return new List<object>(rightElements);
+            }
+            set
+            {
+                if (!(value is List<object>))
+                    throw new Exception("Value of ListControl should be a list of objects");
+
+                List<object> data = value as List<object>;
+
+                //clear right and fill left
+                leftElements = new ObservableCollection<object>(elements);
+                rightElements.Clear();
+
+                //move each item from left to right
+                for(int i = 0; i < data.Count; i++)
+                {
+                    leftElements.Remove(data[i]);
+                    rightElements.Add(data[i]);
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Adds two list boxes and buttons to a <see cref="LayoutPanel"/>.
+        /// </summary>
         public override void CreateUIElement()
         {
-            int size = elements.Count;
-            left = new SortedIntArray(size);
-            right = new SortedIntArray(size);
-
             //leftElements = new List<object>(elements);
             leftElements = new ObservableCollection<object>(elements);
             //rightElements = new List<object>();
             rightElements = new ObservableCollection<object>();
-
-            for (int i = 0; i < size; i++)
-                left.Add(i);
 
             LayoutPanel panel = new LayoutPanel(1, 3);
 
@@ -61,6 +89,11 @@ namespace OmegaUIControls
             UIElement = panel;
         }
 
+        /// <summary>
+        /// Adds a stackpanel containing a label and a list box control (list of available items) 
+        /// to the <see cref="LayoutPanel"/>.
+        /// </summary>
+        /// <param name="layoutPanel"></param>
         private void AddLeftList(LayoutPanel layoutPanel)
         {
             string leftLabel = Input.HasParameter("leftlabel") ? (string)Input.GetInput("leftlabel") : "Available Items";
@@ -82,6 +115,9 @@ namespace OmegaUIControls
             layoutPanel.Add(panel, 4);
         }
 
+        /// <summary>
+        /// Adds a stackpanel containing two buttons to move elements in the left and right list box.
+        /// <param name="layoutPanel"></param>
         private void AddControls(LayoutPanel layoutPanel)
         {
             Panel panel = new StackPanel();
@@ -107,7 +143,9 @@ namespace OmegaUIControls
             foreach (object o in tmp)
             {
                 leftElements.Add(o);
+                //(leftList.ItemsSource as ObservableCollection<object>).Add(o);
                 rightElements.Remove(o);
+                //(rightList.ItemsSource as ObservableCollection<object>).Remove(o);
             }
         }
 
@@ -121,6 +159,11 @@ namespace OmegaUIControls
             }
         }
 
+        /// <summary>
+        /// Adds a stackpanel conatining a label and a list box control (list of selected items) 
+        /// to the <see cref="LayoutPanel"/>.
+        /// </summary>
+        /// <param name="layoutPanel"></param>
         private void AddRightList(LayoutPanel layoutPanel)
         {
             string rightLabel = Input.HasParameter("rightLabel") ? (string)Input.GetInput("rightLabel") : "Selected Items";
@@ -158,8 +201,25 @@ namespace OmegaUIControls
                 elements = param as IList<object>;
             }
 
-            disabledIndices = Input.HasParameter("disabledIndices") ? (IntArray)Input.GetInput("disabledIndices") : null;
+            //disabledIndices = Input.HasParameter("disabledIndices") ? (IntArray)Input.GetInput("disabledIndices") : null;
+        }
 
+        /// <summary>
+        /// Resets the options shown in the ListControl.
+        /// </summary>
+        /// <param name="newOptions"></param>
+        public void ResetOptions(IList<object> newOptions)
+        {
+            elements = new List<object>(newOptions);
+            int size = elements.Count;
+
+            leftElements.Clear();
+            rightElements.Clear();
+
+            for(int i = 0; i < size; i++)
+            {
+                rightElements.Add(elements[i]);
+            }
         }
     }
 }
