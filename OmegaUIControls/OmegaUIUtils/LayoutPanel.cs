@@ -64,7 +64,7 @@ namespace OmegaUIControls.OmegaUIUtils
 
         public void AddBorder(string header)
         {
-            this.BorderThickness = new System.Windows.Thickness(1);
+            this.BorderThickness = new System.Windows.Thickness(2);
             this.Header = header;
         }
 

@@ -133,6 +133,28 @@
             return panel;
         }
 
+        private IUIControl CreateGroupControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Demo group control");
+            input.AddInput("controls", new List<object> { CreateBooleanControl(), CreateRangeSliderControl(), CreateListControl() });
+            input.AddInput("orientation", "horizontal");
+            IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private IUIControl CreateVGroupControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Demo group control");
+            input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
+            //input.AddInput("orientation", "horizontal");
+            IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateRadioCardControl()
         {
             Dictionary<string, object> labels = new Dictionary<string, object>();
@@ -153,6 +175,10 @@
 
             IUIControl ListControl = CreateListControl();
 
+            IUIControl GroupControl = CreateGroupControl();
+
+            IUIControl VGroupControl = CreateVGroupControl();
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
@@ -161,6 +187,7 @@
             labels.Add("Xam Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
             labels.Add("List Control", ListControl);
+            labels.Add("Group Control", VGroupControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 

@@ -141,6 +141,7 @@ namespace OmegaUIControls
         {
             var panel = allowText ? new LayoutPanel(1, 3) : new LayoutPanel(1, 1);
             panel.ChangeDimension(80, 800);
+            panel.Margin = new Thickness(10);
             if (showBorder)
             {
                 panel.AddBorder(description);

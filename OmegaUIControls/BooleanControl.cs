@@ -20,6 +20,7 @@ namespace OmegaUIControls
             checkBox.Content = (string)Input.GetInput("Description");
             var panel = new Grid();
             panel.Children.Add(checkBox);
+            panel.Margin = new Thickness(10);
             UIElement = panel;
         }
 

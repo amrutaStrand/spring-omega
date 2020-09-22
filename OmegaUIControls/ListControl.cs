@@ -72,6 +72,7 @@ namespace OmegaUIControls
             rightElements = new ObservableCollection<object>();
 
             LayoutPanel panel = new LayoutPanel(1, 3);
+            panel.Margin = new Thickness(10);
 
             bool showBorder = Input.HasParameter("showBorder") ? (bool)Input.GetInput("showBorder") : true;
 
