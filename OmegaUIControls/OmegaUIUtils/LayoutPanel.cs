@@ -56,7 +56,6 @@ namespace OmegaUIControls.OmegaUIUtils
             grid = new Grid();
             this.Content = grid;
             this.BorderThickness = new System.Windows.Thickness(0);
-            //this.Child = grid;
             this.Padding = new System.Windows.Thickness(3);
             this.Width = 400;
             this.Height = 30;

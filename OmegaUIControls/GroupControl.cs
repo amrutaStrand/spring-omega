@@ -15,49 +15,54 @@ namespace Agilent.OpenLab.Spring.Omega
     class GroupControl : AbstractUIContainer
     {
         private string orientation;
-        private bool enableScroll;
 
+        /// <summary>
+        /// Creates UIElement of <see cref="GroupControl"/> which is a <see cref="GroupBox"/>.
+        /// </summary>
         public override void CreateUIElement()
         {
-            GroupBox panel = new GroupBox();
-            panel.BorderThickness = new System.Windows.Thickness(2);
+            GroupBox box = new GroupBox();
+            box.BorderThickness = new System.Windows.Thickness(0);
 
             bool showBorder = Input.HasParameter("showBorder") ? (bool)Input.GetInput("showBorder") : true;
 
-            string description = Input.HasParameter("Description") ? (string)Input.GetInput("Description") : "Columns";
+            string description = Input.HasParameter("Description") ? (string)Input.GetInput("Description") : "Omega Container";
 
             if (showBorder)
-                panel.Header = description;
-
-            UIElement element = CreateComponentsPanel();
-
-            panel.Content = element;
-            if (enableScroll)
             {
-                //Size size = element.RenderSize;
-                //panel.ChangeDimension(size.Height + 25, size.Width + 30);
+                box.BorderThickness = new System.Windows.Thickness(2);
+                box.Header = description;
             }
 
-            panel.Height = 300;
-            panel.Width = 1000;
+            UIElement panel = CreateComponentsPanel();
 
-            UIElement = panel;
+            box.Content = panel;
+
+            //box.Height = 300;
+            //box.Width = 1000;
+
+            UIElement = box;
         }
 
         /// <summary>
-        /// Adds the controls to a stackpanel inside a scroll viewer.
+        /// Adds the controls to a <see cref="StackPanel"/> inside a <see cref="ScrollViewer"/>.
         /// </summary>
         /// <returns></returns>
         private UIElement CreateComponentsPanel()
         {
+            //the stack panel hold the controls
             StackPanel panel = new StackPanel();
+
+            //the stack panel is placed inside a scroll viewer to enable scrolling
             ScrollViewer scrollViewer = new ScrollViewer();
             scrollViewer.Content = panel;
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            
+
+            //set orientation of the stack panel depending on the input parameter
             panel.Orientation = orientation.Equals("horizontal") ? Orientation.Horizontal : Orientation.Vertical;
 
+            //add controls in the stack panel
             int n = GetControlCount();
             for (int i = 0; i < n; i++)
             {
@@ -74,8 +79,6 @@ namespace Agilent.OpenLab.Spring.Omega
             base.SetInput(input);
 
             orientation = Input.HasParameter("orientation") ? (string)Input.GetInput("orientation") : "vertical";
-
-            enableScroll = Input.HasParameter("enableScroll") ? (bool)Input.GetInput("enableScroll") : false;
         }
     }
 }

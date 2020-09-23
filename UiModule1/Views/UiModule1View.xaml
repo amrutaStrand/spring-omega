@@ -8,7 +8,7 @@
     Focusable="True"
     Loaded="OnLoaded" 
     Unloaded="OnUnloaded">
-    <Grid x:Name="UIControlHost">
-        <TextBox x:Name="tb"></TextBox>
-    </Grid>
+    <StackPanel x:Name="UIControlHost">
+        
+    </StackPanel>
 </UserControl>
