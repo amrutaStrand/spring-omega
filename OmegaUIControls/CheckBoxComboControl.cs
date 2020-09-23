@@ -47,6 +47,7 @@ namespace Agilent.OpenLab.Spring.Omega
             comboBox.IsEditable = true;
             comboBox.IsReadOnly = true;
             comboBox.Text = "Choose one or more options";
+            comboBox.DropDownClosed += ComboBox_DropDownClosed;
             checkList = new ObservableCollection<CheckBox>();
             foreach(string item in options)
             {
@@ -57,6 +58,12 @@ namespace Agilent.OpenLab.Spring.Omega
             comboBox.ItemsSource = checkList;
             comboBox.Width = 250;
             UIElement = comboBox;
+        }
+
+        private void ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            comboBox.Text = "Choose one or more options";
         }
 
         public override void SetInput(IUIInput input)
