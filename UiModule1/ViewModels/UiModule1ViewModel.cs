@@ -155,6 +155,16 @@
             return panel;
         }
 
+        private IUIControl CreateCheckBoxCombo()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Demo group control");
+            input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateRadioCardControl()
         {
             Dictionary<string, object> labels = new Dictionary<string, object>();
@@ -179,14 +189,17 @@
 
             IUIControl VGroupControl = CreateVGroupControl();
 
+            IUIControl CheckBoxCombo = CreateCheckBoxCombo();
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
-            //labels.Add("Slider Control", SliderControl);
+            labels.Add("Slider Control", SliderControl);
             labels.Add("Xam Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
             labels.Add("List Control", ListControl);
+            labels.Add("Multi-select Combo Box", CheckBoxCombo);
             labels.Add("Group Control", VGroupControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);

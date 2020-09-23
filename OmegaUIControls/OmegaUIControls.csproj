@@ -51,6 +51,7 @@
     <Compile Include="AbstractUIContainer.cs" />
     <Compile Include="AbstractUIControl.cs" />
     <Compile Include="BooleanControl.cs" />
+    <Compile Include="CheckBoxComboControl.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="CONSTANTS.cs" />
     <Compile Include="Cube\AbstractIntArray.cs" />
