@@ -138,7 +138,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "Demo group control");
             input.AddInput("controls", new List<object> { CreateBooleanControl(), CreateRangeSliderControl(), CreateListControl() });
-            input.AddInput("orientation", "horizontal");
+            //input.AddInput("orientation", "horizontal");
             IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
             panel.SetInput(input);
             return panel;
@@ -161,6 +161,17 @@
             input.AddInput("Description", "Demo group control");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private IUIControl CreateFileControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "File control");
+            input.AddInput("enableMultipleSelection", true);
+            input.AddInput("dialogType", "open");
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("FileControl");
             panel.SetInput(input);
             return panel;
         }
@@ -191,16 +202,19 @@
 
             IUIControl CheckBoxCombo = CreateCheckBoxCombo();
 
+            IUIControl FileControl = CreateFileControl();
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
-            labels.Add("Slider Control", SliderControl);
+            //labels.Add("Slider Control", SliderControl);
             labels.Add("Xam Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
             labels.Add("List Control", ListControl);
             labels.Add("Multi-select Combo Box", CheckBoxCombo);
-            labels.Add("Group Control", VGroupControl);
+            labels.Add("File Control", FileControl);
+            labels.Add("Group Control", GroupControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 
