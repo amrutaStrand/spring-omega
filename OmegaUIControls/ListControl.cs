@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Collections.ObjectModel;
-using Agilent.OpenLab.Spring.Omega;
-using OmegaUIControls.Cube;
 using System.Windows;
 using System.Windows.Controls;
 using OmegaUIControls.OmegaUIUtils;
-using System.ComponentModel;
 
-namespace OmegaUIControls
+namespace Agilent.OpenLab.Spring.Omega
 {
     /// <summary>
     /// Parameters of this class are<list type="bullet" >
@@ -23,9 +20,7 @@ namespace OmegaUIControls
     class ListControl : AbstractUIControl
     {
         private IList<object> elements;
-        //private IList<object> leftElements;
         private ObservableCollection<object> leftElements;
-        //private IList<object> rightElements;
         private ObservableCollection<object> rightElements;
 
         private ListBox leftList;

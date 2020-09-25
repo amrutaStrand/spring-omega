@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -18,7 +16,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected IList<object> ControlList;
 
         /// <summary>
-        /// This property is a dictionary having mapping from control id to control value for each child control.
+        /// Value property is a dictionary having mapping from control 'Id' to control 'Value' for each child control.
         /// </summary>
         public override object Value {
             get
@@ -83,7 +81,10 @@ namespace Agilent.OpenLab.Spring.Omega
             return null;
         }
 
-        //Initializes the ControlList with the value of "controls" parameter in the Input.
+        /// <summary>
+        /// Initializes the ControlList with the value of "controls" parameter in the Input.
+        /// </summary>
+        /// <param name="input"></param>
         public override void SetInput(IUIInput input)
         {
             Input = input;

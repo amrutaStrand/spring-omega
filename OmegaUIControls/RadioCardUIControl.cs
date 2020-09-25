@@ -4,10 +4,11 @@ using System.Windows.Controls;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
+    /// <summary>
+    /// RadioCardUIControl displays a set of radio buttons and the control corrresponding to the selected radio button.
+    /// </summary>
     class RadioCardUIControl : AbstractUIControl
     {
-        public override object Value { get; set; }
-
         public Dictionary<string, object> Options { get ; set ; }
 
         Dictionary<string, UIElement> Components { get; set; }
@@ -16,16 +17,16 @@ namespace Agilent.OpenLab.Spring.Omega
 
         int cardCount;
 
-        //All the radio buttons (for which the 'card' is not null) are added to a stack panel (vertical orientation) 
-        //which in turn is added to another stack panel called completePanel. In the java code,
-        //completePanel is a JPanel with BorderLayout.
+        /// <summary>
+        /// Creates a stack panel which contains another stack panel to which the radio buttons (for which 
+        /// the 'card' is not null) are added
+        /// </summary>
         public override void CreateUIElement()
         {
             RadioButtons = new List<RadioButton>();
             var labels = Options.Keys;
             Components = new Dictionary<string, UIElement>();
             List<string> componentName = new List<string>();
-            //In the Java code, 'panel' (to which the RadioButtons are added) is a JPanel with GridLayout.
             var panel = new StackPanel();
             cardCount = 0;
             foreach (string label in labels)
@@ -81,8 +82,10 @@ namespace Agilent.OpenLab.Spring.Omega
             ((StackPanel)UIElement).Children.Add(Components[(string)rb.Content]);
         }
 
-        public override void SetInput(IUIInput input) // IUIInput
+        public override void SetInput(IUIInput input)
         {
+            Input = input;
+
             Options = (Dictionary<string, object>)input.GetInput("Options");
         }
     }

@@ -30,6 +30,13 @@ namespace Agilent.OpenLab.Spring.Omega
             return Parameters[key];
         }
 
+        public object GetInput(string key, object defaultValue)
+        {
+            if (Parameters == null)
+                return null;
+            return Parameters.ContainsKey(key) ? Parameters[key] : defaultValue;
+        }
+
         public bool HasParameter(string key)
         {
             return Parameters.ContainsKey(key);

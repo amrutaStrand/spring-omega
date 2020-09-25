@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -9,7 +8,7 @@ namespace Agilent.OpenLab.Spring.Omega
     public interface IUIControl
     {
         /// <summary>
-        /// The Property for ID of the control
+        /// The Property for ID of the control. ID should be passed to the control as a parameter with key "id".
         /// </summary>
         string Id { get; set; }
 
@@ -19,7 +18,7 @@ namespace Agilent.OpenLab.Spring.Omega
         object Value { get; set; }
 
         /// <summary>
-        /// The Property for Parameters of the control
+        /// The Property for Parameters of the control. Parameters are used to create the appropriate UI control.
         /// </summary>
         IUIInput Input { get; set; }
         

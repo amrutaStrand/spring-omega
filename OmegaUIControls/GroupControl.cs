@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using OmegaUIControls.OmegaUIUtils;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -17,7 +12,8 @@ namespace Agilent.OpenLab.Spring.Omega
         private string orientation;
 
         /// <summary>
-        /// Creates UIElement of <see cref="GroupControl"/> which is a <see cref="GroupBox"/>.
+        /// Creates UIElement of <see cref="GroupControl"/>. The UIElement is a <see cref="StackPanel"/> inside
+        /// a <see cref="ScrollViewer"/> which is contained in a <see cref="GroupBox"/>.
         /// </summary>
         public override void CreateUIElement()
         {

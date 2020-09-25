@@ -39,7 +39,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
         /// <summary>
         /// UIElement of <see cref="CheckBoxComboControl"/> is a <see cref="ComboBox"/> whose item source is
-        /// an <see cref="ObservableCollection{CheckBox}"/>
+        /// an <see cref="ObservableCollection{T}"/> of <see cref="CheckBox"/>.
         /// </summary>
         public override void CreateUIElement()
         {
@@ -60,6 +60,7 @@ namespace Agilent.OpenLab.Spring.Omega
             UIElement = comboBox;
         }
 
+        //Sets the text of the combo box to its initial value.
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;

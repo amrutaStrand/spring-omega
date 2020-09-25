@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows;
-using Agilent.OpenLab.Spring.Omega;
 
-namespace OmegaUIControls
+namespace Agilent.OpenLab.Spring.Omega
 {
+    /// <summary>
+    /// <see cref="CheckBox"/> control.
+    /// </summary>
     class BooleanControl : AbstractUIControl
     {
         private CheckBox checkBox;

@@ -65,6 +65,8 @@
     <Compile Include="Cube\IntIterator.cs" />
     <Compile Include="Cube\IntSet.cs" />
     <Compile Include="Cube\SortedIntArray.cs" />
+    <Compile Include="FileChooserControl.cs" />
+    <Compile Include="FileControl.cs" />
     <Compile Include="FloatControl.cs" />
     <Compile Include="GroupControl.cs" />
     <Compile Include="IntControl.cs" />

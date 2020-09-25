@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Agilent.OpenLab.Spring.Omega;
 using OmegaUIControls.OmegaUIUtils;
 using Infragistics.Controls.Editors;
 using System.Collections;
 using System.Windows.Markup;
 
-namespace OmegaUIControls
+namespace Agilent.OpenLab.Spring.Omega
 {
-    //Parameters of this class are
-    //1. sliderType (string) : sliderType should be any one "float" or "int"
-    //2. min (number) : Minimum value of this slider
-    //3. max (number) : Maximum value of this slider
-    //4. leftLabel (string) : text that should display on the left side of the slider
-    //5. rightLabel (string) : text that should display on the right side of the slider
-    //6. allowTextBox (bool) : if this value is true then it will add a textfield next to slider and
-    //                      the value of the textField is the slider current value
-    //7. width (double) : relative to textBox and label (1 means equal, 2 means double, etc.)
-    //8. tickSpace
-    //9. adjustMinMax (bool) : if set to true, the min/max values are upadated when the value inside the
-    //                          TextBox is out of the current range
+    /// <summary>
+    /// Parameters of this class are<list type="bullet" >
+    /// <item>Description (String) : string shown in the label</item>
+    /// <item>sliderType (string) : sliderType should be any one "float" or "int"</item>
+    /// <item>min (number) : Minimum value of this slider</item>
+    /// <item>max (number) : Maximum value of this slider</item>
+    /// <item>leftLabel (string) : text that should display on the left side of the slider</item>
+    /// <item>rightLabel (string) : text that should display on the right side of the slider</item>
+    /// <item>allowTextBox (bool) : if this value is true then it will add a textfield next to slider 
+    /// and the value of the textField is the slider current value</item>
+    /// <item>width (double) : width of slider relative to textBox and label (1 means equal, 2 means double, etc.)</item>
+    /// <item>tickSpace (number) : spacing between the tick marks of the slider</item>
+    /// <item>adjustMinMax (bool) : if set to true, the min/max values are upadated when the value inside 
+    /// the text box is out of the current range</item>></list>
+    /// </summary>
+    
     class XamSliderControl : AbstractUIControl
     {
         protected string sliderType;
@@ -70,8 +73,11 @@ namespace OmegaUIControls
             }
         }
 
-        //Sets the slider position, textBox value and the value field. Unlike the set method of the Value prop,
-        //it calls the SetValue method without checking if the value is between min and max.
+        /// <summary>
+        /// Sets the slider position, textBox value and the value field. Unlike the set method of the Value prop,
+        /// it calls the SetValue method without checking if the value is between min and max.
+        /// </summary>
+        /// <param name="explicitValue"></param>
         public void SetValueExplicitly(object explicitValue)
         {
             float val = Convert.ToSingle(explicitValue);
@@ -80,7 +86,10 @@ namespace OmegaUIControls
             SetValue(val);
         }
 
-        //This method is called when Value prop is set or slider is changed
+        /// <summary>
+        /// Sets the value of slider and textBox. This method is called when Value prop is set or slider is changed.
+        /// </summary>
+        /// <param name="value"></param>
         private void SetValue(float value)
         {
             localChange = true;
@@ -104,8 +113,10 @@ namespace OmegaUIControls
             localChange = false;
         }
 
-        //While setting this prop, absolute value is converted into % and in the get method,
-        //% is converted back into absolute value
+        /// <summary>
+        /// While setting this prop, absolute value is converted into % and in the get method,
+        /// % is converted back into absolute value.
+        /// </summary>
         protected float SliderValue
         {
             get
@@ -135,7 +146,10 @@ namespace OmegaUIControls
             UIElement = panel;
         }
 
-        //Adds a text box to show value corresponding to the slider. Called by the CreateUIElement method.
+        /// <summary>
+        /// Adds a text box to show value corresponding to the slider. Called by the CreateUIElement method.
+        /// </summary>
+        /// <param name="panel"></param>
         private void AddText(LayoutPanel panel)
         {
             if (!allowText)
@@ -146,7 +160,6 @@ namespace OmegaUIControls
             textBox.LostFocus += TextBox_LostFocus;
             textBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             panel.Add(textBox, 1);
-            Grid.SetColumn(textBox, 2);
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -166,7 +179,10 @@ namespace OmegaUIControls
             }
         }
 
-        //Adds a xam numeric slider. Called by the CreateUIElement method.
+        /// <summary>
+        /// Adds a xam numeric slider. Called by the CreateUIElement method.
+        /// </summary>
+        /// <param name="panel"></param>
         private void AddSlider(LayoutPanel panel)
         {
             slider = new XamNumericSlider()
@@ -211,7 +227,11 @@ namespace OmegaUIControls
             SetValue(SliderValue);
         }
 
-        //Called by the AddSlider method to set the DataTemplate of the slider labels.
+        /// <summary>
+        /// Called by the AddSlider method to set the DataTemplate of the slider labels.
+        /// </summary>
+        /// <param name="viewType"></param>
+        /// <returns></returns>
         private DataTemplate CreateTemplate(Type viewType)
         {
             const string xamlTemplate = "<DataTemplate><Border><{0} {1} {2}/></Border></DataTemplate>";
@@ -224,15 +244,18 @@ namespace OmegaUIControls
             return template;
         }
 
-        //Adds a label to show the Description of the slider.
+        /// <summary>
+        /// Adds a label to show the Description of the slider.
+        /// </summary>
+        /// <param name="panel"></param>
         private void AddLabel(LayoutPanel panel)
         {
             label = new Label();
+            label.VerticalAlignment = VerticalAlignment.Center;
             label.Content = Input.GetInput("Description");
             label.RenderSize = UIConstants.LABEL_PREFERRED_SIZE;
 
             panel.Add(label, 1);
-            Grid.SetColumn(label, 0);
         }
 
         public override void SetInput(IUIInput input)
@@ -257,7 +280,7 @@ namespace OmegaUIControls
 
             allowText = Input.HasParameter("allowTextBox") ? (bool)Input.GetInput("allowTextBox") : false;
 
-            width = Input.HasParameter("width") ? (double)Input.GetInput("width") : (allowText ? 1 : 2);
+            width = Input.HasParameter("width") ? (double)Input.GetInput("width") : (allowText ? 2 : 3);
 
             tickSpace = Input.HasParameter("tickSpace") ? (int)Input.GetInput("tickSpace") : 25;
 
@@ -272,7 +295,11 @@ namespace OmegaUIControls
             //Input.AddInput("max", max);
         }
 
-        //Updates the range of the slider i.e. min and max values of the slider
+        /// <summary>
+        /// If adjustMinMax is true, updates the range of the slider i.e. min or max values of the slider
+        /// depending on the value to be set.
+        /// </summary>
+        /// <param name="val"></param>
         public void UpdateSliderRange(float val)
         {
             if (adjustMinMax)
@@ -294,6 +321,10 @@ namespace OmegaUIControls
             }
         }
 
+        /// <summary>
+        /// Updates description of the slider shown in  the label.
+        /// </summary>
+        /// <param name="desc"></param>
         public void UpdateDescription(string desc)
         {
             label.Content = desc;
