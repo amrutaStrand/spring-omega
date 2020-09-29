@@ -8,7 +8,7 @@
     Focusable="True"
     Loaded="OnLoaded" 
     Unloaded="OnUnloaded">
-    <StackPanel x:Name="UIControlHost">
+    <StackPanel x:Name="UIControlHost" Margin="20">
         
     </StackPanel>
 </UserControl>

@@ -100,7 +100,7 @@
         private IUIControl CreateXamSliderControl()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "Xam slider control");
+            input.AddInput("Description", "Slider control");
             input.AddInput("allowTextBox", true);
             input.AddInput("min", 50);
             input.AddInput("max", 150);
@@ -127,7 +127,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("Description", "List control");
-            input.AddInput("options", new List<object> {"Test1", "Test2", "Test3", "Test4", "Test5" });
+            input.AddInput("options", new List<object> {"Sample-1", "Sample-2", "Sample-3", "Sample-4", "Sample-5" });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("List");
             panel.SetInput(input);
             return panel;
@@ -149,7 +149,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "Demo group control");
             input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
-            //input.AddInput("orientation", "horizontal");
+            input.AddInput("orientation", "verical");
             IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
             panel.SetInput(input);
             return panel;
@@ -170,7 +170,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "File control");
             input.AddInput("enableMultipleSelection", true);
-            input.AddInput("dialogType", "open");
+            //input.AddInput("dialogType", "save");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("FileControl");
             panel.SetInput(input);
             return panel;
@@ -209,7 +209,7 @@
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
             //labels.Add("Slider Control", SliderControl);
-            labels.Add("Xam Slider Control", XamSliderControl);
+            labels.Add("Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
             labels.Add("List Control", ListControl);
             labels.Add("Multi-select Combo Box", CheckBoxCombo);
