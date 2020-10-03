@@ -137,7 +137,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("Description", "Demo group control");
-            input.AddInput("controls", new List<object> { CreateBooleanControl(), CreateRangeSliderControl(), CreateListControl() });
+            input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
             //input.AddInput("orientation", "horizontal");
             IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
             panel.SetInput(input);
@@ -176,6 +176,16 @@
             return panel;
         }
 
+        private IUIControl CreateTabControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Demo group control");
+            input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
+            IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Tab");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateRadioCardControl()
         {
             Dictionary<string, object> labels = new Dictionary<string, object>();
@@ -204,6 +214,9 @@
 
             IUIControl FileControl = CreateFileControl();
 
+            IUIControl TabControl = CreateTabControl();
+
+
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
@@ -215,6 +228,7 @@
             labels.Add("Multi-select Combo Box", CheckBoxCombo);
             labels.Add("File Control", FileControl);
             labels.Add("Group Control", GroupControl);
+            labels.Add("Tab Control", TabControl);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 

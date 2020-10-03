@@ -77,6 +77,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="valuePairs"></param>
         public override void SetInput(IUIInput input) // IUIInput
         {
+            Input = input;
             LabelContent = input.GetInput("Label").ToString();
             Label.Content = LabelContent;
             if (input.HasParameter("Value"))

@@ -75,6 +75,7 @@
     <Compile Include="IUIInput.cs" />
     <Compile Include="ListControl.cs" />
     <Compile Include="MessageInfo.cs" />
+    <Compile Include="OmegaFactory.cs" />
     <Compile Include="OmegaUIUtils\LayoutPanel.cs" />
     <Compile Include="OmegaUIUtils\UIConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="SimpleDialog.cs" />
     <Compile Include="SliderControl.cs" />
     <Compile Include="StringControl.cs" />
+    <Compile Include="TabOmegaControl.cs" />
     <Compile Include="UIControlRegistry.cs" />
     <Compile Include="UIInput.cs" />
     <Compile Include="XamSliderControl.cs" />

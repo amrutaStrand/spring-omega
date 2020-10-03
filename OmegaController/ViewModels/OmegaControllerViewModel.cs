@@ -23,6 +23,7 @@
             this.InitializeCommands();
             this.SubscribeEvents();
             UIControlRegistry.RegisterUIControls(container);
+            OmegaFactory.InitializeOmegaFactory(container);
             AlgorithmRegistry.RegisterAlgorithms(container);
         }
 
