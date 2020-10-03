@@ -33,6 +33,7 @@ namespace Agilent.OpenLab.Spring.Omega
             UIElement panel = CreateComponentsPanel();
 
             box.Content = panel;
+            box.HorizontalAlignment = HorizontalAlignment.Left;
 
             //box.Height = 300;
             //box.Width = 1000;
@@ -64,6 +65,7 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 IUIControl control = GetControl(i);
                 UIElement u = control.GetUIElement();
+                //(u as FrameworkElement).HorizontalAlignment = HorizontalAlignment.Left;
                 panel.Children.Add(u);
             }
 

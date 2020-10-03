@@ -20,10 +20,12 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             checkBox = new CheckBox();
             checkBox.Content = (string)Input.GetInput("Description");
-            var panel = new Grid();
-            panel.Children.Add(checkBox);
-            panel.Margin = new Thickness(10);
-            UIElement = panel;
+            //var panel = new Grid();
+            //panel.Children.Add(checkBox);
+            //panel.Margin = new Thickness(10);
+            checkBox.Margin = new Thickness(10);
+            //checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+            UIElement = checkBox;
         }
 
         public override void SetInput(IUIInput input)
