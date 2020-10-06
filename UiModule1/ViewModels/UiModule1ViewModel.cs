@@ -97,17 +97,31 @@
             return panel;
         }
 
+        //private IUIControl CreateXamSliderControl()
+        //{
+        //    UIInput input = new UIInput();
+        //    input.AddInput("Description", "Slider control");
+        //    input.AddInput("allowTextBox", true);
+        //    input.AddInput("min", 50);
+        //    input.AddInput("max", 150);
+        //    input.AddInput("sliderType", "int");
+        //    input.AddInput("adjustMinMax", false);
+        //    IUIControl panel = this.UnityContainer.Resolve<IUIControl>("XamSlider");
+        //    panel.SetInput(input);
+        //    return panel;
+        //}
+
         private IUIControl CreateXamSliderControl()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "Slider control");
-            input.AddInput("allowTextBox", true);
-            input.AddInput("min", 50);
-            input.AddInput("max", 150);
-            input.AddInput("sliderType", "int");
-            input.AddInput("adjustMinMax", false);
-            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("XamSlider");
-            panel.SetInput(input);
+            Dictionary<string, object> pairs = new Dictionary<string, object> 
+            {
+                    { "Description", "Strand slider control" },
+                    { "allowTextBox", true},
+                    { "min", 200 },
+                    { "max", 500}
+            };
+            IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
             return panel;
         }
 
