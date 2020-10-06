@@ -82,7 +82,6 @@
     <Compile Include="RadioCardUIControl.cs" />
     <Compile Include="RangeSliderControl.cs" />
     <Compile Include="SimpleDialog.cs" />
-    <Compile Include="SliderControl.cs" />
     <Compile Include="StringControl.cs" />
     <Compile Include="TabOmegaControl.cs" />
     <Compile Include="UIControlRegistry.cs" />

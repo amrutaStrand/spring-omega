@@ -69,9 +69,9 @@ namespace Agilent.OpenLab.Spring.Omega
             LayoutPanel panel = new LayoutPanel(1, 3);
             panel.Margin = new Thickness(10);
 
-            bool showBorder = Input.HasParameter("showBorder") ? (bool)Input.GetInput("showBorder") : true;
+            bool showBorder = (bool)Input.GetInput("showBorder", true);
 
-            string description = Input.HasParameter("Description") ? (string)Input.GetInput("Description") : "Columns";
+            string description = (string)Input.GetInput("Description", "Columns");
 
             if (showBorder)
                 panel.AddBorder(description);
@@ -92,7 +92,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="layoutPanel"></param>
         private void AddLeftList(LayoutPanel layoutPanel)
         {
-            string leftLabel = Input.HasParameter("leftlabel") ? (string)Input.GetInput("leftlabel") : "Available Items";
+            string leftLabel = (string)Input.GetInput("leftlabel", "Available Items");
 
             Panel panel = new StackPanel();
 
@@ -162,7 +162,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="layoutPanel"></param>
         private void AddRightList(LayoutPanel layoutPanel)
         {
-            string rightLabel = Input.HasParameter("rightLabel") ? (string)Input.GetInput("rightLabel") : "Selected Items";
+            string rightLabel = (string)Input.GetInput("rightLabel", "Selected Items");
             
             Panel panel = new StackPanel();
 
@@ -185,7 +185,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             Input = input;
 
-            var param = Input.GetInput("options");
+            var param = Input.GetInput("options", new List<object>());
 
             if(param is IDictionary)
             {

@@ -86,7 +86,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             Input = input;
 
-            Options = (Dictionary<string, object>)input.GetInput("Options");
+            Options = (Dictionary<string, object>)input.GetInput("Options", new Dictionary<string, object>());
         }
     }
 }

@@ -68,7 +68,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         protected void CreateLabel()
         {
-            string description = Input.HasParameter("Description") ? (string)Input.GetInput("Description") : "Select a file";
+            string description = (string)Input.GetInput("Description", "Select a file");
 
             label = new Label();
             label.VerticalAlignment = VerticalAlignment.Center;
@@ -82,16 +82,16 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         protected void CreateDialog()
         {
-            string dialogType = Input.HasParameter("dialogType") ? (string)Input.GetInput("dialogType") : "open";
+            string dialogType = (string)Input.GetInput("dialogType", "open");
             
             if (dialogType.Equals("save"))
                 dialog = new SaveFileDialog();
             else
                 dialog = new OpenFileDialog();
 
-            dialog.InitialDirectory = Input.HasParameter("currentDirectory") ? (string)Input.GetInput("currentDirectory") : null;
+            dialog.InitialDirectory = (string)Input.GetInput("currentDirectory", string.Empty);
 
-            dialog.Filter = Input.HasParameter("fileFilters") ? (string)Input.GetInput("fileFilters") : string.Empty;
+            dialog.Filter = (string)Input.GetInput("fileFilters", string.Empty);
 
             if(dialogType.Equals("open") && Input.HasParameter("enableMultipleSelection"))
             {
@@ -116,7 +116,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             button = new Button();
             button.Margin = new Thickness(5);
-            button.Content = Input.HasParameter("buttonLabel") ? (string)Input.GetInput("buttonLabel") : "Browse";
+            button.Content = Input.GetInput("buttonLabel", "Browse");
             button.Click += Button_Click;
         }
 
@@ -135,11 +135,6 @@ namespace Agilent.OpenLab.Spring.Omega
         public void SetInitialDirectory(string dir)
         {
             dialog.InitialDirectory = dir;
-        }
-
-        public override void SetInput(IUIInput input)
-        {
-            Input = input;
         }
     }
 }

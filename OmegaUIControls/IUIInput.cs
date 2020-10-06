@@ -8,6 +8,7 @@ namespace Agilent.OpenLab.Spring.Omega
         Dictionary<string, object> Parameters { get; set; }
 
         object GetInput(string key);
+        object GetInput(string key, object defaultValue);
         //string GetStringInput(string key);
         //int GetIntInput(string key);
         void AddInput(string key, object value);

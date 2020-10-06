@@ -20,7 +20,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected float max;
         protected Hashtable labels;
         protected bool allowText;
-        protected double width;
+        protected float width;
         protected int tickSpace;
         protected bool adjustMinMax;
         protected string minLabel;
@@ -357,13 +357,13 @@ namespace Agilent.OpenLab.Spring.Omega
 
             localChangeMax = false;
 
-            sliderType = Input.HasParameter("sliderType") ? (string)Input.GetInput("sliderType") : "float";
+            sliderType = (string)Input.GetInput("sliderType", "float");
 
             min = Input.HasParameter("min") ? Convert.ToSingle(Input.GetInput("min")) : 0f;
 
             max = Input.HasParameter("max") ? Convert.ToSingle(Input.GetInput("max")) : 100f;
 
-            labels = Input.HasParameter("labelTable") ? (Hashtable)Input.GetInput("labelTable") : new Hashtable();
+            labels = (Hashtable)Input.GetInput("labelTable", new Hashtable());
 
             if (Input.HasParameter("leftLabel") && Input.HasParameter("rightLabel"))
             {
@@ -371,21 +371,21 @@ namespace Agilent.OpenLab.Spring.Omega
                 labels.Add(100, (string)Input.GetInput("rightLabel"));
             }
 
-            allowText = Input.HasParameter("allowTextBox") ? (bool)Input.GetInput("allowTextBox") : false;
+            allowText = (bool)Input.GetInput("allowTextBox", false);
 
-            width = Input.HasParameter("width") ? (double)Input.GetInput("width") : 2;
+            width = Input.HasParameter("width") ? Convert.ToSingle(Input.GetInput("width")) : 2f;
 
-            tickSpace = Input.HasParameter("tickSpace") ? (int)Input.GetInput("tickSpace") : 25;
+            tickSpace = (int)Input.GetInput("tickSpace", 25);
 
-            adjustMinMax = Input.HasParameter("adjustMinMax") ? (bool)Input.GetInput("adjustMinMax") : false;
+            adjustMinMax = (bool)Input.GetInput("adjustMinMax", false);
 
-            minLabel = Input.HasParameter("minLabel") ? (string)Input.GetInput("minLabel") : "Minimum";
+            minLabel = (string)Input.GetInput("minLabel", "Minimum");
 
-            maxLabel = Input.HasParameter("maxLabel") ? (string)Input.GetInput("maxLabel") : "Maximum";
+            maxLabel = (string)Input.GetInput("maxLabel", "Maximum");
 
-            showBorder = Input.HasParameter("showBorder") ? (bool)Input.GetInput("showBorder") : true;
+            showBorder = (bool)Input.GetInput("showBorder", true);
 
-            description = Input.HasParameter("Description") ? (string)Input.GetInput("Description") : "Range Slider";
+            description = (string)Input.GetInput("Description", "Range Slider");
         }
     }
 }

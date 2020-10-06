@@ -20,9 +20,9 @@ namespace Agilent.OpenLab.Spring.Omega
             GroupBox box = new GroupBox();
             box.BorderThickness = new System.Windows.Thickness(0);
 
-            bool showBorder = Input.HasParameter("showBorder") ? (bool)Input.GetInput("showBorder") : true;
+            bool showBorder = (bool)Input.GetInput("showBorder", true);
 
-            string description = Input.HasParameter("Description") ? (string)Input.GetInput("Description") : "Omega Container";
+            string description = (string)Input.GetInput("Description", "Omega Container");
 
             if (showBorder)
             {
@@ -76,7 +76,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             base.SetInput(input);
 
-            orientation = Input.HasParameter("orientation") ? (string)Input.GetInput("orientation") : "vertical";
+            orientation = (string)Input.GetInput("orientation", "vertical");
         }
     }
 }

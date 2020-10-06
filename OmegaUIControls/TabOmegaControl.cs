@@ -28,7 +28,8 @@ namespace Agilent.OpenLab.Spring.Omega
                 //Create the tab item
                 //TabItem item = new TabItem();
                 TabItemEx item = new TabItemEx();
-                item.Header = param.HasParameter("title") ? (string)param.GetInput("title") : ( param.HasParameter("description") ? (string)param.GetInput("description") : "Item-" + (i+1).ToString() );
+                string defaultTitle = (string)param.GetInput("description", "Item-" + (i + 1).ToString());
+                item.Header = (string)param.GetInput("title", defaultTitle);
                 item.Content = control.GetUIElement();
 
                 //Add the tab item to the tab control

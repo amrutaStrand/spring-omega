@@ -18,7 +18,7 @@ namespace Agilent.OpenLab.Spring.Omega
     /// <item>rightLabel (string) : text that should display on the right side of the slider</item>
     /// <item>allowTextBox (bool) : if this value is true then it will add a textfield next to slider 
     /// and the value of the textField is the slider current value</item>
-    /// <item>width (double) : width of slider relative to textBox and label (1 means equal, 2 means double, etc.)</item>
+    /// <item>width (float) : width of slider relative to textBox and label (1 means equal, 2 means double, etc.)</item>
     /// <item>tickSpace (number) : spacing between the tick marks of the slider</item>
     /// <item>adjustMinMax (bool) : if set to true, the min/max values are upadated when the value inside 
     /// the text box is out of the current range</item>></list>
@@ -31,7 +31,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected float max;
         protected Hashtable labels;
         protected bool allowText;
-        protected double width;
+        protected float width;
         protected int tickSpace;
         protected bool adjustMinMax;
         protected bool localChange;
@@ -136,12 +136,10 @@ namespace Agilent.OpenLab.Spring.Omega
             var panel = allowText ? new LayoutPanel(1, 3) : new LayoutPanel(1, 2);
             panel.ChangeDimension(60, 800);
 
+            this.value = min;
             AddLabel(panel);
             AddSlider(panel);
             AddText(panel);
-
-            this.value = min;
-            textBox.Text = Value.ToString();
 
             UIElement = panel;
         }
@@ -157,6 +155,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
             }
             textBox = new TextBox();
+            textBox.Text = Value.ToString();
             textBox.LostFocus += TextBox_LostFocus;
             textBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             panel.Add(textBox, 1);
@@ -252,7 +251,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             label = new Label();
             label.VerticalAlignment = VerticalAlignment.Center;
-            label.Content = Input.GetInput("Description");
+            label.Content = Input.GetInput("Description", "Description about the slider");
             label.RenderSize = UIConstants.LABEL_PREFERRED_SIZE;
 
             panel.Add(label, 1);
@@ -264,13 +263,13 @@ namespace Agilent.OpenLab.Spring.Omega
 
             localChange = false;
 
-            sliderType = Input.HasParameter("sliderType") ? (string)Input.GetInput("sliderType") : "float";
+            sliderType = (string)Input.GetInput("sliderType", "float");
 
             min = Input.HasParameter("min") ? Convert.ToSingle(Input.GetInput("min")) : 0f;
 
             max = Input.HasParameter("max") ? Convert.ToSingle(Input.GetInput("max")) : 100f;
 
-            labels = Input.HasParameter("labelTable") ? (Hashtable)Input.GetInput("labelTable") : new Hashtable();
+            labels = (Hashtable)Input.GetInput("labelTable", new Hashtable());
 
             if (Input.HasParameter("leftLabel") && Input.HasParameter("rightLabel"))
             {
@@ -278,13 +277,15 @@ namespace Agilent.OpenLab.Spring.Omega
                 labels.Add(100, (string)Input.GetInput("rightLabel"));
             }
 
-            allowText = Input.HasParameter("allowTextBox") ? (bool)Input.GetInput("allowTextBox") : false;
+            allowText = (bool)Input.GetInput("allowTextBox", false);
 
-            width = Input.HasParameter("width") ? (double)Input.GetInput("width") : (allowText ? 2 : 3);
+            float defaultWidth = allowText ? 2 : 3;
 
-            tickSpace = Input.HasParameter("tickSpace") ? (int)Input.GetInput("tickSpace") : 25;
+            width = Input.HasParameter("width") ? Convert.ToSingle(Input.GetInput("width")) : defaultWidth;
 
-            adjustMinMax = Input.HasParameter("adjustMinMax") ? (bool)Input.GetInput("adjustMinMax") : false;
+            tickSpace = (int)Input.GetInput("tickSpace", 25);
+
+            adjustMinMax = (bool)Input.GetInput("adjustMinMax", false);
         }
 
         public void UpdateRange(float min, float max)

@@ -23,7 +23,7 @@ namespace Agilent.OpenLab.Spring.Omega
             UIElement.IsEnabled = isEnabled;
         }
 
-        public abstract void SetInput(IUIInput input);
+        public virtual void SetInput(IUIInput input) => Input = input;
 
         public abstract void CreateUIElement();
 

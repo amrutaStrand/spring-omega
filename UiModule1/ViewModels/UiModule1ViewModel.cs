@@ -82,21 +82,6 @@
             return panel;
         }
 
-        private IUIControl CreateSliderControl()
-        {
-            UIInput input = new UIInput();
-            input.AddInput("Description", "Strand slider control");
-            input.AddInput("allowTextBox", true);
-            input.AddInput("min", 50);
-            input.AddInput("max", 150);
-            input.AddInput("sliderType", "int");
-            input.AddInput("adjustMinMax", false);
-            input.AddInput("tickPlacement", "bottom");
-            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Slider");
-            panel.SetInput(input);
-            return panel;
-        }
-
         //private IUIControl CreateXamSliderControl()
         //{
         //    UIInput input = new UIInput();
@@ -122,6 +107,8 @@
                     { "max", 500}
             };
             IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
+            //IUIControl panel = OmegaFactory.CreateControl("XamSlider");
+            //panel.SetInput(new UIInput());
             return panel;
         }
 
@@ -212,8 +199,6 @@
 
             IUIControl BooleanControl = CreateBooleanControl();
 
-            IUIControl SliderControl = CreateSliderControl();
-
             IUIControl XamSliderControl = CreateXamSliderControl();
 
             IUIControl RangeSliderControl = CreateRangeSliderControl();
@@ -235,7 +220,6 @@
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
             labels.Add("Boolean Control", BooleanControl);
-            //labels.Add("Slider Control", SliderControl);
             labels.Add("Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
             labels.Add("List Control", ListControl);

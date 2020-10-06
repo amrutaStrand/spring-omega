@@ -19,18 +19,13 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             checkBox = new CheckBox();
-            checkBox.Content = (string)Input.GetInput("Description");
+            checkBox.Content = Input.GetInput("Description", "Description about the check box");
             //var panel = new Grid();
             //panel.Children.Add(checkBox);
             //panel.Margin = new Thickness(10);
             checkBox.Margin = new Thickness(10);
             //checkBox.HorizontalAlignment = HorizontalAlignment.Center;
             UIElement = checkBox;
-        }
-
-        public override void SetInput(IUIInput input)
-        {
-            Input = input;
         }
     }
 }

@@ -71,7 +71,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             Input = input;
 
-            var param = Input.GetInput("options") as IList<string>;
+            var param = Input.GetInput("options", new List<string>()) as IList<string>;
 
             if (param is IDictionary)
             {
