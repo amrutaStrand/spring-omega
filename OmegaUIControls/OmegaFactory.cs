@@ -23,16 +23,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <returns>The desired control.</returns>
         public static IUIControl CreateControl(string type)
         {
-            try
-            {
-                IUIControl control = unityContainer.Resolve<IUIControl>(type);
-                return control;
-            }
-            catch (Exception e)
-            {
-                //Throw or log the error: type could not be resolved
-                return null;
-            }
+            return CreateControl(type, new UIInput());
         }
 
         public static IUIControl CreateControl(IDictionary<string, object> parameters)
@@ -47,9 +38,9 @@ namespace Agilent.OpenLab.Spring.Omega
 
                 return CreateControl(type, parameters);
             }
-            catch (Exception e)
+            catch (InvalidKeyException e)
             {
-                //Throw or log the error: key not found
+                //Throw or log the error: "type" key not found
                 return null;
             }
         }
@@ -63,6 +54,25 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <returns></returns>
         public static IUIControl CreateControl(string type, IDictionary<string, object> parameters)
         {
+            //create an instance of UIInput class
+            UIInput input = new UIInput();
+            foreach (KeyValuePair<string, object> pair in parameters)
+            {
+                input.AddInput(pair.Key, pair.Value);
+            }
+
+            return CreateControl(type, input);
+        }
+
+        /// <summary>
+        /// Creates a new omega control specified by the <paramref name="type"/> and initializes
+        /// with the specified <paramref name="input"/>.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static IUIControl CreateControl(string type, IUIInput input)
+        {
             IUIControl control;
 
             //resolve the type from the container
@@ -70,17 +80,10 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 control = unityContainer.Resolve<IUIControl>(type);
             }
-            catch (Exception e)
+            catch (ResolutionFailedException e)
             {
                 //Throw or log the error: type could not be resolved
                 return null;
-            }
-
-            //create an instance of UIInput class
-            UIInput input = new UIInput();
-            foreach(KeyValuePair<string, object> pair in parameters)
-            {
-                input.AddInput(pair.Key, pair.Value);
             }
 
             control.SetInput(input);
