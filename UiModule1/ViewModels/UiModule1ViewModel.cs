@@ -106,9 +106,8 @@
                     { "min", 200 },
                     { "max", 500}
             };
-            IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
-            //IUIControl panel = OmegaFactory.CreateControl("XamSlider");
-            //panel.SetInput(new UIInput());
+            //IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
+            IUIControl panel = OmegaFactory.CreateControl("XamSlider");
             return panel;
         }
 

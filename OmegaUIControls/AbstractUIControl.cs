@@ -7,6 +7,11 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public abstract class AbstractUIControl : IUIControl
     {
+        /// <summary>
+        /// Constructor to set parameters to default values.
+        /// </summary>
+        public AbstractUIControl() => SetInput(new UIInput());
+
         public virtual object Value { get; set; }
 
         public IUIInput Input { get; set; }

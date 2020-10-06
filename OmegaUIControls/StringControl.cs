@@ -12,17 +12,8 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public class StringControl : AbstractUIControl
     {
-        /// <summary>
-        /// Public constructor of StringControl
-        /// </summary>
-        public StringControl()
-        {
-            BorderColor = Color.FromRgb(0, 0, 10);
-            CreateUIElement();
-        }
-
-        protected Color BorderColor;
-        private string LabelContent = "";
+        protected Color BorderColor = Color.FromRgb(0, 0, 10);
+        private string LabelContent;
 
         public delegate bool ValidateMessageDelegate(String message);
 
@@ -78,8 +69,7 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void SetInput(IUIInput input) // IUIInput
         {
             Input = input;
-            LabelContent = input.GetInput("Label").ToString();
-            Label.Content = LabelContent;
+            LabelContent = input.GetInput("Label", "String").ToString();
             if (input.HasParameter("Value"))
                Validate(input.GetInput("Value"));
         }
