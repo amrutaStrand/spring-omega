@@ -69,9 +69,10 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void SetInput(IUIInput input) // IUIInput
         {
             Input = input;
+            CreateUIElement();
             LabelContent = input.GetInput("Label", "String").ToString();
             if (input.HasParameter("Value"))
-               Validate(input.GetInput("Value"));
+                Validate(input.GetInput("Value"));
         }
 
         /// <summary>
@@ -94,14 +95,13 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             if (IsValid(val))
             {
-                BorderColor = Color.FromRgb(255, 255, 0);
+                TextBox.BorderBrush = new SolidColorBrush(BorderColor);
                 SetValue(val);
             }
             else
             {
+                TextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 ShowValidationError();
-                BorderColor = Color.FromRgb(255, 0, 0);
-                CreateUIElement();
             }
 
         }
