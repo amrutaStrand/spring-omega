@@ -22,7 +22,7 @@ namespace Agilent.OpenLab.Spring.Omega
     /// <item>helpLabel (String) : content of the "Help" button</item>
     ///</list>
     /// </summary>
-    class SimpleDialog : Window
+    public class SimpleDialog : Window
     {
         protected bool hasOK;
         protected string okLabel;
@@ -136,6 +136,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (hasOK)
             {
                 okButton = new Button();
+                okButton.Margin = new Thickness(10);
                 okButton.Content = okLabel;
                 okButton.IsDefault = true;
                 okButton.Click += OkButton_Click;
@@ -145,6 +146,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (hasCancel)
             {
                 cancelButton = new Button();
+                cancelButton.Margin = new Thickness(10);
                 cancelButton.Content = cancelLabel;
                 cancelButton.IsCancel = true;
                 cancelButton.Click += CancelButton_Click;
@@ -154,6 +156,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (hasHelp)
             {
                 helpButton = new Button();
+                helpButton.Margin = new Thickness(10);
                 helpButton.Content = helpLabel;
                 helpButton.Click += HelpButton_Click;
                 panel.Children.Add(cancelButton);

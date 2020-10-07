@@ -6,6 +6,7 @@
     using Agilent.OpenLab.Spring.Omega;
     using global::OpenLab.Agilent.Spring.Algorithm;
     using Microsoft.Practices.Unity;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
@@ -139,7 +140,7 @@
             input.AddInput("Description", "Demo group control");
             input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
             //input.AddInput("orientation", "horizontal");
-            IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
             panel.SetInput(input);
             return panel;
         }
@@ -150,7 +151,7 @@
             input.AddInput("Description", "Demo group control");
             input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
             input.AddInput("orientation", "verical");
-            IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Group");
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
             panel.SetInput(input);
             return panel;
         }
@@ -181,9 +182,54 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "Demo group control");
             input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
-            IUIControl panel = this.UnityContainer.Resolve<IUIContainer>("Tab");
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Tab");
             panel.SetInput(input);
             return panel;
+        }
+
+        private OmegaDialog CreateOmegaDialog()
+        {
+            Dictionary<string, IDictionary> itemList = new Dictionary<string, IDictionary>();
+            itemList.Add("CheckBoxCombo", new Dictionary<string, object>
+            {
+                {"type", "CheckBoxCombo" },
+                {"options", new List<string>{ "Control-1", "Validation-1", "Clinical-1", "Clinical-2" } }
+            });
+            itemList.Add("XamSlider", new Dictionary<string, object>
+            {
+                {"type", "XamSlider" },
+                {"allowTextBox", true }
+            });
+            itemList.Add("RangeSlider", new Dictionary<string, object>
+            {
+                {"type", "RangeSlider" },
+                {"allowTextBox", true }
+            });
+            List<IDictionary> uiLayout = new List<IDictionary>();
+            uiLayout.Add(new Dictionary<string, object> {
+                { "title", "Test Omega Dialog - Tab 1"},
+                { "contents", new List<object>{ "Boolean", "CheckBoxCombo", "XamSlider" } }
+            });
+            uiLayout.Add(new Dictionary<string, object> {
+                { "title", "Test Omega Dialog - Tab 2"},
+                { "contents", new List<object>{ "RangeSlider", "FileControl" } }
+            });
+            OmegaDialog dialog = new OmegaDialog(null, itemList, uiLayout);
+            return dialog;
+        }
+
+        private Button CreateButton()
+        {
+            Button button = new Button();
+            button.Content = "Launch Omega Dialog";
+            button.Click += Button_Click;
+            return button;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OmegaDialog dialog = CreateOmegaDialog();
+            dialog.ShowDialog();
         }
 
         private IUIControl CreateRadioCardControl()
@@ -214,6 +260,7 @@
 
             IUIControl TabControl = CreateTabControl();
 
+            Button launchButton = CreateButton();
 
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
@@ -226,6 +273,7 @@
             labels.Add("File Control", FileControl);
             labels.Add("Group Control", GroupControl);
             labels.Add("Tab Control", TabControl);
+            labels.Add("Omega Dialog", launchButton);
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
 

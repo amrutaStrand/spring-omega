@@ -44,6 +44,7 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             ComboBox comboBox = new ComboBox();
+            comboBox.HorizontalAlignment = HorizontalAlignment.Left;
             comboBox.IsEditable = true;
             comboBox.IsReadOnly = true;
             comboBox.Text = "Choose one or more options";

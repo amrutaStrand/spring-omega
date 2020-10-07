@@ -102,7 +102,8 @@ namespace Agilent.OpenLab.Spring.Omega
             else if (sliderType.Equals("float"))
                 minValue = value;
 
-            minTextBox.Text = minValue.ToString();
+            if(allowText)
+                minTextBox.Text = minValue.ToString();
             minThumb.Value = value;
 
             localChangeMin = false;
@@ -122,7 +123,8 @@ namespace Agilent.OpenLab.Spring.Omega
             else if (sliderType.Equals("float"))
                 maxValue = value;
 
-            maxTextBox.Text = maxValue.ToString();
+            if (allowText)
+                maxTextBox.Text = maxValue.ToString();
             maxThumb.Value = value;
 
             localChangeMax = false;

@@ -9,7 +9,7 @@ namespace Agilent.OpenLab.Spring.Omega
     /// <summary>
     /// Dialog to display omega controls.
     /// </summary>
-    class OmegaDialog : SimpleDialog
+    public class OmegaDialog : SimpleDialog
     {
         protected IDictionary itemList;
 
@@ -75,7 +75,7 @@ namespace Agilent.OpenLab.Spring.Omega
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"id", "properties"},
-                {"description", "Properties" },
+                {"Description", "Properties" },
                 {"controls", controls }
             };
 
@@ -125,8 +125,16 @@ namespace Agilent.OpenLab.Spring.Omega
         private IUIControl CreateControl(string id)
         {
             //Map item = itemList.getItem(id);
-            Dictionary<string, object> item = itemList[id] as Dictionary<string, object>;
-            IUIControl control = OmegaFactory.CreateControl(item);
+            IUIControl control = null;
+            if (itemList.Contains(id))
+            {
+                Dictionary<string, object> item = itemList[id] as Dictionary<string, object>;
+                control = OmegaFactory.CreateControl(item);
+            }
+            else
+            {
+                control = OmegaFactory.CreateControl(id);
+            }
             ControlMap.Add(id, control);
             return control;
         }
