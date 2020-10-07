@@ -75,6 +75,7 @@
     <Compile Include="IUIInput.cs" />
     <Compile Include="ListControl.cs" />
     <Compile Include="MessageInfo.cs" />
+    <Compile Include="OmegaDialog.cs" />
     <Compile Include="OmegaFactory.cs" />
     <Compile Include="OmegaUIUtils\LayoutPanel.cs" />
     <Compile Include="OmegaUIUtils\UIConstants.cs" />
