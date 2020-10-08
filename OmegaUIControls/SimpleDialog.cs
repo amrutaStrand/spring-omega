@@ -131,35 +131,50 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <returns>Panel containing these buttons.</returns>
         private Panel CreateControlPanel()
         {
-            StackPanel panel = new StackPanel() { Orientation = Orientation.Horizontal };
+            DockPanel panel = new DockPanel();
+            panel.LastChildFill = false;
 
+            //panel for ok and cancel button
+            StackPanel rightPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+            //panel for help button
+            StackPanel leftPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+            
             if (hasOK)
             {
                 okButton = new Button();
+                okButton.Width = 60;
                 okButton.Margin = new Thickness(10);
                 okButton.Content = okLabel;
                 okButton.IsDefault = true;
                 okButton.Click += OkButton_Click;
-                panel.Children.Add(okButton);
+
+                rightPanel.Children.Add(okButton);
+                panel.Children.Add(rightPanel);
+                DockPanel.SetDock(rightPanel, Dock.Right);
             }
 
             if (hasCancel)
             {
                 cancelButton = new Button();
+                cancelButton.Width = 60;
                 cancelButton.Margin = new Thickness(10);
                 cancelButton.Content = cancelLabel;
                 cancelButton.IsCancel = true;
                 cancelButton.Click += CancelButton_Click;
-                panel.Children.Add(cancelButton);
+                rightPanel.Children.Add(cancelButton);
             }
 
             if (hasHelp)
             {
                 helpButton = new Button();
+                helpButton.Width = 60;
                 helpButton.Margin = new Thickness(10);
                 helpButton.Content = helpLabel;
                 helpButton.Click += HelpButton_Click;
-                panel.Children.Add(cancelButton);
+
+                leftPanel.Children.Add(helpButton);
+                panel.Children.Add(leftPanel);
+                DockPanel.SetDock(leftPanel, Dock.Left);
             }
 
             this.Closing += SimpleDialog_Closing;

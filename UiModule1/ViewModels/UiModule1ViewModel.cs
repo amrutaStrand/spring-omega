@@ -221,6 +221,7 @@
         private Button CreateButton()
         {
             Button button = new Button();
+            button.HorizontalAlignment = HorizontalAlignment.Center;
             button.Content = "Launch Omega Dialog";
             button.Click += Button_Click;
             return button;
