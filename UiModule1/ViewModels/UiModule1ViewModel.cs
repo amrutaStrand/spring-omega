@@ -107,8 +107,8 @@
                     { "min", 200 },
                     { "max", 500}
             };
-            //IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
-            IUIControl panel = OmegaFactory.CreateControl("XamSlider");
+            IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
+            //IUIControl panel = OmegaFactory.CreateControl("XamSlider");
             return panel;
         }
 
@@ -137,9 +137,9 @@
         private IUIControl CreateGroupControl()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "Demo group control");
+            input.AddInput("Description", "Horizontal group control");
             input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
-            //input.AddInput("orientation", "horizontal");
+            input.AddInput("orientation", "horizontal");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
             panel.SetInput(input);
             return panel;
@@ -148,9 +148,8 @@
         private IUIControl CreateVGroupControl()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "Demo group control");
+            input.AddInput("Description", "Vertical group control");
             input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
-            input.AddInput("orientation", "verical");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
             panel.SetInput(input);
             return panel;
@@ -159,7 +158,7 @@
         private IUIControl CreateCheckBoxCombo()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "Demo group control");
+            input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
             panel.SetInput(input);
@@ -180,7 +179,7 @@
         private IUIControl CreateTabControl()
         {
             UIInput input = new UIInput();
-            input.AddInput("Description", "Demo group control");
+            input.AddInput("Description", "Demo tab control");
             input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Tab");
             panel.SetInput(input);
@@ -192,17 +191,14 @@
             Dictionary<string, IDictionary> itemList = new Dictionary<string, IDictionary>();
             itemList.Add("CheckBoxCombo", new Dictionary<string, object>
             {
-                {"type", "CheckBoxCombo" },
                 {"options", new List<string>{ "Control-1", "Validation-1", "Clinical-1", "Clinical-2" } }
             });
             itemList.Add("XamSlider", new Dictionary<string, object>
             {
-                {"type", "XamSlider" },
                 {"allowTextBox", true }
             });
             itemList.Add("RangeSlider", new Dictionary<string, object>
             {
-                {"type", "RangeSlider" },
                 {"allowTextBox", true }
             });
             List<IDictionary> uiLayout = new List<IDictionary>();
@@ -210,10 +206,10 @@
                 { "title", "Test Omega Dialog - Tab 1"},
                 { "contents", new List<object>{ "Boolean", "CheckBoxCombo", "XamSlider" } }
             });
-            uiLayout.Add(new Dictionary<string, object> {
-                { "title", "Test Omega Dialog - Tab 2"},
-                { "contents", new List<object>{ "RangeSlider", "FileControl" } }
-            });
+            //uiLayout.Add(new Dictionary<string, object> {
+            //    { "title", "Test Omega Dialog - Tab 2"},
+            //    { "contents", new List<object>{ "RangeSlider", "FileControl" } }
+            //});
             OmegaDialog dialog = new OmegaDialog(null, itemList, uiLayout);
             return dialog;
         }

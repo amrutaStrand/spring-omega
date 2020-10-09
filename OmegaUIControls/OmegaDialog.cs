@@ -64,10 +64,11 @@ namespace Agilent.OpenLab.Spring.Omega
         protected Panel CreateContentPane(IList ui)
         {
             List<object> controls = new List<object>();
+            IDictionary map = null;
 
             foreach (object obj in ui)
             {
-                IDictionary map = obj as IDictionary;
+                map = obj as IDictionary;
                 map.Add("showBorder", false);
                 controls.Add(CreateGroup(map));
             }
@@ -82,7 +83,10 @@ namespace Agilent.OpenLab.Spring.Omega
             IUIControl omega = null;
 
             if (controls.Count == 1)
+            {
+                parameters["Description"] = map.Contains("title") ? map["title"] : "Properties";
                 omega = OmegaFactory.CreateControl("Group", parameters);
+            }
             else
                 omega = OmegaFactory.CreateControl("Tab", parameters);
 
@@ -124,12 +128,11 @@ namespace Agilent.OpenLab.Spring.Omega
 
         private IUIControl CreateControl(string id)
         {
-            //Map item = itemList.getItem(id);
             IUIControl control = null;
             if (itemList.Contains(id))
             {
                 Dictionary<string, object> item = itemList[id] as Dictionary<string, object>;
-                control = OmegaFactory.CreateControl(item);
+                control = OmegaFactory.CreateControl(id, item);
             }
             else
             {

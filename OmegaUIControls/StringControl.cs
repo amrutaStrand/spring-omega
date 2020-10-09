@@ -69,8 +69,8 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void SetInput(IUIInput input) // IUIInput
         {
             Input = input;
-            CreateUIElement();
             LabelContent = input.GetInput("Label", "String").ToString();
+            CreateUIElement();
             if (input.HasParameter("Value"))
                 Validate(input.GetInput("Value"));
         }
