@@ -155,11 +155,22 @@
             return panel;
         }
 
+        private IUIControl CreateBoxCombo()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Check Box Combo");
+            input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateCheckBoxCombo()
         {
             UIInput input = new UIInput();
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
+            input.AddInput("multiSelect", true);
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
             panel.SetInput(input);
             return panel;
@@ -251,6 +262,8 @@
 
             IUIControl VGroupControl = CreateVGroupControl();
 
+            IUIControl BoxCombo = CreateBoxCombo();
+
             IUIControl CheckBoxCombo = CreateCheckBoxCombo();
 
             IUIControl FileControl = CreateFileControl();
@@ -266,6 +279,7 @@
             labels.Add("Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
             labels.Add("List Control", ListControl);
+            labels.Add("Single-select Combo Box", BoxCombo);
             labels.Add("Multi-select Combo Box", CheckBoxCombo);
             labels.Add("File Control", FileControl);
             labels.Add("Group Control", GroupControl);

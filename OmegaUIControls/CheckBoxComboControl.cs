@@ -13,26 +13,38 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     class CheckBoxComboControl : AbstractUIControl
     {
+        private bool multiSelect;
         private IList<string> options;
+        private IList<string> selectedOptions;
         private ObservableCollection<CheckBox> checkList;
+        private ComboBox comboBox;
 
         public override object Value {
             get
             {
-                List<string> value = new List<string>();
-                foreach(CheckBox check in checkList)
+                if (multiSelect)
                 {
-                    if ((bool)check.IsChecked)
-                        value.Add((string)check.Content);
+                    List<string> value = new List<string>(selectedOptions);
+                    return value;
                 }
-                return value;
+                else
+                {
+                    return comboBox.SelectedItem;
+                }
             }
             set
             {
-                IList<string> v = value as IList<string>;
-                foreach (CheckBox check in checkList)
+                if (multiSelect)
                 {
-                    check.IsChecked = v.Contains(check.Content.ToString()) ? true : false;
+                    IList<string> v = value as IList<string>;
+                    foreach (CheckBox check in checkList)
+                    {
+                        check.IsChecked = v.Contains(check.Content.ToString()) ? true : false;
+                    }
+                }
+                else
+                {
+                    comboBox.SelectedItem = value;
                 }
             } 
         }
@@ -43,29 +55,54 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         public override void CreateUIElement()
         {
-            ComboBox comboBox = new ComboBox();
+            comboBox = new ComboBox();
             comboBox.HorizontalAlignment = HorizontalAlignment.Left;
-            comboBox.IsEditable = true;
-            comboBox.IsReadOnly = true;
-            comboBox.Text = "Choose one or more options";
-            comboBox.DropDownClosed += ComboBox_DropDownClosed;
-            checkList = new ObservableCollection<CheckBox>();
-            foreach(string item in options)
+            
+            if (multiSelect)
             {
-                CheckBox check = new CheckBox();
-                check.Content = item;
-                checkList.Add(check);
+                comboBox.IsEditable = true;
+                comboBox.IsReadOnly = true;
+                comboBox.Text = options[0];
+                comboBox.DropDownClosed += ComboBox_DropDownClosed;
+                selectedOptions = new List<string>();
+                checkList = new ObservableCollection<CheckBox>();
+                foreach (string item in options)
+                {
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.Checked += CheckBox_Checked;
+                    checkBox.Unchecked += CheckBox_Unchecked;
+                    checkBox.Content = item;
+                    checkList.Add(checkBox);
+                }
+                checkList[0].IsChecked = true;
+                comboBox.ItemsSource = checkList;
             }
-            comboBox.ItemsSource = checkList;
+            else
+            {
+                comboBox.SelectedItem = options[0];
+                comboBox.ItemsSource = new List<string>(options);
+            }
+            
             comboBox.Width = 250;
             UIElement = comboBox;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            selectedOptions.Remove(checkBox.Content as string);
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            selectedOptions.Add(checkBox.Content as string);
         }
 
         //Sets the text of the combo box to its initial value.
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            ComboBox comboBox = sender as ComboBox;
-            comboBox.Text = "Choose one or more options";
+            comboBox.Text = string.Join(", ", selectedOptions);
         }
 
         public override void SetInput(IUIInput input)
@@ -83,6 +120,8 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 options = param as IList<string>;
             }
+
+            multiSelect = (bool)Input.GetInput("multiSelect", false);
         }
     }
 }
