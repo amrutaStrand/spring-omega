@@ -21,9 +21,11 @@ namespace Agilent.OpenLab.Spring.Omega
     /// <item>width (float) : width of slider relative to textBox and label (1 means equal, 2 means double, etc.)</item>
     /// <item>tickSpace (number) : spacing between the tick marks of the slider</item>
     /// <item>adjustMinMax (bool) : if set to true, the min/max values are upadated when the value inside 
-    /// the text box is out of the current range</item>></list>
+    /// the text box is out of the current range</item>>
+    /// <item>showAbsolute (bool) : if false, the slider shows the percentage value</item>
+    /// </list>
     /// </summary>
-    
+
     class XamSliderControl : AbstractUIControl
     {
         protected string sliderType;
@@ -35,6 +37,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected int tickSpace;
         protected bool adjustMinMax;
         protected bool localChange;
+        protected bool showAbsolute;
 
         protected Label label;
         protected XamNumericSlider slider;
@@ -45,11 +48,6 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             get
             {
-                float f = SliderValue;
-                if (sliderType.Equals("int"))
-                    value = (int)f;
-                else if (sliderType.Equals("float"))
-                    value = f;
                 return value;
             }
             set
@@ -114,20 +112,34 @@ namespace Agilent.OpenLab.Spring.Omega
         }
 
         /// <summary>
-        /// While setting this prop, absolute value is converted into % and in the get method,
+        /// While setting SliderValue, absolute value is converted into % and in the get method,
         /// % is converted back into absolute value.
         /// </summary>
         protected float SliderValue
         {
             get
             {
-                float fraction = (float)(slider.Value / 100);
-                return min + fraction * (max - min);
+                if (showAbsolute)
+                {
+                    return Convert.ToSingle(slider.Value);
+                }
+                else
+                {
+                    float fraction = Convert.ToSingle(slider.Value / 100);
+                    return min + fraction * (max - min);
+                }
             }
             set
             {
-                float fraction = (value - min) / (max - min);
-                slider.Value = fraction * (100);
+                if (showAbsolute)
+                {
+                    slider.Value = value;
+                }
+                else
+                {
+                    float fraction = (value - min) / (max - min);
+                    slider.Value = fraction * (100);
+                }
             }
         }
 
@@ -169,7 +181,6 @@ namespace Agilent.OpenLab.Spring.Omega
             if (!isAllowed)
             {
                 textBox.Text = Value.ToString();
-                SliderValue = last;
                 MessageBox.Show("Please enter a number!");
             }
             else if (cur != last)
@@ -186,8 +197,8 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             slider = new XamNumericSlider()
             {
-                MinValue = 0,
-                MaxValue = 100
+                MinValue = showAbsolute? min : 0,
+                MaxValue = showAbsolute ? max : 100
             };
 
             slider.Value = 0;
@@ -286,6 +297,8 @@ namespace Agilent.OpenLab.Spring.Omega
             tickSpace = (int)Input.GetInput("tickSpace", 25);
 
             adjustMinMax = (bool)Input.GetInput("adjustMinMax", false);
+
+            showAbsolute = (bool)Input.GetInput("showAbsolute", true);
         }
 
         public void UpdateRange(float min, float max)

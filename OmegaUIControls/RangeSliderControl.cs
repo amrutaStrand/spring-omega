@@ -27,6 +27,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected string maxLabel;
         protected bool showBorder;
         protected string description;
+        protected bool showAbsolute;
 
         private bool localChangeMin;
         private bool localChangeMax;
@@ -89,6 +90,69 @@ namespace Agilent.OpenLab.Spring.Omega
         }
 
         /// <summary>
+        ///  While setting MinThumbValue, absolute value is converted into % and 
+        ///  in the get method % is converted back into absolute value.
+        /// </summary>
+        protected float MinThumbValue {
+            get
+            {
+                if (showAbsolute)
+                {
+                    return Convert.ToSingle(minThumb.Value);
+                }
+                else
+                {
+                    float fraction = Convert.ToSingle(minThumb.Value / 100);
+                    return min + fraction * (max - min);
+                }
+            }
+            set
+            {
+                if (showAbsolute)
+                {
+                    minThumb.Value = value;
+                }
+                else
+                {
+                    float fraction = (value - min) / (max - min);
+                    minThumb.Value = fraction * (100);
+                }
+            }
+        }
+
+        /// <summary>
+        ///  While setting MaxThumbValue, absolute value is converted into % and 
+        ///  in the get method % is converted back into absolute value.
+        /// </summary>
+        protected float MaxThumbValue
+        {
+            get
+            {
+                if (showAbsolute)
+                {
+                    return Convert.ToSingle(maxThumb.Value);
+                }
+                else
+                {
+                    float fraction = Convert.ToSingle(maxThumb.Value / 100);
+                    return min + fraction * (max - min);
+                }
+            }
+            set
+            {
+                if (showAbsolute)
+                {
+                    maxThumb.Value = value;
+                }
+                else
+                {
+                    float fraction = (value - min) / (max - min);
+                    maxThumb.Value = fraction * (100);
+                }
+            }
+        }
+
+        /// <summary>
         /// Sets the value of minTextBox and minThumb. This method is called when Value prop is set 
         /// or minThumb is changed.
         /// </summary>
@@ -104,7 +168,8 @@ namespace Agilent.OpenLab.Spring.Omega
 
             if(allowText)
                 minTextBox.Text = minValue.ToString();
-            minThumb.Value = value;
+
+            MinThumbValue = value;
 
             localChangeMin = false;
         }
@@ -125,14 +190,15 @@ namespace Agilent.OpenLab.Spring.Omega
 
             if (allowText)
                 maxTextBox.Text = maxValue.ToString();
-            maxThumb.Value = value;
+
+            MaxThumbValue = value;
 
             localChangeMax = false;
         }
 
         /// <summary>
-        /// If adjustMinMax is true, updates the range of the slider i.e. min or max values of the slider
-        /// depending on the value to be set.
+        /// If adjustMinMax is true, updates the range of the slider i.e. min or max values of the 
+        /// slider depending on the value to be set.
         /// </summary>
         /// <param name="val"></param>
         public void UpdateSliderRange(float val)
@@ -253,17 +319,17 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             rangeSlider = new XamNumericRangeSlider()
             {
-                MinValue = min,
-                MaxValue = max
+                MinValue = showAbsolute ? min : 0,
+                MaxValue = showAbsolute ? max : 100
             };
 
-            minThumb = new XamSliderNumericThumb() { Value = min };
+            minThumb = new XamSliderNumericThumb() { Value = rangeSlider.MinValue };
             minThumb.ToolTipTemplate = CreateThumbTemplate(typeof(TextBlock), minLabel);
             minThumb.ToolTipVisibility = Visibility.Visible;
             minThumb.ValueChanged += MinThumb_ValueChanged;
             rangeSlider.Thumbs.Add(minThumb);
 
-            maxThumb = new XamSliderNumericThumb() { Value = max };
+            maxThumb = new XamSliderNumericThumb() { Value = rangeSlider.MaxValue };
             maxThumb.ToolTipTemplate = CreateThumbTemplate(typeof(TextBlock), maxLabel);
             maxThumb.ToolTipVisibility = Visibility.Visible;
             maxThumb.ValueChanged += MaxThumb_ValueChanged;
@@ -292,13 +358,13 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             if (maxThumb.Value < minThumb.Value)
             {
-                SetMinValue(Convert.ToSingle(maxThumb.Value));
+                SetMinValue(MaxThumbValue);
             }
 
             if (localChangeMax)
                 return;
 
-            SetMaxValue(Convert.ToSingle(maxThumb.Value));
+            SetMaxValue(MaxThumbValue);
 
         }
 
@@ -306,13 +372,13 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             if (minThumb.Value > maxThumb.Value)
             {
-                SetMaxValue(Convert.ToSingle(minThumb.Value));
+                SetMaxValue(MinThumbValue);
             }
 
             if (localChangeMin)
                 return;
 
-            SetMinValue(Convert.ToSingle(minThumb.Value));
+            SetMinValue(MinThumbValue);
 
         }
 
@@ -388,6 +454,8 @@ namespace Agilent.OpenLab.Spring.Omega
             showBorder = (bool)Input.GetInput("showBorder", true);
 
             description = (string)Input.GetInput("Description", "Range Slider");
+
+            showAbsolute = (bool)Input.GetInput("showAbsolute", true);
         }
     }
 }
