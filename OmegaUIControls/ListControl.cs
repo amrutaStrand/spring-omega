@@ -66,7 +66,7 @@ namespace Agilent.OpenLab.Spring.Omega
             //rightElements = new List<object>();
             rightElements = new ObservableCollection<object>();
 
-            LayoutPanel panel = new LayoutPanel(1, 3);
+            LayoutPanel panel = new LayoutPanel(2, 3);
             panel.Margin = new Thickness(10);
 
             bool showBorder = (bool)Input.GetInput("showBorder", true);
@@ -80,7 +80,8 @@ namespace Agilent.OpenLab.Spring.Omega
             AddControls(panel);
             AddRightList(panel);
 
-            panel.ChangeDimension(150, 800);
+            //panel.ChangeDimension(150, 800);
+            panel.HorizontalAlignment = HorizontalAlignment.Center;
 
             UIElement = panel;
         }
@@ -94,21 +95,24 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             string leftLabel = (string)Input.GetInput("leftlabel", "Available Items");
 
-            Panel panel = new StackPanel();
+            //Panel panel = new StackPanel();
 
             Label label = new Label();
             label.Content = leftLabel;
             label.HorizontalContentAlignment = HorizontalAlignment.Center;
             label.Margin = new Thickness(1);
-            panel.Children.Add(label);
+            layoutPanel.Add(label, 4, 0, 0);
+            //panel.Children.Add(label);
 
             leftList = new ListBox();
             leftList.SelectionMode = SelectionMode.Multiple;
             leftList.ItemsSource = leftElements;
             leftList.Height = 100;
-            panel.Children.Add(leftList);
+            leftList.Width = 200;
+            layoutPanel.Add(leftList, 4, 1, 0);
+            //panel.Children.Add(leftList);
 
-            layoutPanel.Add(panel, 4);
+            //layoutPanel.Add(panel, 4);
         }
 
         /// <summary>
@@ -117,20 +121,22 @@ namespace Agilent.OpenLab.Spring.Omega
         private void AddControls(LayoutPanel layoutPanel)
         {
             Panel panel = new StackPanel();
+            panel.Margin = new Thickness(4);
+            panel.VerticalAlignment = VerticalAlignment.Center;
 
             Button right = new Button();
-            right.Margin = new Thickness(4, 15, 4, 4);
+            right.Margin = new Thickness(0, 0, 0, 4);
             right.Content = "--->";
             right.Click += Right_Click;
             panel.Children.Add(right);
 
             Button left = new Button();
-            left.Margin = new Thickness(4);
             left.Content = "<---";
             left.Click += Left_Click;
             panel.Children.Add(left);
+            layoutPanel.Add(panel, 1, 1, 1);
 
-            layoutPanel.Add(panel, 1);
+            //layoutPanel.Add(panel, 1);
         }
 
         private void Left_Click(object sender, RoutedEventArgs e)
@@ -164,21 +170,24 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             string rightLabel = (string)Input.GetInput("rightLabel", "Selected Items");
             
-            Panel panel = new StackPanel();
+            //Panel panel = new StackPanel();
 
             Label label = new Label();
             label.Content = rightLabel;
             label.HorizontalContentAlignment = HorizontalAlignment.Center;
             label.Margin = new Thickness(1);
-            panel.Children.Add(label);
+            layoutPanel.Add(label, 4, 0, 2);
+            //panel.Children.Add(label);
 
             rightList = new ListBox();
             rightList.SelectionMode = SelectionMode.Multiple;
             rightList.ItemsSource = rightElements;
             rightList.Height = 100;
-            panel.Children.Add(rightList);
+            rightList.Width = 200;
+            layoutPanel.Add(rightList, 4, 1, 2);
+            //panel.Children.Add(rightList);
 
-            layoutPanel.Add(panel, 4);
+            //layoutPanel.Add(panel, 4);
         }
 
         public override void SetInput(IUIInput input)
