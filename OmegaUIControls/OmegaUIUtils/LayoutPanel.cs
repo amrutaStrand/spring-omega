@@ -23,7 +23,11 @@ namespace OmegaUIControls.OmegaUIUtils
         //Constructors
         public LayoutPanel(int rows, int cols) : base()
         {
-            init();
+            if (rows == 1)
+                init();
+            else
+                init(rows, cols);
+
             addRows(rows);
             addCols(cols);
         }
@@ -68,6 +72,14 @@ namespace OmegaUIControls.OmegaUIUtils
             this.Height = 30;
         }
 
+        private void init(int r, int c)
+        {
+            grid = new Grid();
+            this.Content = grid;
+            this.BorderThickness = new System.Windows.Thickness(0);
+            this.Padding = new System.Windows.Thickness(3);
+        }
+
         /// <summary>
         /// Adds border to the <see cref="GroupBox"/> with the specified <paramref name="header"/>.
         /// </summary>
@@ -76,6 +88,24 @@ namespace OmegaUIControls.OmegaUIUtils
         {
             this.BorderThickness = new System.Windows.Thickness(2);
             this.Header = header;
+        }
+
+        /// <summary>
+        /// Add the control at the specified row and column
+        /// </summary>
+        /// <param name="comp"></param>
+        /// <param name="weight"></param>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        public void Add(UIElement comp, double weight, int row, int col)
+        {
+            grid.Children.Add(comp);
+            if (weight != 1)
+                grid.ColumnDefinitions[col].Width = new GridLength(weight, GridUnitType.Star);
+            Grid.SetColumn(comp, col);
+            curCol++;
+            Grid.SetRow(comp, row);
+            curRow++;
         }
 
         /// <summary>
@@ -124,7 +154,8 @@ namespace OmegaUIControls.OmegaUIUtils
             for(int i=0; i < r; i++)
             {
                 RowDefinition row = new RowDefinition();
-                row.Height = new GridLength(1, GridUnitType.Star);
+                row.Height = GridLength.Auto;
+                //row.Height = new GridLength(1, GridUnitType.Star);
                 grid.RowDefinitions.Add(row);
             }
         }
