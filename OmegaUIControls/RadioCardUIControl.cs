@@ -57,6 +57,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
             var completePanel = new StackPanel();
             completePanel.Children.Add(panel);
+            SetResources(completePanel);
             UIElement = completePanel;
         }
 

@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Markup;
+using System.Xml;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -56,6 +60,22 @@ namespace Agilent.OpenLab.Spring.Omega
         public virtual void ShowValidationError()
         {
 
+        }
+
+        /// <summary>
+        /// Sets the resources of <paramref name="frameworkElement"/> using resource disctinary.
+        /// To be called by child classes to set the resources of encapsulating <see cref="UIElement"/>.
+        /// </summary>
+        /// <param name="frameworkElement"></param>
+        protected void SetResources(FrameworkElement frameworkElement)
+        {
+            string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
+            {
+                XmlReader xmlReader = XmlReader.Create(stream);
+                frameworkElement.Resources = XamlReader.Load(xmlReader) as ResourceDictionary;
+            }
         }
 
     }

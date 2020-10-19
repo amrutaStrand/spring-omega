@@ -24,7 +24,7 @@ namespace Agilent.OpenLab.Spring.Omega
             //panel.Children.Add(checkBox);
             //panel.Margin = new Thickness(10);
             checkBox.Margin = new Thickness(10);
-            //checkBox.HorizontalAlignment = HorizontalAlignment.Center;
+            SetResources(checkBox);
             UIElement = checkBox;
         }
     }

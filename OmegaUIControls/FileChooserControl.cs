@@ -23,7 +23,8 @@ namespace Agilent.OpenLab.Spring.Omega
             var panel = new LayoutPanel(1, 3);
             panel.Add(textBox, 3);
             panel.Add(button, 1);
-            panel.ChangeDimension(60, 600);
+            panel.ChangeDimension(60, 400);
+            SetResources(panel);
             UIElement = panel;
         }
     }

@@ -44,16 +44,17 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             Label = new Label();
             Label.Content = LabelContent;
-            Label.Style = GetLabelStyle();
+            //Label.Style = GetLabelStyle();
 
             TextBox = new TextBox() ;
-            TextBox.Style = GetTextBoxStyle();
+            //TextBox.Style = GetTextBoxStyle();
             TextBox.LostFocus += this.HandleTextChanged;
 
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Margin = new Thickness(10);
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
+            SetResources(panel);
             UIElement = panel;
         }
 

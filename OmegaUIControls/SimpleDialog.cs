@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
+using System.Xml;
+using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -92,7 +94,8 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             this.Owner = parent;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
+            this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e2eef5"));
+            
             if (properties.ContainsKey("title"))
                 this.Title = (string)properties["title"];
 
@@ -125,6 +128,17 @@ namespace Agilent.OpenLab.Spring.Omega
             this.Content = panel;
         }
 
+        private void SetResources(FrameworkElement frameworkElement)
+        {
+            string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
+            {
+                XmlReader xmlReader = XmlReader.Create(stream);
+                frameworkElement.Resources = XamlReader.Load(xmlReader) as ResourceDictionary;
+            }
+        }
+
         /// <summary>
         /// Creates the "OK", "Cancel" and "Help" buttons depending on the input properties.
         /// </summary>
@@ -132,6 +146,7 @@ namespace Agilent.OpenLab.Spring.Omega
         private Panel CreateControlPanel()
         {
             DockPanel panel = new DockPanel();
+            SetResources(panel);
             panel.LastChildFill = false;
 
             //panel for ok and cancel button

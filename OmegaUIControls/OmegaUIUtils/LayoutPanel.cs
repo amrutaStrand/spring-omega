@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace OmegaUIControls.OmegaUIUtils
 {
@@ -65,6 +66,7 @@ namespace OmegaUIControls.OmegaUIUtils
         private void init()
         {
             grid = new Grid();
+            grid.VerticalAlignment = VerticalAlignment.Center;
             this.Content = grid;
             this.BorderThickness = new System.Windows.Thickness(0);
             this.Padding = new System.Windows.Thickness(3);
@@ -87,7 +89,10 @@ namespace OmegaUIControls.OmegaUIUtils
         public void AddBorder(string header)
         {
             this.BorderThickness = new System.Windows.Thickness(2);
-            this.Header = header;
+            TextBlock textBlock = new TextBlock();
+            textBlock.FontSize = 16;
+            textBlock.Text = header;
+            this.Header = textBlock;
         }
 
         /// <summary>

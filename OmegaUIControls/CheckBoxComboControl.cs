@@ -56,6 +56,7 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             comboBox = new ComboBox();
+            comboBox.Margin = new Thickness(10);
             comboBox.HorizontalAlignment = HorizontalAlignment.Left;
             
             if (multiSelect)
@@ -84,6 +85,7 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             
             comboBox.Width = 250;
+            SetResources(comboBox);
             UIElement = comboBox;
         }
 

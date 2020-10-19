@@ -243,7 +243,7 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             else
                 AddSlider(panel);
-
+            SetResources(panel);
             UIElement = panel;
         }
 
@@ -259,7 +259,6 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             minTextBox = new TextBox();
             minTextBox.Text = min.ToString();
-            minTextBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             minTextBox.LostFocus += MinTextBox_LostFocus;
             panel.Add(minTextBox, 1);
         }
@@ -291,7 +290,6 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             maxTextBox = new TextBox();
             maxTextBox.Text = max.ToString();
-            maxTextBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             maxTextBox.LostFocus += MaxTextBox_LostFocus; 
             panel.Add(maxTextBox, 1);
         }

@@ -38,7 +38,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
             //box.Height = 300;
             //box.Width = 1000;
-
+            SetResources(panel as FrameworkElement);
             UIElement = box;
         }
 

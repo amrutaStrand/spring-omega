@@ -61,9 +61,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         public override void CreateUIElement()
         {
-            //leftElements = new List<object>(elements);
             leftElements = new ObservableCollection<object>(elements);
-            //rightElements = new List<object>();
             rightElements = new ObservableCollection<object>();
 
             LayoutPanel panel = new LayoutPanel(2, 3);
@@ -82,7 +80,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
             //panel.ChangeDimension(150, 800);
             panel.HorizontalAlignment = HorizontalAlignment.Center;
-
+            SetResources(panel);
             UIElement = panel;
         }
 

@@ -152,7 +152,7 @@ namespace Agilent.OpenLab.Spring.Omega
             AddLabel(panel);
             AddSlider(panel);
             AddText(panel);
-
+            SetResources(panel);
             UIElement = panel;
         }
 

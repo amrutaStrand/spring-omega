@@ -1,0 +1,182 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:OmegaUIControls.OmegaUIUtils">
+
+    <SolidColorBrush x:Key="Red" Color="#ff0000"/>
+
+    <SolidColorBrush x:Key="Grey" Color="#c1c6c8"/>
+
+    <SolidColorBrush x:Key="SoftGrey" Color="#e1e3e5"/>
+
+    <SolidColorBrush x:Key="MediumGrey" Color="#a1a7af"/>
+
+    <SolidColorBrush x:Key="DarkGrey" Color="#6c747d"/>
+
+    <SolidColorBrush x:Key="DarkNavy" Color="#384350"/>
+
+    <SolidColorBrush x:Key="Midnight" Color="#252a30"/>
+
+    <SolidColorBrush x:Key="AgilentBlue" Color="#0085d5"/>
+
+    <SolidColorBrush x:Key="AgilentPaleBlue" Color="#e5f3fb"/>
+
+    <SolidColorBrush x:Key="AgilentSoftBlue" Color="#cce7f7"/>
+
+    <SolidColorBrush x:Key="AgilentMediumBlue" Color="#99ceee"/>
+
+    <SolidColorBrush x:Key=" LuminousBlue" Color="#e2eef5"/>
+
+    <Style TargetType="Button">
+
+        <!--Default-->
+        <Setter Property="Background" Value="{DynamicResource AgilentPaleBlue}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MediumGrey}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="{DynamicResource Midnight}"/>
+
+        <Style.Triggers>
+
+            <!--Hover--> <!--Not working-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MediumGrey}"/>
+            </Trigger>
+
+            <!--Mousedown/Active-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AgilentBlue}"/>
+            </Trigger>
+
+            <!--Suggested-->
+            <Trigger Property="IsDefault" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource AgilentBlue}"/>
+            </Trigger>
+
+            <!--Disabled--> <!--Not working-->
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource SoftGrey}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MediumGrey}"/>
+                <Setter Property="Foreground" Value="{DynamicResource DarkGrey}"/>
+            </Trigger>
+
+        </Style.Triggers>
+        
+    </Style>
+
+    <!--Styles for TextBox and ComboBox-->
+    <Style TargetType="TextBox">
+
+        <!--Default-->
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Grey}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="{DynamicResource DarkNavy}"/>
+
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+        <Style.Triggers>
+
+            <!--Hover--> <!--Not working-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentPaleBlue}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AgilentSoftBlue}"/>
+            </Trigger>
+
+            <!--Mousedown/Active-->
+            <Trigger Property="IsFocused"  Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AgilentMediumBlue}"/>
+            </Trigger>
+
+            <!--Disabled-->
+            <Trigger Property="IsEnabled"  Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MediumGrey}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource Grey}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <!--Styles for RadioButton and CheckBox-->
+    <Style TargetType="ToggleButton">
+
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource DarkNavy}"/>
+
+        <Style.Triggers>
+
+            <!--Mousedown/Active-->
+            <Trigger Property="IsChecked" Value="True">
+                <!--Change dot color-->
+            </Trigger>
+
+            <!--Unchecked-->
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Background" Value="White"/>
+            </Trigger>
+
+            <!--Hover is not working-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+            </Trigger>
+
+            <!--Diabled style is not working-->
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource SoftGrey}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource Red}"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="RadioButton">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="{DynamicResource DarkNavy}"/>
+    </Style>
+
+    <Style TargetType="CheckBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="TextElement.Background" Value="Red"/>
+    </Style>
+
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="{DynamicResource  LuminousBlue}"/>
+    </Style>
+
+</ResourceDictionary>

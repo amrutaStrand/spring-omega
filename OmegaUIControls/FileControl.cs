@@ -105,7 +105,9 @@ namespace Agilent.OpenLab.Spring.Omega
         protected void CreateTextBox()
         {
             textBox = new TextBox();
-            textBox.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            textBox.Width = 200;
+            textBox.TextWrapping = TextWrapping.Wrap;
+            //textBox.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             textBox.Margin = new Thickness(5);
         }
 
