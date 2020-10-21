@@ -32,7 +32,11 @@ namespace Agilent.OpenLab.Spring.Omega
             UIElement.IsEnabled = isEnabled;
         }
 
-        public virtual void SetInput(IUIInput input) => Input = input;
+        public virtual void SetInput(IUIInput input)
+        {
+            Input = input;
+            Id = (string)Input.GetInput("id", null);
+        } 
 
         public abstract void CreateUIElement();
 
@@ -69,6 +73,8 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="frameworkElement"></param>
         protected void SetResources(FrameworkElement frameworkElement)
         {
+            frameworkElement.HorizontalAlignment = HorizontalAlignment.Left;
+
             string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
 
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))

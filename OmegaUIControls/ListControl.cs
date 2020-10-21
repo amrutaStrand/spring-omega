@@ -42,15 +42,16 @@ namespace Agilent.OpenLab.Spring.Omega
 
                 List<object> data = value as List<object>;
 
-                //clear right and fill left
+                //clear both list and fill left
+                leftElements.Clear();
                 leftElements = new ObservableCollection<object>(elements);
                 rightElements.Clear();
 
                 //move each item from left to right
                 for(int i = 0; i < data.Count; i++)
                 {
-                    leftElements.Remove(data[i]);
-                    rightElements.Add(data[i]);
+                    if (leftElements.Remove(data[i]))
+                        rightElements.Add(data[i]);
                 }
 
             }
@@ -78,8 +79,9 @@ namespace Agilent.OpenLab.Spring.Omega
             AddControls(panel);
             AddRightList(panel);
 
+            //Value = Input.GetInput("Value", new List<string>());
+
             //panel.ChangeDimension(150, 800);
-            panel.HorizontalAlignment = HorizontalAlignment.Center;
             SetResources(panel);
             UIElement = panel;
         }
@@ -190,7 +192,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void SetInput(IUIInput input)
         {
-            Input = input;
+            base.SetInput(input);
 
             var param = Input.GetInput("options", new List<object>());
 

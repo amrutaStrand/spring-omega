@@ -152,6 +152,7 @@ namespace Agilent.OpenLab.Spring.Omega
             AddLabel(panel);
             AddSlider(panel);
             AddText(panel);
+
             SetResources(panel);
             UIElement = panel;
         }
@@ -167,9 +168,9 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
             }
             textBox = new TextBox();
-            textBox.Text = Value.ToString();
+            //textBox.Text = Value.ToString();
+            Value = Input.GetInput("Value", Value);
             textBox.LostFocus += TextBox_LostFocus;
-            textBox.RenderSize = UIConstants.TEXT_PREFERRED_SIZE;
             panel.Add(textBox, 1);
         }
 
@@ -201,6 +202,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 MaxValue = showAbsolute ? max : 100
             };
 
+            //slider.Width = 200;
             slider.Value = 0;
 
             if (labels != null)
@@ -270,7 +272,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void SetInput(IUIInput input)
         {
-            Input = input;
+            base.SetInput(input);
 
             localChange = false;
 

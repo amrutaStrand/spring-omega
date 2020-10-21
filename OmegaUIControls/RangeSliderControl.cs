@@ -227,9 +227,7 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             var panel = allowText ? new LayoutPanel(1, 3) : new LayoutPanel(1, 1);
-            panel.ChangeDimension(80, 800);
-            panel.Margin = new Thickness(10);
-
+            
             if (showBorder)
             {
                 panel.AddBorder(description);
@@ -243,6 +241,11 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             else
                 AddSlider(panel);
+
+            Value = Input.GetInput("Value", new Dictionary<string, float> { { "min", min }, { "max", max } });
+
+            panel.ChangeDimension(80, 800);
+            panel.Margin = new Thickness(10);
             SetResources(panel);
             UIElement = panel;
         }
@@ -321,13 +324,13 @@ namespace Agilent.OpenLab.Spring.Omega
                 MaxValue = showAbsolute ? max : 100
             };
 
-            minThumb = new XamSliderNumericThumb() { Value = rangeSlider.MinValue };
+            minThumb = new XamSliderNumericThumb();
             minThumb.ToolTipTemplate = CreateThumbTemplate(typeof(TextBlock), minLabel);
             minThumb.ToolTipVisibility = Visibility.Visible;
             minThumb.ValueChanged += MinThumb_ValueChanged;
             rangeSlider.Thumbs.Add(minThumb);
 
-            maxThumb = new XamSliderNumericThumb() { Value = rangeSlider.MaxValue };
+            maxThumb = new XamSliderNumericThumb();
             maxThumb.ToolTipTemplate = CreateThumbTemplate(typeof(TextBlock), maxLabel);
             maxThumb.ToolTipVisibility = Visibility.Visible;
             maxThumb.ValueChanged += MaxThumb_ValueChanged;
@@ -417,7 +420,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void SetInput(IUIInput input)
         {
-            Input = input;
+            base.SetInput(input);
 
             localChangeMin = false;
 

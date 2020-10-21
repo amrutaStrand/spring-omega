@@ -68,8 +68,8 @@ namespace OmegaUIControls.OmegaUIUtils
             grid = new Grid();
             grid.VerticalAlignment = VerticalAlignment.Center;
             this.Content = grid;
-            this.BorderThickness = new System.Windows.Thickness(0);
-            this.Padding = new System.Windows.Thickness(3);
+            this.BorderThickness = new Thickness(0);
+            this.Margin = new Thickness(10);
             this.Width = 400;
             this.Height = 30;
         }
@@ -78,8 +78,8 @@ namespace OmegaUIControls.OmegaUIUtils
         {
             grid = new Grid();
             this.Content = grid;
-            this.BorderThickness = new System.Windows.Thickness(0);
-            this.Padding = new System.Windows.Thickness(3);
+            this.BorderThickness = new Thickness(0);
+            this.Margin = new Thickness(10);
         }
 
         /// <summary>
@@ -88,7 +88,9 @@ namespace OmegaUIControls.OmegaUIUtils
         /// <param name="header"></param>
         public void AddBorder(string header)
         {
-            this.BorderThickness = new System.Windows.Thickness(2);
+            this.BorderThickness = new Thickness(1);
+            this.Padding = new Thickness(3);
+
             TextBlock textBlock = new TextBlock();
             textBlock.FontSize = 16;
             textBlock.Text = header;

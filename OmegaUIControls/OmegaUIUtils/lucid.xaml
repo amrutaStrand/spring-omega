@@ -20,7 +20,11 @@
 
     <SolidColorBrush x:Key="AgilentPaleBlue" Color="#e5f3fb"/>
 
+    <SolidColorBrush x:Key="AgilentPaleBlueOnBlue" Color="#d8ebf6"/>
+
     <SolidColorBrush x:Key="AgilentSoftBlue" Color="#cce7f7"/>
+
+    <SolidColorBrush x:Key="AgilentSoftBlueOnBlue" Color="#c1e0f3"/>
 
     <SolidColorBrush x:Key="AgilentMediumBlue" Color="#99ceee"/>
 
@@ -29,7 +33,7 @@
     <Style TargetType="Button">
 
         <!--Default-->
-        <Setter Property="Background" Value="{DynamicResource AgilentPaleBlue}"/>
+        <Setter Property="Background" Value="{DynamicResource AgilentPaleBlueOnBlue}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{DynamicResource MediumGrey}"/>
         <Setter Property="FontSize" Value="14"/>
@@ -37,17 +41,20 @@
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="Foreground" Value="{DynamicResource Midnight}"/>
 
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="60"/>
+
         <Style.Triggers>
 
             <!--Hover--> <!--Not working-->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlueOnBlue}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource MediumGrey}"/>
             </Trigger>
 
             <!--Mousedown/Active-->
             <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlueOnBlue}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource AgilentBlue}"/>
             </Trigger>
 
@@ -81,6 +88,7 @@
 
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="100"/>
+        <Setter Property="Margin" Value="3"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
 
         <Style.Triggers>
@@ -160,7 +168,7 @@
 
     <Style TargetType="Label">
         <Setter Property="HorizontalContentAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="2"/>
+        <!--<Setter Property="Margin" Value="2"/>-->
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="150"/>
         <Setter Property="FontSize" Value="14"/>

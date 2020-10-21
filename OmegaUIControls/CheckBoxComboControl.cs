@@ -19,6 +19,10 @@ namespace Agilent.OpenLab.Spring.Omega
         private ObservableCollection<CheckBox> checkList;
         private ComboBox comboBox;
 
+        /// <summary>
+        /// Value of CheckBoxComboControl is a list of selected item if multiSelect is true. Else
+        /// it the selected value in the ComboBox.
+        /// </summary>
         public override object Value {
             get
             {
@@ -41,6 +45,7 @@ namespace Agilent.OpenLab.Spring.Omega
                     {
                         check.IsChecked = v.Contains(check.Content.ToString()) ? true : false;
                     }
+                    comboBox.Text = string.Join(", ", selectedOptions);
                 }
                 else
                 {
@@ -56,8 +61,6 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             comboBox = new ComboBox();
-            comboBox.Margin = new Thickness(10);
-            comboBox.HorizontalAlignment = HorizontalAlignment.Left;
             
             if (multiSelect)
             {
@@ -83,8 +86,12 @@ namespace Agilent.OpenLab.Spring.Omega
                 comboBox.SelectedItem = options[0];
                 comboBox.ItemsSource = new List<string>(options);
             }
-            
-            comboBox.Width = 250;
+
+            if (Input.HasParameter("Value"))
+                Value = Input.GetInput("Value");
+
+            comboBox.Margin = new Thickness(10);
+            comboBox.Width = 200;
             SetResources(comboBox);
             UIElement = comboBox;
         }
@@ -109,7 +116,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void SetInput(IUIInput input)
         {
-            Input = input;
+            base.SetInput(input);
 
             var param = Input.GetInput("options", new List<string>()) as IList<string>;
 

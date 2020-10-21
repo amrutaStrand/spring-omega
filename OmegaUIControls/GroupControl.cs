@@ -9,8 +9,6 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     class GroupControl : AbstractUIContainer
     {
-        private string orientation;
-
         /// <summary>
         /// Creates UIElement of <see cref="GroupControl"/>. The UIElement is a <see cref="StackPanel"/> inside
         /// a <see cref="ScrollViewer"/> which is contained in a <see cref="GroupBox"/>.
@@ -34,7 +32,6 @@ namespace Agilent.OpenLab.Spring.Omega
             UIElement panel = CreateComponentsPanel();
 
             box.Content = panel;
-            box.HorizontalAlignment = HorizontalAlignment.Left;
 
             //box.Height = 300;
             //box.Width = 1000;
@@ -58,6 +55,7 @@ namespace Agilent.OpenLab.Spring.Omega
             scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
 
             //set orientation of the stack panel depending on the input parameter
+            string orientation = (string)Input.GetInput("orientation", "vertical");
             panel.Orientation = orientation.Equals("horizontal") ? Orientation.Horizontal : Orientation.Vertical;
 
             //add controls in the stack panel
@@ -66,18 +64,11 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 IUIControl control = GetControl(i);
                 UIElement u = control.GetUIElement();
-                //(u as FrameworkElement).HorizontalAlignment = HorizontalAlignment.Left;
+                (u as FrameworkElement).VerticalAlignment = VerticalAlignment.Center;
                 panel.Children.Add(u);
             }
 
             return scrollViewer;
-        }
-
-        public override void SetInput(IUIInput input)
-        {
-            base.SetInput(input);
-
-            orientation = (string)Input.GetInput("orientation", "vertical");
         }
     }
 }

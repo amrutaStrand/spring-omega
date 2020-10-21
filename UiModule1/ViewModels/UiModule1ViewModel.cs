@@ -105,7 +105,8 @@
                     { "Description", "Strand slider control" },
                     { "allowTextBox", true},
                     { "min", 200 },
-                    { "max", 500}
+                    { "max", 500},
+                    { "Value", 300}
             };
             IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);
             //IUIControl panel = OmegaFactory.CreateControl("XamSlider");
@@ -119,6 +120,7 @@
             input.AddInput("allowTextBox", true);
             input.AddInput("min", 500);
             input.AddInput("max", 900);
+            input.AddInput("Value", new Dictionary<string, float> { {"min", 546 }, {"max", 823 } });
             input.AddInput("sliderType", "int");
             input.AddInput("adjustMinMax", false);
             input.AddInput("showAbsolute", false);
@@ -132,6 +134,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "List control");
             input.AddInput("options", new List<object> {"Sample-1", "Sample-2", "Sample-3", "Sample-4", "Sample-5" });
+            input.AddInput("Value", new List<object> { "Sample-1", "Sample-2", "Sample-6" });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("List");
             panel.SetInput(input);
             return panel;
@@ -152,7 +155,8 @@
         {
             UIInput input = new UIInput();
             input.AddInput("Description", "Vertical group control");
-            input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
+            //input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
+            input.AddInput("controls", new List<object> { CreateStringControl(), CreateBooleanControl(), CreateCheckBoxCombo() });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
             panel.SetInput(input);
             return panel;
@@ -163,6 +167,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
+            input.AddInput("Value", "Kolkata");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
             panel.SetInput(input);
             return panel;
@@ -174,6 +179,7 @@
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             input.AddInput("multiSelect", true);
+            input.AddInput("Value", new List<string> { "Bangalore", "Chennai", "Kolkata" });
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("CheckBoxCombo");
             panel.SetInput(input);
             return panel;
@@ -184,6 +190,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "File control");
             input.AddInput("enableMultipleSelection", true);
+            input.AddInput("fileFilters", "sef files (*.sef)|*.sef|LCMS files (*.d)|*.d|All files (*.*)|*.*");
             //input.AddInput("dialogType", "save");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("FileControl");
             panel.SetInput(input);
@@ -231,6 +238,7 @@
         private Button CreateButton()
         {
             Button button = new Button();
+            button.Width = 300;
             button.HorizontalAlignment = HorizontalAlignment.Center;
             button.Content = "Launch Omega Dialog";
             button.Click += Button_Click;
@@ -285,11 +293,14 @@
             labels.Add("Single-select Combo Box", BoxCombo);
             labels.Add("Multi-select Combo Box", CheckBoxCombo);
             labels.Add("File Control", FileControl);
-            labels.Add("Group Control", GroupControl);
+            labels.Add("Horizontal Group Control", GroupControl);
+            labels.Add("Vertical Group Control", VGroupControl);
             labels.Add("Tab Control", TabControl);
             labels.Add("Omega Dialog", launchButton);
+
             UIInput input = new UIInput();
             input.AddInput("Options", labels);
+            input.AddInput("Value", "Slider Control");
 
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("RadioCard");
             panel.SetInput(input);

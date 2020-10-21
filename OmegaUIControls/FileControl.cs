@@ -52,14 +52,20 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             CreateLabel();
+            CreateTextBox();
             CreateDialog();
             CreateButton();
 
             var panel = new LayoutPanel(1, 3);
-            panel.Add(label, 1);
+            panel.Add(label, 2);
             panel.Add(textBox, 3);
             panel.Add(button, 1);
+
+            //Initial value
+            Value = Input.GetInput("Value", string.Empty);
+
             panel.ChangeDimension(60, 600);
+            SetResources(panel);
             UIElement = panel;
         }
 
@@ -69,12 +75,9 @@ namespace Agilent.OpenLab.Spring.Omega
         protected void CreateLabel()
         {
             string description = (string)Input.GetInput("Description", "Select a file");
-
             label = new Label();
-            label.VerticalAlignment = VerticalAlignment.Center;
-            label.Margin = new Thickness(5);
+            //label.VerticalAlignment = VerticalAlignment.Center;
             label.Content = description;
-            label.RenderSize = UIConstants.LABEL_PREFERRED_SIZE;
         }
 
         /// <summary>
@@ -105,10 +108,10 @@ namespace Agilent.OpenLab.Spring.Omega
         protected void CreateTextBox()
         {
             textBox = new TextBox();
-            textBox.Width = 200;
+            textBox.Width = 250;
             textBox.TextWrapping = TextWrapping.Wrap;
             //textBox.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            textBox.Margin = new Thickness(5);
+            //textBox.Margin = new Thickness(5);
         }
 
         /// <summary>

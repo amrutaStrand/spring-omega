@@ -46,7 +46,7 @@ namespace Agilent.OpenLab.Spring.Omega
             Label.Content = LabelContent;
             //Label.Style = GetLabelStyle();
 
-            TextBox = new TextBox() ;
+            TextBox = new TextBox();
             //TextBox.Style = GetTextBoxStyle();
             TextBox.LostFocus += this.HandleTextChanged;
 

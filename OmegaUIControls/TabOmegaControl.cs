@@ -13,11 +13,8 @@ namespace Agilent.OpenLab.Spring.Omega
     {
         public override void CreateUIElement()
         {
-            //TabControl tab = new TabControl();
             XamTabControl tab = new XamTabControl();
-            //tab.BorderThickness = new Thickness(2);
-            tab.Margin = new Thickness(10);
-
+            
             int n = GetControlCount();
             for (int i = 0; i < n; i++)
             {
@@ -26,7 +23,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 IUIInput param = control.Input;
 
                 //Create the tab item
-                //TabItem item = new TabItem();
                 TabItemEx item = new TabItemEx();
                 string defaultTitle = (string)param.GetInput("Description", "Item-" + (i + 1).ToString());
                 item.Header = (string)param.GetInput("title", defaultTitle);
@@ -36,6 +32,8 @@ namespace Agilent.OpenLab.Spring.Omega
                 tab.Items.Add(item);
             }
 
+            tab.Margin = new Thickness(10);
+            SetResources(tab);
             UIElement = tab;
         }
     }

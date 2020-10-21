@@ -94,7 +94,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             this.Owner = parent;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e2eef5"));
+            //this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#e2eef5"));
             
             if (properties.ContainsKey("title"))
                 this.Title = (string)properties["title"];
@@ -157,7 +157,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (hasOK)
             {
                 okButton = new Button();
-                okButton.Width = 60;
+                //okButton.Width = 60;
                 okButton.Margin = new Thickness(10);
                 okButton.Content = okLabel;
                 okButton.IsDefault = true;
@@ -171,7 +171,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (hasCancel)
             {
                 cancelButton = new Button();
-                cancelButton.Width = 60;
+                //cancelButton.Width = 60;
                 cancelButton.Margin = new Thickness(10);
                 cancelButton.Content = cancelLabel;
                 cancelButton.IsCancel = true;
