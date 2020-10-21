@@ -22,7 +22,7 @@ namespace Agilent.OpenLab.Spring.Omega
             container.RegisterType<IUIControl, XamSliderControl>("XamSlider");
             container.RegisterType<IUIControl, RangeSliderControl>("RangeSlider");
             container.RegisterType<IUIControl, ListControl>("List");
-            container.RegisterType<IUIControl, CheckBoxComboControl>("CheckBoxCombo");
+            container.RegisterType<IUIControl, ComboBoxControl>("CheckBoxCombo");
             container.RegisterType<IUIControl, FileChooserControl>("FileControl");
             container.RegisterType<IUIControl, GroupControl>("Group");
             container.RegisterType<IUIControl, TabOmegaControl>("Tab");

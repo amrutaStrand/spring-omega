@@ -66,7 +66,6 @@ namespace Agilent.OpenLab.Spring.Omega
             rightElements = new ObservableCollection<object>();
 
             LayoutPanel panel = new LayoutPanel(2, 3);
-            panel.Margin = new Thickness(10);
 
             bool showBorder = (bool)Input.GetInput("showBorder", true);
 

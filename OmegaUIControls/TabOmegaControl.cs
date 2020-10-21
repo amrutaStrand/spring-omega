@@ -32,7 +32,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 tab.Items.Add(item);
             }
 
-            tab.Margin = new Thickness(10);
             SetResources(tab);
             UIElement = tab;
         }

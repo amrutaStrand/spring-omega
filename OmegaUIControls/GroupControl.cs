@@ -16,7 +16,6 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             GroupBox box = new GroupBox();
-            box.Margin = new Thickness(10);
             box.BorderThickness = new System.Windows.Thickness(0);
 
             bool showBorder = (bool)Input.GetInput("showBorder", true);

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Markup;
 using System.Xml;
+using OmegaUIControls.OmegaUIUtils;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -73,7 +74,9 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="frameworkElement"></param>
         protected void SetResources(FrameworkElement frameworkElement)
         {
-            frameworkElement.HorizontalAlignment = HorizontalAlignment.Left;
+            //Set common properties of the controls
+            frameworkElement.Margin = UIConstants.ControlMargin;
+            frameworkElement.HorizontalAlignment = UIConstants.ControlHorizontalAlignment;
 
             string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
 

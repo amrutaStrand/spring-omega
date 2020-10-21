@@ -265,7 +265,6 @@ namespace Agilent.OpenLab.Spring.Omega
             label = new Label();
             label.VerticalAlignment = VerticalAlignment.Center;
             label.Content = Input.GetInput("Description", "Description about the slider");
-            label.RenderSize = UIConstants.LABEL_PREFERRED_SIZE;
 
             panel.Add(label, 1);
         }

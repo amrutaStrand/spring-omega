@@ -11,7 +11,7 @@ namespace Agilent.OpenLab.Spring.Omega
     /// A combo box of <see cref="CheckBox"/>. Parameter of this class is "options" which
     /// can be a <see cref="IDictionary"/> or <see cref="IList"/> of strings.
     /// </summary>
-    class CheckBoxComboControl : AbstractUIControl
+    class ComboBoxControl : AbstractUIControl
     {
         private bool multiSelect;
         private IList<string> options;
@@ -55,7 +55,7 @@ namespace Agilent.OpenLab.Spring.Omega
         }
 
         /// <summary>
-        /// UIElement of <see cref="CheckBoxComboControl"/> is a <see cref="ComboBox"/> whose item source is
+        /// UIElement of <see cref="ComboBoxControl"/> is a <see cref="ComboBox"/> whose item source is
         /// an <see cref="ObservableCollection{T}"/> of <see cref="CheckBox"/>.
         /// </summary>
         public override void CreateUIElement()
@@ -90,7 +90,6 @@ namespace Agilent.OpenLab.Spring.Omega
             if (Input.HasParameter("Value"))
                 Value = Input.GetInput("Value");
 
-            comboBox.Margin = new Thickness(10);
             comboBox.Width = 200;
             SetResources(comboBox);
             UIElement = comboBox;

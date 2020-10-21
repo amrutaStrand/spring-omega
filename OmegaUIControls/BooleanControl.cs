@@ -23,7 +23,6 @@ namespace Agilent.OpenLab.Spring.Omega
             checkBox.IsChecked = (bool)Input.GetInput("Value", false);
             checkBox.Content = Input.GetInput("Description", "Description about the check box");
 
-            checkBox.Margin = new Thickness(10);
             SetResources(checkBox);
             UIElement = checkBox;
         }

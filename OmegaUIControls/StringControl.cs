@@ -44,7 +44,6 @@ namespace Agilent.OpenLab.Spring.Omega
             TextBox.LostFocus += this.HandleTextChanged;
 
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
-            panel.Margin = new Thickness(10);
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
 
