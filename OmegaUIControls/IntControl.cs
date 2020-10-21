@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
     /// <summary>
-    /// This class is responsible for creating the Int control which internally is a string control where just the validation treatment is different.
+    /// This class is responsible for creating the Int control which internally is a string 
+    /// control where just the validation treatment is different.
     /// </summary>
     public class IntControl : StringControl
     {
-
-        public override void SetValue(object val)
+        public override object Value
         {
-            Value = int.Parse(val.ToString());
+            get
+            {
+                return TextBox.Text;
+            }
+            set
+            {
+                TextBox.Text = int.Parse(value.ToString()).ToString();
+            }
         }
 
         /// <summary>

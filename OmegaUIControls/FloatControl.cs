@@ -4,13 +4,21 @@ using System.Windows;
 namespace Agilent.OpenLab.Spring.Omega
 {
     /// <summary>
-    /// This class is responsible for creating the Float control which internally is a string control where just the validation treatment is different.
+    /// This class is responsible for creating the Float control which internally is a string 
+    /// control where just the validation treatment is different.
     /// </summary>
     public class FloatControl : StringControl
     {
-        public override void SetValue(object val)
+        public override object Value
         {
-            Value = float.Parse(val.ToString());
+            get
+            {
+                return TextBox.Text;
+            }
+            set
+            {
+                TextBox.Text = float.Parse(value.ToString()).ToString();
+            }
         }
 
         /// <summary>
