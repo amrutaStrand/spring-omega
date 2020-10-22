@@ -16,6 +16,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected Thickness borderThickness;
         protected Brush textBackground;
         protected double textBackgroundOpacity;
+        protected string errorMsg;
 
         private SolidColorBrush errorBrush = new SolidColorBrush();
 
@@ -26,6 +27,7 @@ namespace Agilent.OpenLab.Spring.Omega
         //Sub controls of String control
         protected Label Label;
         protected TextBox TextBox;
+        protected ToolTip ErrorToolTip;
 
         public delegate bool ValidateMessageDelegate(String message);
 
@@ -55,6 +57,15 @@ namespace Agilent.OpenLab.Spring.Omega
             var panel = new StackPanel() { Orientation = Orientation.Horizontal };
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
+
+            //Tool tip styles
+            ErrorToolTip = new ToolTip();
+            ErrorToolTip.Background = new SolidColorBrush(UIConstants.ColorError);
+            ErrorToolTip.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffffff"));
+            ErrorToolTip.FontFamily = new FontFamily("Calibri");
+            ErrorToolTip.FontWeight = FontWeights.Regular;
+            ErrorToolTip.FontSize = 14;
+            //ErrorToolTip.Height = 22;
 
             SetResources(panel);
             borderBrush = TextBox.BorderBrush;
@@ -92,6 +103,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 TextBox.BorderBrush = borderBrush;
                 TextBox.BorderThickness = borderThickness;
                 TextBox.Background = textBackground;
+                TextBox.ToolTip = null;
                 Value = val;
             }
             else
@@ -119,7 +131,9 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void ShowValidationError()
         {
-            MessageBox.Show(MessageInfo.STRING_ERROR_MESSAGE);
+            errorMsg = MessageInfo.STRING_ERROR_MESSAGE;
+            ErrorToolTip.Content = errorMsg;
+            TextBox.ToolTip = ErrorToolTip;
         }
         protected virtual bool IsWithinRange(object val)
         {
@@ -141,11 +155,14 @@ namespace Agilent.OpenLab.Spring.Omega
         protected virtual void ShowOutOfRangeError()
         {
             if (min != null && max != null)
-                MessageBox.Show(string.Format("Input value must be between {0} and {1}", min, max));
+                errorMsg = string.Format("Input value must be between {0} and {1}", min, max);
             else if (min == null)
-                MessageBox.Show(string.Format("Input value must be less than {0}", max));
+                errorMsg = string.Format("Input value must be less than {0}", max);
             else if (max == null)
-                MessageBox.Show(string.Format("Input value must be greater than {0}", min));
+                errorMsg = string.Format("Input value must be greater than {0}", min);
+
+            ErrorToolTip.Content = errorMsg;
+            TextBox.ToolTip = ErrorToolTip;
         }
 
         /// <summary>

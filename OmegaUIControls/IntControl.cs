@@ -36,7 +36,9 @@ namespace Agilent.OpenLab.Spring.Omega
 
         public override void ShowValidationError()
         {
-            MessageBox.Show(MessageInfo.INT_ERROR_MESSAGE);
+            errorMsg = MessageInfo.INT_ERROR_MESSAGE;
+            ErrorToolTip.Content = errorMsg;
+            TextBox.ToolTip = ErrorToolTip;
         }
     }
 }
