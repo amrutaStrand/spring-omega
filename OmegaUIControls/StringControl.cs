@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using OmegaUIControls.OmegaUIUtils;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -11,8 +12,12 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public class StringControl : AbstractUIControl
     {
-        protected Brush BorderBrush;
-        protected string LabelContent;
+        protected Brush borderBrush;
+        protected Thickness borderThickness;
+        protected Brush textBackground;
+        protected double textBackgroundOpacity;
+
+        private SolidColorBrush errorBrush = new SolidColorBrush();
 
         //These fields are for int and float control
         protected float? min;
@@ -42,7 +47,7 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             Label = new Label();
-            Label.Content = LabelContent;
+            Label.Content = Input.GetInput("Label", "Input").ToString();
 
             TextBox = new TextBox();
             TextBox.LostFocus += this.HandleTextChanged;
@@ -52,7 +57,12 @@ namespace Agilent.OpenLab.Spring.Omega
             panel.Children.Add(TextBox);
 
             SetResources(panel);
-            BorderBrush = TextBox.BorderBrush;
+            borderBrush = TextBox.BorderBrush;
+            borderThickness = TextBox.BorderThickness;
+            textBackground = TextBox.Background;
+            errorBrush.Color = UIConstants.ColorError;
+            errorBrush.Opacity = UIConstants.OpacityError;
+
             Validate(Input.GetInput("Value"));
             UIElement = panel;
         }
@@ -69,10 +79,6 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void SetInput(IUIInput input) // IUIInput
         {
             base.SetInput(input);
-            LabelContent = input.GetInput("Label", "Input").ToString();
-            //min = Convert.ToSingle(input.GetInput("min", null));
-            //min = float.Parse(input.GetInput("min", null).ToString());
-            //max = float.Parse(input.GetInput("max", null).ToString());
             if(Input.HasParameter("min"))
                 min = float.Parse(input.GetInput("min").ToString());
             if (Input.HasParameter("max"))
@@ -83,18 +89,20 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             if (IsValid(val) && IsWithinRange(val))
             {
-                TextBox.BorderBrush = BorderBrush;
+                TextBox.BorderBrush = borderBrush;
+                TextBox.BorderThickness = borderThickness;
+                TextBox.Background = textBackground;
                 Value = val;
-            }
-            else if (!IsWithinRange(val))
-            {
-                TextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                ShowOutOfRangeError();
             }
             else
             {
-                TextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                ShowValidationError();
+                TextBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
+                TextBox.BorderThickness = UIConstants.BorderThicknessError;
+                TextBox.Background = errorBrush;
+                if (!IsValid(val))
+                    ShowValidationError();
+                else if(!IsWithinRange(val))
+                    ShowOutOfRangeError();
             }
         }
 

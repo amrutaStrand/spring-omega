@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace OmegaUIControls.OmegaUIUtils
 {
@@ -13,5 +14,9 @@ namespace OmegaUIControls.OmegaUIUtils
 
 		public static readonly Thickness ControlMargin = new Thickness(10);
 		public static readonly HorizontalAlignment ControlHorizontalAlignment = HorizontalAlignment.Left;
+
+		public static readonly Thickness BorderThicknessError = new Thickness(2);
+		public static readonly Color ColorError = (Color)ColorConverter.ConvertFromString("#fc5236");
+		public const double OpacityError = 0.15;
 	}
 }
