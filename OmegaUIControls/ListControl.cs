@@ -27,7 +27,8 @@ namespace Agilent.OpenLab.Spring.Omega
         private ListBox rightList;
 
         /// <summary>
-        /// The Value property of a ListControl is a list of selected objects which are part of the rightList.
+        /// The Value property of a ListControl is a list of selected objects which are part of the 
+        /// rightList.
         /// </summary>
         public override object Value
         {
@@ -37,23 +38,25 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             set
             {
-                if (!(value is List<object>))
-                    throw new Exception("Value of ListControl should be a list of objects");
+                if (!(value is IList))
+                    throw new Exception("Value of ListControl should be an IList");
 
-                List<object> data = value as List<object>;
+                IList data = value as IList;
 
                 //clear both list and fill left
                 leftElements.Clear();
-                leftElements = new ObservableCollection<object>(elements);
+
+                foreach (object o in elements)
+                    leftElements.Add(o);
+
                 rightElements.Clear();
 
                 //move each item from left to right
-                for(int i = 0; i < data.Count; i++)
+                foreach(object o in data)
                 {
-                    if (leftElements.Remove(data[i]))
-                        rightElements.Add(data[i]);
+                    if (leftElements.Remove(o))
+                        rightElements.Add(o);
                 }
-
             }
         }
 
@@ -78,7 +81,7 @@ namespace Agilent.OpenLab.Spring.Omega
             AddControls(panel);
             AddRightList(panel);
 
-            //Value = Input.GetInput("Value", new List<string>());
+            Value = Input.GetInput("Value", new List<string>());
 
             //panel.ChangeDimension(150, 800);
             SetResources(panel);
@@ -144,9 +147,7 @@ namespace Agilent.OpenLab.Spring.Omega
             foreach (object o in tmp)
             {
                 leftElements.Add(o);
-                //(leftList.ItemsSource as ObservableCollection<object>).Add(o);
                 rightElements.Remove(o);
-                //(rightList.ItemsSource as ObservableCollection<object>).Remove(o);
             }
         }
 
@@ -202,7 +203,7 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             else if (param is IList<object>)
             {
-                elements = param as IList<object>;
+                elements = new List<object>(param as IList<object>);
             }
 
             //disabledIndices = Input.HasParameter("disabledIndices") ? (IntArray)Input.GetInput("disabledIndices") : null;
@@ -215,14 +216,13 @@ namespace Agilent.OpenLab.Spring.Omega
         public void ResetOptions(IList<object> newOptions)
         {
             elements = new List<object>(newOptions);
-            int size = elements.Count;
 
             leftElements.Clear();
             rightElements.Clear();
 
-            for(int i = 0; i < size; i++)
+            foreach(object o in elements)
             {
-                rightElements.Add(elements[i]);
+                rightElements.Add(o);
             }
         }
     }

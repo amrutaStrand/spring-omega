@@ -190,7 +190,7 @@
             UIInput input = new UIInput();
             input.AddInput("Description", "File control");
             input.AddInput("enableMultipleSelection", true);
-            input.AddInput("fileFilters", "sef files (*.sef)|*.sef|LCMS files (*.d)|*.d|All files (*.*)|*.*");
+            input.AddInput("fileFilters", "txt files (*.txt)|*.txt|Images (*.png)|*.png|All files (*.*)|*.*");
             //input.AddInput("dialogType", "save");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("FileControl");
             panel.SetInput(input);
