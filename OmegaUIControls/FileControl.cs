@@ -8,14 +8,14 @@ namespace Agilent.OpenLab.Spring.Omega
 {
     /// <summary>
     /// FileControl is a container encapsulating a <see cref="Label"/>, <see cref="TextBox"/> and 
-    /// <see cref="Button"/>. The button click launches a <see cref="OpenFileDialog"/> or <see cref="SaveFileDialog"/> 
-    /// depending on the input parameters. The selected file path is displayed in the text box.
-    /// Parameters of this class are<list type="bullet" >
+    /// <see cref="Button"/>. The button click launches a <see cref="OpenFileDialog"/> or 
+    /// <see cref="SaveFileDialog"/> depending on the input parameters. The selected file path is 
+    /// displayed in the text box. Parameters of this class are<list type="bullet" >
     /// <item>Description (String) : string shown in the label</item>
     /// <item>dialogType (String) : "open" or "save"</item>
     /// <item>currentDirectory (String) : intial directory in which the dialog is launched</item>
     /// <item>fileFilters (String) : determines what types of files are displayed in the dialog. 
-    /// e.g. "Text files | *.txt"</item>
+    /// e.g. "Text files|*.txt|All files (*.*)|*.*"</item>
     /// <item>enableMultipleSelection (bool) : flag indicating whether the dialog allows users 
     /// to select multiple files </item>
     /// <item>buttonLabel (String) : string shown in the button</item>
@@ -25,18 +25,23 @@ namespace Agilent.OpenLab.Spring.Omega
     {
         protected Label label;
         protected FileDialog dialog;
+        protected string dialogType;
         protected Button button;
         protected TextBox textBox;
 
         /// <summary>
-        /// Value property of FileControl is the file path(s) seleted in the <see cref="FileDialog"/>. The get 
-        /// method returns a list of strings, while the set method accepts a string.
+        /// Value property of FileControl is the file path(s) seleted in the <see cref="FileDialog"/>. 
+        /// The data type of Value is string if enableMultipleSelection is false or dialogType is "save".
+        /// Otherwise, the get method returns a list of strings, while the set method accepts a string.
         /// </summary>
         public override object Value
         {
             get
             {
-                return dialog.FileNames;
+                if (dialogType.Equals("save") || !(bool)Input.GetInput("enableMultipleSelection", false))
+                    return dialog.FileName;
+                else
+                    return dialog.FileNames;
             }
             set
             {
@@ -47,7 +52,7 @@ namespace Agilent.OpenLab.Spring.Omega
         }
 
         /// <summary>
-        /// A <see cref="Label"/>, <see cref="TextBox"/> and <see cref="Button"/> are added in a <see cref="LayoutPanel"/>.
+        /// A Label, TextBox and Button are added in a <see cref="LayoutPanel"/>.
         /// </summary>
         public override void CreateUIElement()
         {
@@ -85,7 +90,7 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         protected void CreateDialog()
         {
-            string dialogType = (string)Input.GetInput("dialogType", "open");
+            dialogType = (string)Input.GetInput("dialogType", "open");
             
             if (dialogType.Equals("save"))
                 dialog = new SaveFileDialog();
@@ -96,9 +101,9 @@ namespace Agilent.OpenLab.Spring.Omega
 
             dialog.Filter = (string)Input.GetInput("fileFilters", string.Empty);
 
-            if(dialogType.Equals("open") && Input.HasParameter("enableMultipleSelection"))
+            if(dialogType.Equals("open"))
             {
-                (dialog as OpenFileDialog).Multiselect = (bool)Input.GetInput("enableMultipleSelection");
+                (dialog as OpenFileDialog).Multiselect = (bool)Input.GetInput("enableMultipleSelection", false);
             }
         }
 
@@ -111,7 +116,6 @@ namespace Agilent.OpenLab.Spring.Omega
             textBox.Width = 250;
             textBox.TextWrapping = TextWrapping.Wrap;
             //textBox.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            //textBox.Margin = new Thickness(5);
         }
 
         /// <summary>
