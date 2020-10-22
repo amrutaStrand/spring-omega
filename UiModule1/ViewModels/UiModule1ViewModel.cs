@@ -59,6 +59,8 @@
             UIInput input = new UIInput();
             input.AddInput("Label", "Name");
             input.AddInput("Value", 10);
+            input.AddInput("min", -100);
+            input.AddInput("max", 100);
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Int");
             panel.SetInput(input);
             return panel;
@@ -69,6 +71,8 @@
             UIInput input = new UIInput();
             input.AddInput("Label", "Name");
             input.AddInput("Value", 10f);
+            input.AddInput("min", -100);
+            input.AddInput("max", 100);
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Float");
             panel.SetInput(input);
             return panel;

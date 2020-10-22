@@ -14,6 +14,10 @@ namespace Agilent.OpenLab.Spring.Omega
         protected Brush BorderBrush;
         protected string LabelContent;
 
+        //These fields are for int and float control
+        protected float? min;
+        protected float? max;
+
         //Sub controls of String control
         protected Label Label;
         protected TextBox TextBox;
@@ -66,14 +70,26 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             base.SetInput(input);
             LabelContent = input.GetInput("Label", "Input").ToString();
+            //min = Convert.ToSingle(input.GetInput("min", null));
+            //min = float.Parse(input.GetInput("min", null).ToString());
+            //max = float.Parse(input.GetInput("max", null).ToString());
+            if(Input.HasParameter("min"))
+                min = float.Parse(input.GetInput("min").ToString());
+            if (Input.HasParameter("max"))
+                max = float.Parse(input.GetInput("max").ToString());
         }
 
         public void Validate(object val)
         {
-            if (IsValid(val))
+            if (IsValid(val) && IsWithinRange(val))
             {
                 TextBox.BorderBrush = BorderBrush;
                 Value = val;
+            }
+            else if (!IsWithinRange(val))
+            {
+                TextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                ShowOutOfRangeError();
             }
             else
             {
@@ -96,6 +112,32 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void ShowValidationError()
         {
             MessageBox.Show(MessageInfo.STRING_ERROR_MESSAGE);
+        }
+        protected virtual bool IsWithinRange(object val)
+        {
+            if (min == null && max == null)
+                return true;
+
+            float tmp = Convert.ToSingle(val);
+
+            if (min == null && tmp <= max)
+                return true;
+            else if (max == null && tmp >= min)
+                return true;
+            else if (tmp >= min && tmp <= max)
+                return true;
+            else
+                return false;
+        }
+
+        protected virtual void ShowOutOfRangeError()
+        {
+            if (min != null && max != null)
+                MessageBox.Show(string.Format("Input value must be between {0} and {1}", min, max));
+            else if (min == null)
+                MessageBox.Show(string.Format("Input value must be less than {0}", max));
+            else if (max == null)
+                MessageBox.Show(string.Format("Input value must be greater than {0}", min));
         }
 
         /// <summary>
