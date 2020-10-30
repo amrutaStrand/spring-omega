@@ -239,20 +239,50 @@
             return dialog;
         }
 
-        private Button CreateButton()
+        private Button CreateOmegaDialogButton()
         {
             Button button = new Button();
             button.Width = 300;
             button.HorizontalAlignment = HorizontalAlignment.Center;
             button.Content = "Launch Omega Dialog";
-            button.Click += Button_Click;
+            button.Click += OmegaDialogButton_Click;
             return button;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OmegaDialogButton_Click(object sender, RoutedEventArgs e)
         {
             OmegaDialog dialog = CreateOmegaDialog();
             dialog.ShowDialog();
+        }
+
+        private SimpleDialog CreateSimpleDialog()
+        {
+            Dictionary<string, object> prop = new Dictionary<string, object> { { "title", "Very Simple Dialog!" } };
+            return new SimpleDialog(null, prop, CreateXamSliderControl());
+        }
+
+        private Button CreateSimpleDialogButton()
+        {
+            Button button = new Button();
+            button.Width = 300;
+            button.HorizontalAlignment = HorizontalAlignment.Center;
+            button.Content = "Launch Simple Dialog";
+            button.Click += SimpleDialogButton_Click;
+            return button;
+        }
+
+        private void SimpleDialogButton_Click(object sender, RoutedEventArgs e)
+        {
+            SimpleDialog dialog = CreateSimpleDialog();
+            try
+            {
+                MessageBox.Show(dialog.ShowSimpleDialog().ToString());
+            }
+            catch
+            {
+                //dialog.ShowSimpleDialog() returned null
+            }
+
         }
 
         private IUIControl CreateRadioCardControl()
@@ -285,7 +315,9 @@
 
             IUIControl TabControl = CreateTabControl();
 
-            Button launchButton = CreateButton();
+            Button launchOmegaDialogButton = CreateOmegaDialogButton();
+
+            Button launchSimpleDialogButton = CreateSimpleDialogButton();
 
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
@@ -300,7 +332,8 @@
             labels.Add("Horizontal Group Control", GroupControl);
             labels.Add("Vertical Group Control", VGroupControl);
             labels.Add("Tab Control", TabControl);
-            labels.Add("Omega Dialog", launchButton);
+            labels.Add("Omega Dialog", launchOmegaDialogButton);
+            labels.Add("Simple Dialog", launchSimpleDialogButton);
 
             UIInput input = new UIInput();
             input.AddInput("Options", labels);

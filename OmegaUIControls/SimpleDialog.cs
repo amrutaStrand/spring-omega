@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Xml;
 using System.Windows.Media;
+using OmegaUIControls.OmegaUIUtils;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -46,12 +47,13 @@ namespace Agilent.OpenLab.Spring.Omega
         protected string helpId;
         protected Button helpButton;
 
-        protected Panel dialogContent;
+        protected UIElement dialogContent;
+        protected IUIControl simpleDialogContent;
 
         /// <summary>
         /// Content of the dialog box.
         /// </summary>
-        public Panel DialogContent
+        public UIElement DialogContent
         {
             get
             {
@@ -65,6 +67,8 @@ namespace Agilent.OpenLab.Spring.Omega
                 DockPanel.SetDock(value, Dock.Top);
             }
         }
+
+        #region Constructors
 
         /// <summary>
         /// Creates dialog with <paramref name="parent"/> as its owner.
@@ -112,6 +116,7 @@ namespace Agilent.OpenLab.Spring.Omega
             //StackPanel panel = new StackPanel();
 
             DockPanel panel = new DockPanel();
+            SetResources(panel);
             panel.LastChildFill = false;
 
             dialogContent = new StackPanel();
@@ -128,8 +133,30 @@ namespace Agilent.OpenLab.Spring.Omega
             this.Content = panel;
         }
 
+        public SimpleDialog(Window parent, IDictionary<string, object> properties, IUIControl control) : this(parent, properties)
+        {
+            //IDictionary<string, object> propertiesCopy = new Dictionary<string, object>(properties);
+            //if(propertiesCopy.ContainsKey("title"))
+            simpleDialogContent = control;
+            DialogContent = control.GetUIElement();   
+        }
+
+        #endregion
+
+        public object ShowSimpleDialog()
+        {
+            this.ShowDialog();
+            if (this.IsOk())
+                return simpleDialogContent.Value;
+            else
+                return null;
+        }
         private void SetResources(FrameworkElement frameworkElement)
         {
+            //Set common properties of the controls
+            frameworkElement.Margin = UIConstants.ControlMargin;
+            frameworkElement.HorizontalAlignment = UIConstants.ControlHorizontalAlignment;
+
             string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
 
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
@@ -146,7 +173,7 @@ namespace Agilent.OpenLab.Spring.Omega
         private Panel CreateControlPanel()
         {
             DockPanel panel = new DockPanel();
-            SetResources(panel);
+            //SetResources(panel);
             panel.LastChildFill = false;
 
             //panel for ok and cancel button
