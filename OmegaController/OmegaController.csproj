@@ -112,6 +112,9 @@
     <Reference Include="Agilent.OpenLab.Framework.UI.XamOutlookBar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\Agilent.OpenLAB.Framework.UI.3.2.0.117\lib\net45\Agilent.OpenLab.Framework.UI.XamOutlookBar.dll</HintPath>
     </Reference>
+    <Reference Include="algorithm">
+      <HintPath>..\..\..\..\Downloads\Omega\algorithm.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\Agilent.OpenLAB.Framework.3rdParty.Microsoft.Practices.2.1.505.3\lib\net45\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
@@ -185,10 +188,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\algorithmrep\algorithm\algorithm.csproj">
-      <Project>{3d538642-a490-4999-99b7-eaf6d4564d30}</Project>
-      <Name>algorithm</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OmegaUIControls\OmegaUIControls.csproj">
       <Project>{ec9a0909-04d1-46ca-bc71-7d14b8ab3ca1}</Project>
       <Name>OmegaUIControls</Name>

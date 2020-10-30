@@ -93,6 +93,9 @@
   <PropertyGroup>
     <ApplicationIcon>App.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Agilent.OpenLab.OmegaApplication.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Agilent.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\Agilent.OpenLAB.Framework.3rdParty.Diagnostics.1.55.0\lib\net45\Agilent.Diagnostics.dll</HintPath>
