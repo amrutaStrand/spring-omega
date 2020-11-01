@@ -32,14 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InfragisticsWPF4.Controls.Editors.XamSlider.v19.2">
-      <HintPath>..\..\..\..\Downloads\Omega\InfragisticsWPF4.Controls.Editors.XamSlider.v19.2.dll</HintPath>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamSlider.v19.2, Version=19.2.20192.186, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dlls\InfragisticsWPF4.Controls.Editors.XamSlider.v19.2.dll</HintPath>
     </Reference>
-    <Reference Include="InfragisticsWPF4.v19.2">
-      <HintPath>..\..\..\..\Downloads\Omega\InfragisticsWPF4.v19.2.dll</HintPath>
+    <Reference Include="InfragisticsWPF4.v19.2, Version=19.2.20192.186, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dlls\InfragisticsWPF4.v19.2.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\..\..\..\Downloads\Omega\Microsoft.Practices.Unity.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dlls\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
