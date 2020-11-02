@@ -13,6 +13,9 @@ namespace OmegaUIControls.OmegaUIUtils
 		// 10 extra for border
 		public static readonly Size ControlSize = new Size(ControlWidth + 10, ControlWidth + 10);
 
+		public const int ControlMaxWidth = 1000;
+		public const int ControlMaxHeight = 400;
+
 		public static readonly Thickness ControlMargin = new Thickness(10);
 		public static readonly HorizontalAlignment ControlHorizontalAlignment = HorizontalAlignment.Left;
 

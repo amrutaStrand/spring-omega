@@ -47,6 +47,7 @@
         private IUIControl CreateStringControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testStringControl");
             input.AddInput("Label", "Name");
             input.AddInput("Value", "Enter Name");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("String");
@@ -57,6 +58,7 @@
         private IUIControl CreateIntControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testIntControl");
             input.AddInput("Label", "Name");
             input.AddInput("Value", 10);
             input.AddInput("min", -100);
@@ -69,6 +71,7 @@
         private IUIControl CreateFloatControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testFloatControl");
             input.AddInput("Label", "Name");
             input.AddInput("Value", 10f);
             input.AddInput("min", -100);
@@ -81,6 +84,7 @@
         private IUIControl CreateBooleanControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testBooleanControl");
             input.AddInput("Description", "This is a Boolean Control");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Boolean");
             panel.SetInput(input);
@@ -106,6 +110,7 @@
             UIInput input = new UIInput();
             Dictionary<string, object> pairs = new Dictionary<string, object> 
             {
+                    { "id", "testXamSliderControl" },
                     { "Description", "Strand slider control" },
                     { "allowTextBox", true},
                     { "min", 200 },
@@ -120,6 +125,7 @@
         private IUIControl CreateRangeSliderControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testRangeSliderControl");
             input.AddInput("Description", "Range slider control");
             input.AddInput("allowTextBox", true);
             input.AddInput("min", 500);
@@ -136,6 +142,7 @@
         private IUIControl CreateListControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testListControl");
             input.AddInput("Description", "List control");
             input.AddInput("options", new List<object> {"Sample-1", "Sample-2", "Sample-3", "Sample-4", "Sample-5" });
             input.AddInput("Value", new List<object> { "Sample-1", "Sample-2", "Sample-6" });
@@ -166,9 +173,25 @@
             return panel;
         }
 
+        private IUIControl CreateGroupControlAllOmega()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Vertical group control");
+            //input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
+            input.AddInput("controls", new List<object> { 
+                CreateStringControl(), CreateIntControl(), CreateFloatControl(), CreateBooleanControl(),
+                CreateXamSliderControl(), CreateRangeSliderControl(), CreateListControl(), CreateBoxCombo(),
+                CreateCheckBoxCombo(), CreateFileControl()
+            });
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
+            panel.SetInput(input);
+            return panel;
+        }
+
         private IUIControl CreateBoxCombo()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testBoxComboControl");
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             input.AddInput("Value", "Kolkata");
@@ -180,6 +203,7 @@
         private IUIControl CreateCheckBoxCombo()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testComboBox");
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             input.AddInput("multiSelect", true);
@@ -192,6 +216,7 @@
         private IUIControl CreateFileControl()
         {
             UIInput input = new UIInput();
+            input.AddInput("id", "testFileControl");
             input.AddInput("Description", "File control");
             input.AddInput("enableMultipleSelection", true);
             input.AddInput("fileFilters", "txt files (*.txt)|*.txt|Images (*.png)|*.png|All files (*.*)|*.*");
@@ -258,7 +283,7 @@
         private SimpleDialog CreateSimpleDialog()
         {
             Dictionary<string, object> prop = new Dictionary<string, object> { { "title", "Very Simple Dialog!" } };
-            return new SimpleDialog(null, prop, CreateXamSliderControl());
+            return new SimpleDialog(null, prop, CreateGroupControlAllOmega());
         }
 
         private Button CreateSimpleDialogButton()
@@ -303,15 +328,17 @@
 
             IUIControl ListControl = CreateListControl();
 
-            IUIControl GroupControl = CreateGroupControl();
-
-            IUIControl VGroupControl = CreateVGroupControl();
-
             IUIControl BoxCombo = CreateBoxCombo();
 
             IUIControl CheckBoxCombo = CreateCheckBoxCombo();
 
             IUIControl FileControl = CreateFileControl();
+
+            IUIControl GroupControl = CreateGroupControl();
+
+            IUIControl VGroupControl = CreateVGroupControl();
+
+            IUIControl AllControl = CreateGroupControlAllOmega();
 
             IUIControl TabControl = CreateTabControl();
 
@@ -331,6 +358,7 @@
             labels.Add("File Control", FileControl);
             labels.Add("Horizontal Group Control", GroupControl);
             labels.Add("Vertical Group Control", VGroupControl);
+            labels.Add("Vertical Alignment", AllControl);
             labels.Add("Tab Control", TabControl);
             labels.Add("Omega Dialog", launchOmegaDialogButton);
             labels.Add("Simple Dialog", launchSimpleDialogButton);
