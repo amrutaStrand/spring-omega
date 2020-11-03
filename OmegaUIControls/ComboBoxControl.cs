@@ -8,8 +8,8 @@ using System.Windows.Controls;
 namespace Agilent.OpenLab.Spring.Omega
 {
     /// <summary>
-    /// A combo box of <see cref="CheckBox"/>. Parameter of this class is "options" which
-    /// can be a <see cref="IDictionary"/> or <see cref="IList"/> of strings.
+    /// A combo box of <see cref="CheckBox"/>. Parameter of this class is "options" which can be a <see cref="IDictionary"/> 
+    /// or <see cref="IList"/> of strings. If "multiSelect" option is true, then combo box of checkboxes is shown.
     /// </summary>
     class ComboBoxControl : AbstractUIControl
     {
@@ -61,11 +61,13 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             comboBox = new ComboBox();
-            
+            comboBox.IsEditable = true;
+            comboBox.IsReadOnly = true;
+
             if (multiSelect)
             {
-                comboBox.IsEditable = true;
-                comboBox.IsReadOnly = true;
+                //comboBox.IsEditable = true;
+                //comboBox.IsReadOnly = true;
                 comboBox.Text = options[0];
                 comboBox.DropDownClosed += ComboBox_DropDownClosed;
                 selectedOptions = new List<string>();
