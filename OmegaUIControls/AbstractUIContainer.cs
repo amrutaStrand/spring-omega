@@ -87,25 +87,19 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="input"></param>
         public override void SetInput(IUIInput input)
         {
-            Input = input;
+            base.SetInput(input);
 
             if (Input.HasParameter("controls"))
             {
                 ControlList = new List<object>();
 
                 IList<object> list = Input.GetInput("controls") as IList<object>;
-                int size = list.Count();
 
-                for(int i = 0; i < size; i++)
+                foreach(object control in list)
                 {
-                    object control = list[i];
-
                     if(control is IDictionary)
-                    {
-                        //Need to discuus
-                    }
-
-                    if (control is IUIControl)
+                        ControlList.Add(OmegaFactory.CreateControl(control as IDictionary<string, object>));
+                    else if (control is IUIControl)
                         ControlList.Add(control);
                     else
                         throw new Exception(control + "is not a control");
