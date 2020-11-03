@@ -168,7 +168,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
             }
             textBox = new TextBox();
-            //textBox.Text = Value.ToString();
             Value = Input.GetInput("Value", Value);
             textBox.LostFocus += TextBox_LostFocus;
             panel.Add(textBox, 1);
@@ -182,7 +181,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (!isAllowed)
             {
                 textBox.Text = Value.ToString();
-                MessageBox.Show("Please enter a number!");
+                //MessageBox.Show("Please enter a number!");
             }
             else if (cur != last)
             {
@@ -263,8 +262,7 @@ namespace Agilent.OpenLab.Spring.Omega
         private void AddLabel(LayoutPanel panel)
         {
             label = new Label();
-            label.VerticalAlignment = VerticalAlignment.Center;
-            label.Content = Input.GetInput("Description", "Description about the slider");
+            label.Content = Input.GetInput("Description", "Slider Description");
 
             panel.Add(label, 1);
         }

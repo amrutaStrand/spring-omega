@@ -25,13 +25,12 @@ namespace Agilent.OpenLab.Spring.Omega
         protected bool adjustMinMax;
         protected string minLabel;
         protected string maxLabel;
-        protected bool showBorder;
-        protected string description;
         protected bool showAbsolute;
 
         private bool localChangeMin;
         private bool localChangeMax;
 
+        protected Label label;
         protected TextBox minTextBox;
         protected TextBox maxTextBox;
         protected XamNumericRangeSlider rangeSlider;
@@ -84,7 +83,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 }
                 else
                 {
-                    throw new Exception("Value should be of type Dictionary<string, float/int>");
+                    //throw new Exception("Value should be of type Dictionary<string, float/int>");
                 }
             }
         }
@@ -222,17 +221,13 @@ namespace Agilent.OpenLab.Spring.Omega
 
         /// <summary>
         /// Creates UIElement of RangeSliderControl which is a <see cref="LayoutPanel"/> containing a 
-        /// slider with two thumbs and text boxes corresponding to the min and max values.
+        /// slider with two thumbs, a label and text boxes corresponding to the min and max values.
         /// </summary>
         public override void CreateUIElement()
         {
-            var panel = allowText ? new LayoutPanel(1, 3) : new LayoutPanel(1, 1);
-            
-            if (showBorder)
-            {
-                panel.AddBorder(description);
-            }
+            var panel = allowText ? new LayoutPanel(1, 4) : new LayoutPanel(1, 2);
 
+            AddLabel(panel);
             if (allowText)
             {
                 AddMinText(panel);
@@ -247,6 +242,18 @@ namespace Agilent.OpenLab.Spring.Omega
             panel.ChangeDimension(80, 800);
             SetResources(panel);
             UIElement = panel;
+        }
+
+        /// <summary>
+        /// Adds a label to show the Description of the slider.
+        /// </summary>
+        /// <param name="panel"></param>
+        private void AddLabel(LayoutPanel panel)
+        {
+            label = new Label();
+            label.Content = Input.GetInput("Description", "Range Slider Description");
+
+            panel.Add(label, 1);
         }
 
         /// <summary>
@@ -271,7 +278,7 @@ namespace Agilent.OpenLab.Spring.Omega
             bool isAllowed = float.TryParse(minTextBox.Text, out cur);
             if (!isAllowed)
             {
-                MessageBox.Show("Please enter a number!");
+                //MessageBox.Show("Please enter a number!");
                 minTextBox.Text = minValue.ToString();
             }
             else
@@ -302,7 +309,7 @@ namespace Agilent.OpenLab.Spring.Omega
             bool isAllowed = float.TryParse(maxTextBox.Text, out cur);
             if (!isAllowed)
             {
-                MessageBox.Show("Please enter a number!");
+                //MessageBox.Show("Please enter a number!");
                 maxTextBox.Text = maxValue.ToString();
             }
             else
@@ -450,10 +457,6 @@ namespace Agilent.OpenLab.Spring.Omega
             minLabel = (string)Input.GetInput("minLabel", "Minimum");
 
             maxLabel = (string)Input.GetInput("maxLabel", "Maximum");
-
-            showBorder = (bool)Input.GetInput("showBorder", true);
-
-            description = (string)Input.GetInput("Description", "Range Slider");
 
             showAbsolute = (bool)Input.GetInput("showAbsolute", true);
         }
