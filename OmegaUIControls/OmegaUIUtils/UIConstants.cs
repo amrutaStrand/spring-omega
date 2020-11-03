@@ -22,5 +22,24 @@ namespace OmegaUIControls.OmegaUIUtils
 		public static readonly Thickness BorderThicknessError = new Thickness(2);
 		public static readonly Color ColorError = (Color)ColorConverter.ConvertFromString("#fc5236");
 		public const double OpacityError = 0.15;
+
+		public static Style GetErrorToolTipStyle()
+        {
+			Style ErrorToolTipStyle = new Style(typeof(ToolTip));
+			ErrorToolTipStyle.Setters.Add(new Setter(ToolTip.BackgroundProperty, new SolidColorBrush(UIConstants.ColorError)));
+			ErrorToolTipStyle.Setters.Add(new Setter(ToolTip.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffffff"))));
+			ErrorToolTipStyle.Setters.Add(new Setter(ToolTip.FontFamilyProperty, new FontFamily("Calibri")));
+			ErrorToolTipStyle.Setters.Add(new Setter(ToolTip.FontWeightProperty, FontWeights.Regular));
+			ErrorToolTipStyle.Setters.Add(new Setter(ToolTip.FontSizeProperty, 14d));
+			return ErrorToolTipStyle;
+		}
+
+		public static SolidColorBrush GetTextBackgroundError()
+        {
+			SolidColorBrush errorBrush = new SolidColorBrush();
+			errorBrush.Color = UIConstants.ColorError;
+			errorBrush.Opacity = UIConstants.OpacityError;
+			return errorBrush;
+		}
 	}
 }

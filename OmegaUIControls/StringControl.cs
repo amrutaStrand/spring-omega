@@ -12,13 +12,13 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public class StringControl : AbstractUIControl
     {
+        //These fields are to store initial styles of the TextBox
         protected Brush borderBrush;
         protected Thickness borderThickness;
         protected Brush textBackground;
-        protected double textBackgroundOpacity;
-        protected string errorMsg;
 
-        private SolidColorBrush errorBrush = new SolidColorBrush();
+        //Error message to be shown when input is invaid or out of range
+        protected string errorMsg;
 
         //These fields are for int and float control
         protected float? min;
@@ -27,6 +27,8 @@ namespace Agilent.OpenLab.Spring.Omega
         //Sub controls of String control
         protected Label Label;
         protected TextBox TextBox;
+
+        //Tool tip to show errorMsg
         protected ToolTip ErrorToolTip;
 
         public delegate bool ValidateMessageDelegate(String message);
@@ -58,21 +60,13 @@ namespace Agilent.OpenLab.Spring.Omega
             panel.Children.Add(Label);
             panel.Children.Add(TextBox);
 
-            //Tool tip styles
             ErrorToolTip = new ToolTip();
-            ErrorToolTip.Background = new SolidColorBrush(UIConstants.ColorError);
-            ErrorToolTip.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffffff"));
-            ErrorToolTip.FontFamily = new FontFamily("Calibri");
-            ErrorToolTip.FontWeight = FontWeights.Regular;
-            ErrorToolTip.FontSize = 14;
-            //ErrorToolTip.Height = 22;
+            ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
 
             SetResources(panel);
             borderBrush = TextBox.BorderBrush;
             borderThickness = TextBox.BorderThickness;
             textBackground = TextBox.Background;
-            errorBrush.Color = UIConstants.ColorError;
-            errorBrush.Opacity = UIConstants.OpacityError;
 
             Validate(Input.GetInput("Value"));
             UIElement = panel;
@@ -110,11 +104,12 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 TextBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
                 TextBox.BorderThickness = UIConstants.BorderThicknessError;
-                TextBox.Background = errorBrush;
+                TextBox.Background = UIConstants.GetTextBackgroundError();
                 if (!IsValid(val))
                     ShowValidationError();
                 else if(!IsWithinRange(val))
                     ShowOutOfRangeError();
+                TextBox.ToolTip = ErrorToolTip;
             }
         }
 
@@ -133,7 +128,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             errorMsg = MessageInfo.STRING_ERROR_MESSAGE;
             ErrorToolTip.Content = errorMsg;
-            TextBox.ToolTip = ErrorToolTip;
+            
         }
         protected virtual bool IsWithinRange(object val)
         {
@@ -155,14 +150,13 @@ namespace Agilent.OpenLab.Spring.Omega
         protected virtual void ShowOutOfRangeError()
         {
             if (min != null && max != null)
-                errorMsg = string.Format("Input value must be between {0} and {1}", min, max);
+                errorMsg = string.Format(MessageInfo.OUT_OF_RANGE_ERROR_MESSAGE, min, max);
             else if (min == null)
-                errorMsg = string.Format("Input value must be less than {0}", max);
+                errorMsg = string.Format(MessageInfo.LESS_THAN_ERROR_MESSAGE, max);
             else if (max == null)
-                errorMsg = string.Format("Input value must be greater than {0}", min);
+                errorMsg = string.Format(MessageInfo.GREATER_THAN_ERROR_MESSAGE, min);
 
             ErrorToolTip.Content = errorMsg;
-            TextBox.ToolTip = ErrorToolTip;
         }
 
         /// <summary>
