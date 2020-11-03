@@ -52,6 +52,7 @@ namespace Agilent.OpenLab.Spring.Omega
             scrollViewer.Content = panel;
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scrollViewer.MaxHeight = Convert.ToDouble(Input.GetInput("setScrollHeight", 300));
 
             //set orientation of the stack panel depending on the input parameter
             string orientation = (string)Input.GetInput("orientation", "vertical");
