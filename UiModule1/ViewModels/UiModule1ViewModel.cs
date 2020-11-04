@@ -177,8 +177,22 @@
         {
             UIInput input = new UIInput();
             input.AddInput("Description", "Vertical group control");
-            //input.AddInput("controls", new List<object> { CreateGroupControl(), CreateRangeSliderControl(), CreateListControl() });
             input.AddInput("controls", new List<object> { 
+                CreateStringControl(), CreateIntControl(), CreateFloatControl(), CreateBooleanControl(),
+                CreateXamSliderControl(), CreateRangeSliderControl(), CreateListControl(), CreateBoxCombo(),
+                CreateCheckBoxCombo(), CreateFileControl()
+            });
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Group");
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private IUIControl CreateHGroupControlAllOmega()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("Description", "Horizontal group control");
+            input.AddInput("orientation", "horizontal");
+            input.AddInput("controls", new List<object> {
                 CreateStringControl(), CreateIntControl(), CreateFloatControl(), CreateBooleanControl(),
                 CreateXamSliderControl(), CreateRangeSliderControl(), CreateListControl(), CreateBoxCombo(),
                 CreateCheckBoxCombo(), CreateFileControl()
@@ -340,6 +354,8 @@
 
             IUIControl AllControl = CreateGroupControlAllOmega();
 
+            IUIControl AllControlH = CreateHGroupControlAllOmega();
+
             IUIControl TabControl = CreateTabControl();
 
             Button launchOmegaDialogButton = CreateOmegaDialogButton();
@@ -359,6 +375,7 @@
             labels.Add("Horizontal Group Control", GroupControl);
             labels.Add("Vertical Group Control", VGroupControl);
             labels.Add("Vertical Alignment", AllControl);
+            labels.Add("Horizontal Alignment", AllControlH);
             labels.Add("Tab Control", TabControl);
             labels.Add("Omega Dialog", launchOmegaDialogButton);
             labels.Add("Simple Dialog", launchSimpleDialogButton);

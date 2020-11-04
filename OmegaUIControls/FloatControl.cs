@@ -38,7 +38,6 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             errorMsg = MessageInfo.FLOAT_ERROR_MESSAGE;
             ErrorToolTip.Content = errorMsg;
-            TextBox.ToolTip = ErrorToolTip;
         }
     }
 }

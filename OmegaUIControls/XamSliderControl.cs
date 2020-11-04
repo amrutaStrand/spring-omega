@@ -5,6 +5,7 @@ using OmegaUIControls.OmegaUIUtils;
 using Infragistics.Controls.Editors;
 using System.Collections;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -42,6 +43,19 @@ namespace Agilent.OpenLab.Spring.Omega
         protected Label label;
         protected XamNumericSlider slider;
         protected TextBox textBox;
+
+        //Tool tip to show errorMsg
+        protected ToolTip ErrorToolTip;
+
+        //These fields are to store initial styles of the TextBox
+        protected Brush borderBrush;
+        protected Thickness borderThickness;
+        protected Brush textBackground;
+
+        //Error message to be shown when input is invaid or out of range
+        protected string errorMsg;
+
+        protected bool lastValid = true;
 
         private object value;
         public override object Value
@@ -108,6 +122,7 @@ namespace Agilent.OpenLab.Spring.Omega
             if (allowText)
                 textBox.Text = (this.value).ToString();
 
+            lastValid = false;
             localChange = false;
         }
 
@@ -153,6 +168,13 @@ namespace Agilent.OpenLab.Spring.Omega
             AddSlider(panel);
             AddText(panel);
 
+            ErrorToolTip = new ToolTip();
+            ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
+
+            borderBrush = textBox.BorderBrush;
+            borderThickness = textBox.BorderThickness;
+            textBackground = textBox.Background;
+
             SetResources(panel);
             UIElement = panel;
         }
@@ -176,17 +198,88 @@ namespace Agilent.OpenLab.Spring.Omega
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             float cur;
+            float.TryParse(textBox.Text, out cur);
             float last = Convert.ToSingle(value);
-            bool isAllowed = float.TryParse(textBox.Text, out cur);
-            if (!isAllowed)
-            {
-                textBox.Text = Value.ToString();
-                //MessageBox.Show("Please enter a number!");
-            }
-            else if (cur != last)
-            {
+
+            if (!Validate(textBox.Text))
+                return;
+
+            if (cur != last)
                 Value = cur;
+        }
+
+        public bool Validate(object val)
+        {
+            if (IsValid(val) && IsWithinRange(val))
+            {
+                if (!lastValid)
+                {
+                    textBox.BorderBrush = borderBrush;
+                    textBox.BorderThickness = borderThickness;
+                    textBox.Background = textBackground;
+                    textBox.ToolTip = null;
+                    //UtilityMethods.SetResources(textBox);
+                }
+                lastValid = true;
+                return true;
             }
+            else
+            {
+                textBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
+                textBox.BorderThickness = UIConstants.BorderThicknessError;
+                textBox.Background = UIConstants.GetTextBackgroundError();
+                if (!IsValid(val))
+                    ShowValidationError();
+                else if (!IsWithinRange(val))
+                    ShowOutOfRangeError();
+                textBox.ToolTip = ErrorToolTip;
+                lastValid = false;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// The entered text in the textbox will be validated against the null condition checks
+        /// Returns true if the validation is true else false
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public override bool IsValid(object val)
+        {
+            string num = (string)val;
+            bool isFloat = float.TryParse(num, out float floatResult);
+            bool isInt = Int32.TryParse(num, out int intResult);
+
+            if (sliderType.Equals("float"))
+                return isFloat;
+            else if (sliderType.Equals("int"))
+                return isInt;
+            else
+                return false;
+        }
+
+        public override void ShowValidationError()
+        {
+            if (sliderType.Equals("float"))
+                errorMsg = MessageInfo.FLOAT_ERROR_MESSAGE;
+            else if (sliderType.Equals("int"))
+                errorMsg = MessageInfo.INT_ERROR_MESSAGE;
+            ErrorToolTip.Content = errorMsg;
+
+        }
+        protected virtual bool IsWithinRange(object val)
+        {
+            float tmp = Convert.ToSingle(val);
+
+            if (tmp >= min && tmp <= max)
+                return true;
+            else
+                return false;
+        }
+
+        protected virtual void ShowOutOfRangeError()
+        {
+            ErrorToolTip.Content = string.Format(MessageInfo.OUT_OF_RANGE_ERROR_MESSAGE, min, max);
         }
 
         /// <summary>
@@ -235,7 +328,17 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             if (localChange)
                 return;
+            
             SetValue(SliderValue);
+
+            if (!lastValid)
+            {
+                textBox.BorderBrush = borderBrush;
+                textBox.BorderThickness = borderThickness;
+                textBox.Background = textBackground;
+                textBox.ToolTip = null;
+                //UtilityMethods.SetResources(textBox);
+            }
         }
 
         /// <summary>
