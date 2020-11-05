@@ -355,8 +355,11 @@ namespace Agilent.OpenLab.Spring.Omega
                 HorizontalTickMarksTemplate = CreateTemplate(typeof(TextBlock))
             };
 
-            rangeSlider.TickMarks.Add(tickMarks);
-            rangeSlider.TickMarks.Add(tickMarksLabels);
+            if ((bool)Input.GetInput("showTickMarks", true))
+            {
+                rangeSlider.TickMarks.Add(tickMarks);
+                rangeSlider.TickMarks.Add(tickMarksLabels);
+            }
 
             panel.Add(rangeSlider, width);
         }

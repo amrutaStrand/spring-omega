@@ -24,6 +24,7 @@ namespace Agilent.OpenLab.Spring.Omega
     /// <item>adjustMinMax (bool) : if set to true, the min/max values are upadated when the value inside 
     /// the text box is out of the current range</item>>
     /// <item>showAbsolute (bool) : if false, the slider shows the percentage value</item>
+    /// <item>showTickMarks (bool) : parameter to display slider tick marks</item>
     /// </list>
     /// </summary>
 
@@ -122,7 +123,6 @@ namespace Agilent.OpenLab.Spring.Omega
             if (allowText)
                 textBox.Text = (this.value).ToString();
 
-            lastValid = false;
             localChange = false;
         }
 
@@ -295,7 +295,6 @@ namespace Agilent.OpenLab.Spring.Omega
             };
 
             //slider.Width = 200;
-            slider.Value = 0;
 
             if (labels != null)
             {
@@ -315,8 +314,11 @@ namespace Agilent.OpenLab.Spring.Omega
                 HorizontalTickMarksTemplate = CreateTemplate(typeof(TextBlock))
             };
 
-            slider.TickMarks.Add(tickMarks);
-            slider.TickMarks.Add(tickMarksLabels);
+            if((bool)Input.GetInput("showTickMarks", true))
+            {
+                slider.TickMarks.Add(tickMarks);
+                slider.TickMarks.Add(tickMarksLabels);
+            }
 
             if (allowText)
                 slider.ThumbValueChanged += Slider_ThumbValueChanged;
@@ -337,6 +339,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 textBox.BorderThickness = borderThickness;
                 textBox.Background = textBackground;
                 textBox.ToolTip = null;
+                lastValid = true;
                 //UtilityMethods.SetResources(textBox);
             }
         }
