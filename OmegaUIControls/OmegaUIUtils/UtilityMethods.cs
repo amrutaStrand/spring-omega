@@ -21,5 +21,27 @@ namespace OmegaUIControls.OmegaUIUtils
                 frameworkElement.Resources = XamlReader.Load(xmlReader) as ResourceDictionary;
             }
         }
+
+        /// <summary>
+        /// Sets the resources of <paramref name="frameworkElement"/> using resource disctinary.
+        /// To be called by child classes to set the resources of encapsulating <see cref="UIElement"/>.
+        /// </summary>
+        /// <param name="frameworkElement"></param>
+        public static void SetPanelResources(FrameworkElement frameworkElement)
+        {
+            //Set common properties of the controls
+            frameworkElement.Margin = UIConstants.ControlMargin;
+            frameworkElement.HorizontalAlignment = UIConstants.ControlHorizontalAlignment;
+            //frameworkElement.MaxWidth = UIConstants.ControlMaxWidth;
+            //frameworkElement.MaxHeight = UIConstants.ControlMaxHeight;
+
+            string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
+            {
+                XmlReader xmlReader = XmlReader.Create(stream);
+                frameworkElement.Resources = XamlReader.Load(xmlReader) as ResourceDictionary;
+            }
+        }
     }
 }

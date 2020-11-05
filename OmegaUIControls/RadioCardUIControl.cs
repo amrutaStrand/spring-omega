@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OmegaUIControls.OmegaUIUtils;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -77,7 +78,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
             var completePanel = new StackPanel();
             completePanel.Children.Add(panel);
-            SetResources(completePanel);
+            UtilityMethods.SetPanelResources(completePanel);
             UIElement = completePanel;
 
             if (Input.HasParameter("Value"))

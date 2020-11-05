@@ -240,7 +240,7 @@ namespace Agilent.OpenLab.Spring.Omega
             Value = Input.GetInput("Value", new Dictionary<string, float> { { "min", min }, { "max", max } });
 
             panel.ChangeDimension(80, 800);
-            SetResources(panel);
+            UtilityMethods.SetPanelResources(panel);
             UIElement = panel;
         }
 

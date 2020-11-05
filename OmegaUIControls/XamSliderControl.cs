@@ -175,7 +175,7 @@ namespace Agilent.OpenLab.Spring.Omega
             borderThickness = textBox.BorderThickness;
             textBackground = textBox.Background;
 
-            SetResources(panel);
+            UtilityMethods.SetPanelResources(panel);
             UIElement = panel;
         }
 

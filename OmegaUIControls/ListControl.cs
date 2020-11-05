@@ -84,7 +84,7 @@ namespace Agilent.OpenLab.Spring.Omega
             Value = Input.GetInput("Value", new List<string>());
 
             //panel.ChangeDimension(150, 800);
-            SetResources(panel);
+            UtilityMethods.SetPanelResources(panel);
             UIElement = panel;
         }
 

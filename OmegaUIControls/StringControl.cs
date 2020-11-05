@@ -63,7 +63,7 @@ namespace Agilent.OpenLab.Spring.Omega
             ErrorToolTip = new ToolTip();
             ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
 
-            SetResources(panel);
+            UtilityMethods.SetPanelResources(panel);
             borderBrush = TextBox.BorderBrush;
             borderThickness = TextBox.BorderThickness;
             textBackground = TextBox.Background;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OmegaUIControls.OmegaUIUtils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,7 +98,7 @@ namespace Agilent.OpenLab.Spring.Omega
             comboBox.ToolTip = toolTip;
 
             comboBox.Width = 200;
-            SetResources(comboBox);
+            UtilityMethods.SetPanelResources(comboBox);
             UIElement = comboBox;
         }
 

@@ -116,7 +116,7 @@ namespace Agilent.OpenLab.Spring.Omega
             //StackPanel panel = new StackPanel();
 
             DockPanel panel = new DockPanel();
-            SetResources(panel);
+            UtilityMethods.SetPanelResources(panel);
             panel.LastChildFill = false;
 
             dialogContent = new StackPanel();
@@ -150,20 +150,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 return simpleDialogContent.Value;
             else
                 return null;
-        }
-        private void SetResources(FrameworkElement frameworkElement)
-        {
-            //Set common properties of the controls
-            frameworkElement.Margin = UIConstants.ControlMargin;
-            frameworkElement.HorizontalAlignment = UIConstants.ControlHorizontalAlignment;
-
-            string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
-
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
-            {
-                XmlReader xmlReader = XmlReader.Create(stream);
-                frameworkElement.Resources = XamlReader.Load(xmlReader) as ResourceDictionary;
-            }
         }
 
         /// <summary>

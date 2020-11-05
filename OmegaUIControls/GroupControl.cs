@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OmegaUIControls.OmegaUIUtils;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -34,7 +35,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
             //box.Height = 300;
             //box.Width = 1000;
-            SetResources(panel as FrameworkElement);
+            UtilityMethods.SetPanelResources(panel as FrameworkElement);
             UIElement = box;
         }
 

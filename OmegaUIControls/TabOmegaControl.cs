@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Infragistics.Windows.Controls;
+using OmegaUIControls.OmegaUIUtils;
 
 namespace Agilent.OpenLab.Spring.Omega
 {
@@ -32,7 +33,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 tab.Items.Add(item);
             }
 
-            SetResources(tab);
+            UtilityMethods.SetPanelResources(tab);
             UIElement = tab;
         }
     }
