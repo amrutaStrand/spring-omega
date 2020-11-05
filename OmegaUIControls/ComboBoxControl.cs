@@ -17,7 +17,9 @@ namespace Agilent.OpenLab.Spring.Omega
         private IList<string> options;
         private IList<string> selectedOptions;
         private ObservableCollection<CheckBox> checkList;
+
         private ComboBox comboBox;
+        private ToolTip toolTip;
 
         /// <summary>
         /// Value of CheckBoxComboControl is a list of selected item if multiSelect is true. Else
@@ -63,13 +65,11 @@ namespace Agilent.OpenLab.Spring.Omega
             comboBox = new ComboBox();
             comboBox.IsEditable = true;
             comboBox.IsReadOnly = true;
+            comboBox.DropDownClosed += ComboBox_DropDownClosed;
 
             if (multiSelect)
             {
-                //comboBox.IsEditable = true;
-                //comboBox.IsReadOnly = true;
                 comboBox.Text = options[0];
-                comboBox.DropDownClosed += ComboBox_DropDownClosed;
                 selectedOptions = new List<string>();
                 checkList = new ObservableCollection<CheckBox>();
                 foreach (string item in options)
@@ -92,6 +92,10 @@ namespace Agilent.OpenLab.Spring.Omega
             if (Input.HasParameter("Value"))
                 Value = Input.GetInput("Value");
 
+            toolTip = new ToolTip();
+            toolTip.Content = multiSelect ? string.Join(", ", selectedOptions) : comboBox.SelectedItem;
+            comboBox.ToolTip = toolTip;
+
             comboBox.Width = 200;
             SetResources(comboBox);
             UIElement = comboBox;
@@ -109,10 +113,12 @@ namespace Agilent.OpenLab.Spring.Omega
             selectedOptions.Add(checkBox.Content as string);
         }
 
-        //Sets the text of the combo box to its initial value.
+        //Sets the text and tooltip of the combo box to the selected items.
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            comboBox.Text = string.Join(", ", selectedOptions);
+            if(multiSelect)
+                comboBox.Text = string.Join(", ", selectedOptions);
+            toolTip.Content = multiSelect ? string.Join(", ", selectedOptions) : comboBox.SelectedItem;
         }
 
         public override void SetInput(IUIInput input)
