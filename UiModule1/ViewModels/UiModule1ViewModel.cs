@@ -115,6 +115,7 @@
                     { "allowTextBox", true},
                     { "min", 200 },
                     { "max", 500},
+                    { "adjustMinMax", true},
                     { "Value", 300}
             };
             IUIControl panel = OmegaFactory.CreateControl("XamSlider", pairs);

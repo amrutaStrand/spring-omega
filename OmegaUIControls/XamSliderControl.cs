@@ -269,6 +269,9 @@ namespace Agilent.OpenLab.Spring.Omega
         }
         protected virtual bool IsWithinRange(object val)
         {
+            if (adjustMinMax)
+                return true;
+
             float tmp = Convert.ToSingle(val);
 
             if (tmp >= min && tmp <= max)
@@ -426,11 +429,15 @@ namespace Agilent.OpenLab.Spring.Omega
                 if (val < min)
                 {
                     min = val;
+                    if (showAbsolute)
+                        slider.MinValue = val;
                     //Input.AddInput("min", min);
                 }
                 else if (val > max)
                 {
                     max = val;
+                    if (showAbsolute)
+                        slider.MaxValue = val;
                     //Input.AddInput("max", max);
                 }
             }
