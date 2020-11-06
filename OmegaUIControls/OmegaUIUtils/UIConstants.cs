@@ -16,6 +16,9 @@ namespace OmegaUIControls.OmegaUIUtils
 		public const int ControlMaxWidth = 1000;
 		public const int ControlMaxHeight = 400;
 
+		public const int ControlMinWidth = 200;
+		public const int ControlMinHeight = 200;
+
 		public static readonly Thickness ControlMargin = new Thickness(10);
 		public static readonly HorizontalAlignment ControlHorizontalAlignment = HorizontalAlignment.Left;
 

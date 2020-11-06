@@ -1,4 +1,5 @@
 ﻿using OmegaUIControls.OmegaUIUtils;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,8 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     class RadioCardUIControl : AbstractUIControl
     {
+        private StackPanel completePanel = new StackPanel();
+
         private string value;
         public override object Value
         {
@@ -76,10 +79,20 @@ namespace Agilent.OpenLab.Spring.Omega
                 }
             }
 
-            var completePanel = new StackPanel();
+            completePanel = new StackPanel();
             completePanel.Children.Add(panel);
-            UtilityMethods.SetPanelResources(completePanel);
-            UIElement = completePanel;
+
+            var scrollViewer = new ScrollViewer();
+            scrollViewer.Content = completePanel;
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+            UtilityMethods.SetPanelResources(scrollViewer);
+            scrollViewer.MaxHeight = Convert.ToDouble(Input.GetInput("MaxHeight", UIConstants.ControlMaxHeight));
+            scrollViewer.MaxWidth = Convert.ToDouble(Input.GetInput("MaxWidth", UIConstants.ControlMaxWidth));
+            scrollViewer.MinHeight = Convert.ToDouble(Input.GetInput("MinWidth", UIConstants.ControlMinHeight));
+            scrollViewer.MinWidth = Convert.ToDouble(Input.GetInput("MinWidth", UIConstants.ControlMinWidth));
+            UIElement = scrollViewer;
 
             if (Input.HasParameter("Value"))
             {
@@ -95,12 +108,7 @@ namespace Agilent.OpenLab.Spring.Omega
         //the completePanel which corresponds to the previously checked RadioButton.
         private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            //Does not remove the last child when there is no card in the completePanel
-            //i.e. no RadioButton is checked
-            if (((StackPanel)UIElement).Children.Count > 1)
-            {
-                ((StackPanel)UIElement).Children.RemoveAt(((StackPanel)UIElement).Children.Count - 1);
-            }
+            completePanel.Children.RemoveAt(completePanel.Children.Count - 1);
         }
 
         //Whenever a RadioButton is checked, Checked event of the RadioButton is fired to which this method
@@ -109,7 +117,7 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             RadioButton rb = (RadioButton)sender;
             value = (string)rb.Content;
-            ((StackPanel)UIElement).Children.Add(Components[(string)rb.Content]);
+            completePanel.Children.Add(Components[(string)rb.Content]);
         }
 
         public override void SetInput(IUIInput input)

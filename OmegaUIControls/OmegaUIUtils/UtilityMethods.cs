@@ -32,8 +32,10 @@ namespace OmegaUIControls.OmegaUIUtils
             //Set common properties of the controls
             frameworkElement.Margin = UIConstants.ControlMargin;
             frameworkElement.HorizontalAlignment = UIConstants.ControlHorizontalAlignment;
-            //frameworkElement.MaxWidth = UIConstants.ControlMaxWidth;
-            //frameworkElement.MaxHeight = UIConstants.ControlMaxHeight;
+            frameworkElement.MaxWidth = UIConstants.ControlMaxWidth;
+            frameworkElement.MaxHeight = UIConstants.ControlMaxHeight;
+            //frameworkElement.MinWidth = UIConstants.ControlMinWidth;
+            //frameworkElement.MinHeight = UIConstants.ControlMinHeight;
 
             string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
 
