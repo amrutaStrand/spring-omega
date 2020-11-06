@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 using Infragistics.Controls.Editors;
 using OmegaUIControls.OmegaUIUtils;
 
@@ -36,6 +37,24 @@ namespace Agilent.OpenLab.Spring.Omega
         protected XamNumericRangeSlider rangeSlider;
         XamSliderNumericThumb minThumb;
         XamSliderNumericThumb maxThumb;
+
+        #region fields for error handling
+        //Tool tip to show errorMsg
+        protected ToolTip minErrorToolTip;
+        protected ToolTip maxErrorToolTip;
+
+        //These fields are to store initial styles of the TextBox
+        protected Brush minBorderBrush;
+        protected Thickness minBorderThickness;
+        protected Brush minTextBackground;
+        protected Brush maxBorderBrush;
+        protected Thickness maxBorderThickness;
+        protected Brush maxTextBackground;
+
+        protected bool minLastValid = true;
+        protected bool maxLastValid = true;
+
+        #endregion
 
         private float minValue;
         private float maxValue;
@@ -242,6 +261,20 @@ namespace Agilent.OpenLab.Spring.Omega
             panel.ChangeDimension(80, 800);
             UtilityMethods.SetPanelResources(panel);
             UIElement = panel;
+
+            minErrorToolTip = new ToolTip();
+            minErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
+
+            minBorderBrush = minTextBox.BorderBrush;
+            minBorderThickness = minTextBox.BorderThickness;
+            minTextBackground = minTextBox.Background;
+
+            maxErrorToolTip = new ToolTip();
+            maxErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
+
+            maxBorderBrush = maxTextBox.BorderBrush;
+            maxBorderThickness = maxTextBox.BorderThickness;
+            maxTextBackground = maxTextBox.Background;
         }
 
         /// <summary>
@@ -276,15 +309,11 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             float cur;
             bool isAllowed = float.TryParse(minTextBox.Text, out cur);
-            if (!isAllowed)
-            {
-                //MessageBox.Show("Please enter a number!");
-                minTextBox.Text = minValue.ToString();
-            }
-            else
-            {
-                Value = new Dictionary<string, float>() { { "min", cur }, { "max", maxValue } };
-            }
+
+            if (!Validate(minTextBox.Text, minLastValid, minTextBox, minErrorToolTip, "min"))
+                return;
+
+            Value = new Dictionary<string, float>() { { "min", cur }, { "max", maxValue } };
         }
 
         /// <summary>
@@ -307,15 +336,99 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             float cur;
             bool isAllowed = float.TryParse(maxTextBox.Text, out cur);
-            if (!isAllowed)
+
+            if (!Validate(maxTextBox.Text, maxLastValid, maxTextBox, maxErrorToolTip, "max"))
+                return;
+
+            Value = new Dictionary<string, float>() { { "min", minValue }, { "max", cur } };
+        }
+
+        public bool Validate(object val, bool lastValid, TextBox textBox, ToolTip ErrorToolTip, string name)
+        {
+            if (IsValid(val) && IsWithinRange(val))
             {
-                //MessageBox.Show("Please enter a number!");
-                maxTextBox.Text = maxValue.ToString();
+                if (!lastValid)
+                {
+                    textBox.BorderBrush = minBorderBrush;
+                    textBox.BorderThickness = minBorderThickness;
+                    textBox.Background = minTextBackground;
+                    textBox.ToolTip = null;
+                    //UtilityMethods.SetResources(textBox);
+                }
+
+                if (name == "min")
+                    minLastValid = true;
+                else if (name == "max")
+                    maxLastValid = true;
+
+                return true;
             }
             else
             {
-                Value = new Dictionary<string, float>() { { "min", minValue }, { "max", cur } };
+                textBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
+                textBox.BorderThickness = UIConstants.BorderThicknessError;
+                textBox.Background = UIConstants.GetTextBackgroundError();
+                if (!IsValid(val))
+                    ShowValidationError(ErrorToolTip);
+                else if (!IsWithinRange(val))
+                    ShowOutOfRangeError(ErrorToolTip);
+                textBox.ToolTip = ErrorToolTip;
+
+                if (name == "min")
+                    minLastValid = false;
+                else if (name == "max")
+                    maxLastValid = false;
+
+                return false;
             }
+        }
+
+        /// <summary>
+        /// The entered text in the textbox will be validated against the null condition checks
+        /// Returns true if the validation is true else false
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public override bool IsValid(object val)
+        {
+            string num = (string)val;
+            bool isFloat = float.TryParse(num, out float floatResult);
+            bool isInt = Int32.TryParse(num, out int intResult);
+
+            if (sliderType.Equals("float"))
+                return isFloat;
+            else if (sliderType.Equals("int"))
+                return isInt;
+            else
+                return false;
+        }
+
+        protected virtual void ShowValidationError(ToolTip ErrorToolTip)
+        {
+            string errorMsg = "";
+            if (sliderType.Equals("float"))
+                errorMsg = MessageInfo.FLOAT_ERROR_MESSAGE;
+            else if (sliderType.Equals("int"))
+                errorMsg = MessageInfo.INT_ERROR_MESSAGE;
+            ErrorToolTip.Content = errorMsg;
+
+        }
+        protected virtual bool IsWithinRange(object val)
+        {
+            if (adjustMinMax)
+                return true;
+
+            float tmp = Convert.ToSingle(val);
+
+            if (tmp >= min && tmp <= max)
+                return true;
+            else
+                return false;
+        }
+
+        private void ShowOutOfRangeError(ToolTip ErrorToolTip)
+        {
+            ErrorToolTip.Content = string.Format(MessageInfo.OUT_OF_RANGE_ERROR_MESSAGE, min, max);
         }
 
         /// <summary>
@@ -376,6 +489,16 @@ namespace Agilent.OpenLab.Spring.Omega
 
             SetMaxValue(MaxThumbValue);
 
+            if (!maxLastValid)
+            {
+                maxTextBox.BorderBrush = maxBorderBrush;
+                maxTextBox.BorderThickness = maxBorderThickness;
+                maxTextBox.Background = maxTextBackground;
+                maxTextBox.ToolTip = null;
+                maxLastValid = true;
+                //UtilityMethods.SetResources(textBox);
+            }
+
         }
 
         private void MinThumb_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -390,6 +513,15 @@ namespace Agilent.OpenLab.Spring.Omega
 
             SetMinValue(MinThumbValue);
 
+            if (!minLastValid)
+            {
+                minTextBox.BorderBrush = minBorderBrush;
+                minTextBox.BorderThickness = minBorderThickness;
+                minTextBox.Background = minTextBackground;
+                minTextBox.ToolTip = null;
+                minLastValid = true;
+                //UtilityMethods.SetResources(textBox);
+            }
         }
 
         /// <summary>

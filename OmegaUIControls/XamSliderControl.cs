@@ -45,6 +45,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected XamNumericSlider slider;
         protected TextBox textBox;
 
+        #region fields for error handling
         //Tool tip to show errorMsg
         protected ToolTip ErrorToolTip;
 
@@ -57,6 +58,7 @@ namespace Agilent.OpenLab.Spring.Omega
         protected string errorMsg;
 
         protected bool lastValid = true;
+        #endregion
 
         private object value;
         public override object Value
@@ -163,10 +165,15 @@ namespace Agilent.OpenLab.Spring.Omega
             var panel = allowText ? new LayoutPanel(1, 3) : new LayoutPanel(1, 2);
             panel.ChangeDimension(60, 800);
 
-            this.value = min;
             AddLabel(panel);
             AddSlider(panel);
             AddText(panel);
+
+            this.value = min;
+            Value = Input.GetInput("Value", Value);
+
+            UtilityMethods.SetPanelResources(panel);
+            UIElement = panel;
 
             ErrorToolTip = new ToolTip();
             ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
@@ -174,9 +181,6 @@ namespace Agilent.OpenLab.Spring.Omega
             borderBrush = textBox.BorderBrush;
             borderThickness = textBox.BorderThickness;
             textBackground = textBox.Background;
-
-            UtilityMethods.SetPanelResources(panel);
-            UIElement = panel;
         }
 
         /// <summary>
@@ -190,7 +194,7 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
             }
             textBox = new TextBox();
-            Value = Input.GetInput("Value", Value);
+            //Value = Input.GetInput("Value", Value);
             textBox.LostFocus += TextBox_LostFocus;
             panel.Add(textBox, 1);
         }
