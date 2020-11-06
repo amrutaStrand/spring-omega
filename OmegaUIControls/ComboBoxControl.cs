@@ -98,8 +98,10 @@ namespace Agilent.OpenLab.Spring.Omega
             comboBox.ToolTip = toolTip;
 
             comboBox.Width = 200;
-            UtilityMethods.SetPanelResources(comboBox);
-            UIElement = comboBox;
+            var panel = new LayoutPanel(1, 1);
+            panel.Add(comboBox, 1);
+            UtilityMethods.SetPanelResources(panel);
+            UIElement = panel;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)

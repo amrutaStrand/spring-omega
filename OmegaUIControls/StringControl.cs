@@ -56,9 +56,14 @@ namespace Agilent.OpenLab.Spring.Omega
             TextBox = new TextBox();
             TextBox.LostFocus += this.HandleTextChanged;
 
-            var panel = new StackPanel() { Orientation = Orientation.Horizontal };
-            panel.Children.Add(Label);
-            panel.Children.Add(TextBox);
+            //var panel = new StackPanel() { Orientation = Orientation.Horizontal };
+            //panel.Children.Add(Label);
+            //panel.Children.Add(TextBox);
+
+            var panel = new LayoutPanel(1, 2);
+            panel.Add(Label, 1);
+            panel.Add(TextBox, 1);
+            panel.ChangeDimension(40, 300);
 
             ErrorToolTip = new ToolTip();
             ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
