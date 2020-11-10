@@ -121,6 +121,13 @@ namespace Agilent.OpenLab.Spring.Omega
                 textBox.Text = (this.value).ToString();
 
             localChange = false;
+
+            if (!lastValid)
+            {
+                textBox.Style = UtilityMethods.GetStyle("validTextInput");
+                textBox.ToolTip = null;
+                lastValid = true;
+            }
         }
 
         /// <summary>
@@ -324,13 +331,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
             
             SetValue(SliderValue);
-
-            if (!lastValid)
-            {
-                textBox.Style = UtilityMethods.GetStyle("validTextInput");
-                textBox.ToolTip = null;
-                lastValid = true;
-            }
         }
 
         /// <summary>

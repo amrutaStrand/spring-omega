@@ -182,6 +182,13 @@ namespace Agilent.OpenLab.Spring.Omega
             MinThumbValue = value;
 
             localChangeMin = false;
+
+            if (!minLastValid)
+            {
+                minTextBox.Style = UtilityMethods.GetStyle("validTextInput");
+                minTextBox.ToolTip = null;
+                minLastValid = true;
+            }
         }
 
         /// <summary>
@@ -204,6 +211,13 @@ namespace Agilent.OpenLab.Spring.Omega
             MaxThumbValue = value;
 
             localChangeMax = false;
+
+            if (!maxLastValid)
+            {
+                maxTextBox.Style = UtilityMethods.GetStyle("validTextInput");
+                maxTextBox.ToolTip = null;
+                maxLastValid = true;
+            }
         }
 
         /// <summary>
@@ -467,14 +481,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
 
             SetMaxValue(MaxThumbValue);
-
-            if (!maxLastValid)
-            {
-                maxTextBox.Style = UtilityMethods.GetStyle("validTextInput");
-                maxTextBox.ToolTip = null;
-                maxLastValid = true;
-            }
-
         }
 
         private void MinThumb_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -489,13 +495,12 @@ namespace Agilent.OpenLab.Spring.Omega
 
             SetMinValue(MinThumbValue);
 
-            if (!minLastValid)
-            {
-                minTextBox.Style = UtilityMethods.GetStyle("validTextInput");
-                minTextBox.ToolTip = null;
-                minLastValid = true;
-                //UtilityMethods.SetResources(textBox);
-            }
+            //if (!minLastValid)
+            //{
+            //    minTextBox.Style = UtilityMethods.GetStyle("validTextInput");
+            //    minTextBox.ToolTip = null;
+            //    minLastValid = true;
+            //}
         }
 
         /// <summary>
