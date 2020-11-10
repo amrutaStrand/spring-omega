@@ -49,11 +49,6 @@ namespace Agilent.OpenLab.Spring.Omega
         //Tool tip to show errorMsg
         protected ToolTip ErrorToolTip;
 
-        //These fields are to store initial styles of the TextBox
-        protected Brush borderBrush;
-        protected Thickness borderThickness;
-        protected Brush textBackground;
-
         //Error message to be shown when input is invaid or out of range
         protected string errorMsg;
 
@@ -177,10 +172,6 @@ namespace Agilent.OpenLab.Spring.Omega
 
             ErrorToolTip = new ToolTip();
             ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
-
-            borderBrush = textBox.BorderBrush;
-            borderThickness = textBox.BorderThickness;
-            textBackground = textBox.Background;
         }
 
         /// <summary>
@@ -194,7 +185,6 @@ namespace Agilent.OpenLab.Spring.Omega
                 return;
             }
             textBox = new TextBox();
-            //Value = Input.GetInput("Value", Value);
             textBox.LostFocus += TextBox_LostFocus;
             panel.Add(textBox, 1);
         }
@@ -218,20 +208,15 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 if (!lastValid)
                 {
-                    textBox.BorderBrush = borderBrush;
-                    textBox.BorderThickness = borderThickness;
-                    textBox.Background = textBackground;
+                    textBox.Style = UtilityMethods.GetStyle("validTextInput");
                     textBox.ToolTip = null;
-                    //UtilityMethods.SetResources(textBox);
                 }
                 lastValid = true;
                 return true;
             }
             else
             {
-                textBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
-                textBox.BorderThickness = UIConstants.BorderThicknessError;
-                textBox.Background = UIConstants.GetTextBackgroundError();
+                textBox.Style = UtilityMethods.GetStyle("invalidTextInput");
                 if (!IsValid(val))
                     ShowValidationError();
                 else if (!IsWithinRange(val))
@@ -342,12 +327,9 @@ namespace Agilent.OpenLab.Spring.Omega
 
             if (!lastValid)
             {
-                textBox.BorderBrush = borderBrush;
-                textBox.BorderThickness = borderThickness;
-                textBox.Background = textBackground;
+                textBox.Style = UtilityMethods.GetStyle("validTextInput");
                 textBox.ToolTip = null;
                 lastValid = true;
-                //UtilityMethods.SetResources(textBox);
             }
         }
 

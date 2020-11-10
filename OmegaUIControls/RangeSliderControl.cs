@@ -43,14 +43,6 @@ namespace Agilent.OpenLab.Spring.Omega
         protected ToolTip minErrorToolTip;
         protected ToolTip maxErrorToolTip;
 
-        //These fields are to store initial styles of the TextBox
-        protected Brush minBorderBrush;
-        protected Thickness minBorderThickness;
-        protected Brush minTextBackground;
-        protected Brush maxBorderBrush;
-        protected Thickness maxBorderThickness;
-        protected Brush maxTextBackground;
-
         protected bool minLastValid = true;
         protected bool maxLastValid = true;
 
@@ -265,16 +257,8 @@ namespace Agilent.OpenLab.Spring.Omega
             minErrorToolTip = new ToolTip();
             minErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
 
-            minBorderBrush = minTextBox.BorderBrush;
-            minBorderThickness = minTextBox.BorderThickness;
-            minTextBackground = minTextBox.Background;
-
             maxErrorToolTip = new ToolTip();
             maxErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
-
-            maxBorderBrush = maxTextBox.BorderBrush;
-            maxBorderThickness = maxTextBox.BorderThickness;
-            maxTextBackground = maxTextBox.Background;
         }
 
         /// <summary>
@@ -349,11 +333,8 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 if (!lastValid)
                 {
-                    textBox.BorderBrush = minBorderBrush;
-                    textBox.BorderThickness = minBorderThickness;
-                    textBox.Background = minTextBackground;
+                    textBox.Style = UtilityMethods.GetStyle("validTextInput");
                     textBox.ToolTip = null;
-                    //UtilityMethods.SetResources(textBox);
                 }
 
                 if (name == "min")
@@ -365,9 +346,7 @@ namespace Agilent.OpenLab.Spring.Omega
             }
             else
             {
-                textBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
-                textBox.BorderThickness = UIConstants.BorderThicknessError;
-                textBox.Background = UIConstants.GetTextBackgroundError();
+                textBox.Style = UtilityMethods.GetStyle("invalidTextInput");
                 if (!IsValid(val))
                     ShowValidationError(ErrorToolTip);
                 else if (!IsWithinRange(val))
@@ -491,12 +470,9 @@ namespace Agilent.OpenLab.Spring.Omega
 
             if (!maxLastValid)
             {
-                maxTextBox.BorderBrush = maxBorderBrush;
-                maxTextBox.BorderThickness = maxBorderThickness;
-                maxTextBox.Background = maxTextBackground;
+                maxTextBox.Style = UtilityMethods.GetStyle("validTextInput");
                 maxTextBox.ToolTip = null;
                 maxLastValid = true;
-                //UtilityMethods.SetResources(textBox);
             }
 
         }
@@ -515,9 +491,7 @@ namespace Agilent.OpenLab.Spring.Omega
 
             if (!minLastValid)
             {
-                minTextBox.BorderBrush = minBorderBrush;
-                minTextBox.BorderThickness = minBorderThickness;
-                minTextBox.Background = minTextBackground;
+                minTextBox.Style = UtilityMethods.GetStyle("validTextInput");
                 minTextBox.ToolTip = null;
                 minLastValid = true;
                 //UtilityMethods.SetResources(textBox);

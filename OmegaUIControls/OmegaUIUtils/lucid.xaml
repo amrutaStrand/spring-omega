@@ -2,7 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:OmegaUIControls.OmegaUIUtils">
 
+    <Color x:Key="ErrorRed">#fc5236</Color>
+    
     <SolidColorBrush x:Key="Red" Color="#ff0000"/>
+
+    <SolidColorBrush x:Key="ErrorBorder" Color="{DynamicResource ErrorRed}"/>
+
+    <SolidColorBrush x:Key="ErrorBackground" Color="{DynamicResource ErrorRed}" Opacity="0.15"/>
 
     <SolidColorBrush x:Key="Grey" Color="#c1c6c8"/>
 
@@ -74,6 +80,70 @@
         
     </Style>
 
+    <Style TargetType="TextBox" x:Key="validTextInput">
+
+        <!--Default-->
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Grey}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="{DynamicResource DarkNavy}"/>
+
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Padding" Value="3"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+        <Style.Triggers>
+
+            <!--Hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentPaleBlue}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AgilentSoftBlue}"/>
+            </Trigger>
+
+            <!--Mousedown/Active-->
+            <Trigger Property="IsFocused"  Value="True">
+                <Setter Property="Background" Value="{DynamicResource AgilentSoftBlue}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AgilentMediumBlue}"/>
+            </Trigger>
+
+            <!--Disabled-->
+            <Trigger Property="IsEnabled"  Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MediumGrey}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource Grey}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="invalidTextInput">
+
+        <Setter Property="Background" Value="{DynamicResource ErrorBackground}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ErrorBorder}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="{DynamicResource DarkNavy}"/>
+
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Padding" Value="3"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+        <Style.Triggers>
+            <!--not working-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource ErrorBorder}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+
     <!--Styles for TextBox and ComboBox-->
     <Style TargetType="TextBox">
 
@@ -93,7 +163,7 @@
 
         <Style.Triggers>
 
-            <!--Hover--> <!--Not working-->
+            <!--Hover-->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource AgilentPaleBlue}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource AgilentSoftBlue}"/>

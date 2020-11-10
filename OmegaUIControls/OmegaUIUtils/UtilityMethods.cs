@@ -45,5 +45,18 @@ namespace OmegaUIControls.OmegaUIUtils
                 frameworkElement.Resources = XamlReader.Load(xmlReader) as ResourceDictionary;
             }
         }
+
+        public static Style GetStyle(string key)
+        {
+            string path = string.Format("{0}.{1}.{2}", "OmegaUIControls", "OmegaUIUtils", "lucid.xaml");
+            ResourceDictionary rd;
+
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(path))
+            {
+                XmlReader xmlReader = XmlReader.Create(stream);
+                rd = XamlReader.Load(xmlReader) as ResourceDictionary;
+            }
+            return rd[key] as Style;
+        }
     }
 }

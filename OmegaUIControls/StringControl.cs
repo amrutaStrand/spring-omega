@@ -12,11 +12,6 @@ namespace Agilent.OpenLab.Spring.Omega
     /// </summary>
     public class StringControl : AbstractUIControl
     {
-        //These fields are to store initial styles of the TextBox
-        protected Brush borderBrush;
-        protected Thickness borderThickness;
-        protected Brush textBackground;
-
         //Error message to be shown when input is invaid or out of range
         protected string errorMsg;
 
@@ -69,9 +64,6 @@ namespace Agilent.OpenLab.Spring.Omega
             ErrorToolTip.Style = UIConstants.GetErrorToolTipStyle();
 
             UtilityMethods.SetPanelResources(panel);
-            borderBrush = TextBox.BorderBrush;
-            borderThickness = TextBox.BorderThickness;
-            textBackground = TextBox.Background;
 
             Validate(Input.GetInput("Value"));
             UIElement = panel;
@@ -99,17 +91,13 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             if (IsValid(val) && IsWithinRange(val))
             {
-                TextBox.BorderBrush = borderBrush;
-                TextBox.BorderThickness = borderThickness;
-                TextBox.Background = textBackground;
+                TextBox.Style = UtilityMethods.GetStyle("validTextInput");
                 TextBox.ToolTip = null;
                 Value = val;
             }
             else
             {
-                TextBox.BorderBrush = new SolidColorBrush(UIConstants.ColorError);
-                TextBox.BorderThickness = UIConstants.BorderThicknessError;
-                TextBox.Background = UIConstants.GetTextBackgroundError();
+                TextBox.Style = UtilityMethods.GetStyle("invalidTextInput");
                 if (!IsValid(val))
                     ShowValidationError();
                 else if(!IsWithinRange(val))
