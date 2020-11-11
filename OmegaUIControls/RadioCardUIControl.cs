@@ -90,7 +90,7 @@ namespace Agilent.OpenLab.Spring.Omega
             UtilityMethods.SetPanelResources(scrollViewer);
             scrollViewer.MaxHeight = Convert.ToDouble(Input.GetInput("MaxHeight", UIConstants.ControlMaxHeight));
             scrollViewer.MaxWidth = Convert.ToDouble(Input.GetInput("MaxWidth", UIConstants.ControlMaxWidth));
-            scrollViewer.MinHeight = Convert.ToDouble(Input.GetInput("MinWidth", UIConstants.ControlMinHeight));
+            scrollViewer.MinHeight = Convert.ToDouble(Input.GetInput("MinHeight", UIConstants.ControlMinHeight));
             scrollViewer.MinWidth = Convert.ToDouble(Input.GetInput("MinWidth", UIConstants.ControlMinWidth));
             UIElement = scrollViewer;
 

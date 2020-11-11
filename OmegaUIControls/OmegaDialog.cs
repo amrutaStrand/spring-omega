@@ -96,7 +96,6 @@ namespace Agilent.OpenLab.Spring.Omega
             return panel;
         }
 
-        //IDictionary<string, object> vs IDictionary??
         private IUIControl CreateGroup(IDictionary map)
         {
             string title = map["title"] as string;

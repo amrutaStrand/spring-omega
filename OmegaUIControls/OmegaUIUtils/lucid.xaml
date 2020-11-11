@@ -221,7 +221,6 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Regular"/>
         <Setter Property="FontFamily" Value="Calibri"/>
-        <Setter Property="Foreground" Value="{DynamicResource DarkNavy}"/>
     </Style>
 
     <Style TargetType="CheckBox">

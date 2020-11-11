@@ -102,6 +102,7 @@ namespace Agilent.OpenLab.Spring.Omega
             Label label = new Label();
             label.Content = leftLabel;
             label.HorizontalContentAlignment = HorizontalAlignment.Center;
+            label.HorizontalAlignment = HorizontalAlignment.Center;
             label.Margin = new Thickness(1);
             layoutPanel.Add(label, 4, 0, 0);
             //panel.Children.Add(label);
@@ -175,6 +176,7 @@ namespace Agilent.OpenLab.Spring.Omega
             Label label = new Label();
             label.Content = rightLabel;
             label.HorizontalContentAlignment = HorizontalAlignment.Center;
+            label.HorizontalAlignment = HorizontalAlignment.Center;
             label.Margin = new Thickness(1);
             layoutPanel.Add(label, 4, 0, 2);
             //panel.Children.Add(label);

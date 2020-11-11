@@ -97,9 +97,10 @@ namespace Agilent.OpenLab.Spring.Omega
             toolTip.Content = multiSelect ? string.Join(", ", selectedOptions) : comboBox.SelectedItem;
             comboBox.ToolTip = toolTip;
 
-            comboBox.Width = 200;
+            comboBox.Width = 150;
             var panel = new LayoutPanel(1, 1);
             panel.Add(comboBox, 1);
+            panel.ChangeDimension(30, 200);
             UtilityMethods.SetPanelResources(panel);
             UIElement = panel;
         }

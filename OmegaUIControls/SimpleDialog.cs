@@ -185,7 +185,7 @@ namespace Agilent.OpenLab.Spring.Omega
             {
                 cancelButton = new Button();
                 //cancelButton.Width = 60;
-                cancelButton.Margin = new Thickness(10);
+                cancelButton.Margin = new Thickness(10,10,0,10);
                 cancelButton.Content = cancelLabel;
                 cancelButton.IsCancel = true;
                 cancelButton.Click += CancelButton_Click;

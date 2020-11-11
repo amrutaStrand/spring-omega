@@ -104,11 +104,11 @@ namespace Agilent.OpenLab.Spring.Omega
         {
             localChange = true;
 
-            if (Convert.ToSingle(this.value) == value)
-            {
-                localChange = false;
-                return;
-            }
+            //if (Convert.ToSingle(this.value) == value)
+            //{
+            //    localChange = false;
+            //    return;
+            //}
 
             if (sliderType.Equals("int"))
                 this.value = (int)value;

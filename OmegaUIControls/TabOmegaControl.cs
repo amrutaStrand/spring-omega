@@ -15,7 +15,11 @@ namespace Agilent.OpenLab.Spring.Omega
         public override void CreateUIElement()
         {
             XamTabControl tab = new XamTabControl();
-            
+            tab.MinHeight = Convert.ToDouble(Input.GetInput("MinHeight", 100));
+            tab.MinWidth = Convert.ToDouble(Input.GetInput("MinWidth", 400));
+            tab.MaxHeight = Convert.ToDouble(Input.GetInput("MaxHeight", 500));
+            tab.MaxWidth = Convert.ToDouble(Input.GetInput("MaxWidth", 1000));
+
             int n = GetControlCount();
             for (int i = 0; i < n; i++)
             {

@@ -48,6 +48,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testStringControl");
+            input.AddInput("title", "String");
             input.AddInput("Label", "Name");
             input.AddInput("Value", "Enter Name");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("String");
@@ -59,7 +60,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testIntControl");
-            input.AddInput("Label", "Name");
+            input.AddInput("Label", "Total");
             input.AddInput("Value", 10);
             input.AddInput("min", -100);
             input.AddInput("max", 100);
@@ -72,7 +73,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testFloatControl");
-            input.AddInput("Label", "Name");
+            input.AddInput("Label", "Percentage");
             input.AddInput("Value", 10f);
             input.AddInput("min", -100);
             input.AddInput("max", 100);
@@ -85,6 +86,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testBooleanControl");
+            input.AddInput("title", "Bool");
             input.AddInput("Description", "This is a Boolean Control");
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Boolean");
             panel.SetInput(input);
@@ -207,6 +209,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testBoxComboControl");
+            input.AddInput("title", "ComboBox");
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             input.AddInput("Value", "Kolkata");
@@ -219,6 +222,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testComboBox");
+            input.AddInput("title", "ComboBox");
             input.AddInput("Description", "Check Box Combo");
             input.AddInput("options", new List<string> { "Mumbai", "Chennai", "Kolkata", "Delhi" });
             input.AddInput("multiSelect", true);
@@ -232,7 +236,7 @@
         {
             UIInput input = new UIInput();
             input.AddInput("id", "testFileControl");
-            input.AddInput("Description", "File control");
+            input.AddInput("Description", "Please select file(s)");
             input.AddInput("enableMultipleSelection", true);
             input.AddInput("fileFilters", "txt files (*.txt)|*.txt|Images (*.png)|*.png|All files (*.*)|*.*");
             //input.AddInput("dialogType", "save");
@@ -375,8 +379,8 @@
             labels.Add("File Control", FileControl);
             labels.Add("Horizontal Group Control", GroupControl);
             labels.Add("Vertical Group Control", VGroupControl);
-            labels.Add("Vertical Alignment", AllControl);
-            labels.Add("Horizontal Alignment", AllControlH);
+            //labels.Add("Vertical Alignment", AllControl);
+            //labels.Add("Horizontal Alignment", AllControlH);
             labels.Add("Tab Control", TabControl);
             labels.Add("Omega Dialog", launchOmegaDialogButton);
             labels.Add("Simple Dialog", launchSimpleDialogButton);
