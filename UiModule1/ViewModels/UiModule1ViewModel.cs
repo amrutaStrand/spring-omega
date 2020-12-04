@@ -4,7 +4,6 @@
 
     using Agilent.OpenLab.Framework.UI.Module;
     using Agilent.OpenLab.Spring.Omega;
-    using global::OpenLab.Agilent.Spring.Algorithm;
     using Microsoft.Practices.Unity;
     using System.Collections;
     using System.Collections.Generic;
@@ -78,6 +77,19 @@
             input.AddInput("min", -100);
             input.AddInput("max", 100);
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Float");
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private IUIControl CreateDoubleControl()
+        {
+            UIInput input = new UIInput();
+            input.AddInput("id", "testFloatControl");
+            input.AddInput("Label", "Percentage");
+            input.AddInput("Value", 10.1);
+            input.AddInput("min", -100);
+            input.AddInput("max", 100);
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Double");
             panel.SetInput(input);
             return panel;
         }
@@ -339,6 +351,8 @@
 
             IUIControl FloatControl = CreateFloatControl();
 
+            IUIControl DoubleControl = CreateDoubleControl();
+
             IUIControl BooleanControl = CreateBooleanControl();
 
             IUIControl XamSliderControl = CreateXamSliderControl();
@@ -370,6 +384,7 @@
             labels.Add("String Control", StringControl);
             labels.Add("Int Control", IntControl);
             labels.Add("Float Control", FloatControl);
+            labels.Add("Double Control", DoubleControl);
             labels.Add("Boolean Control", BooleanControl);
             labels.Add("Slider Control", XamSliderControl);
             labels.Add("Range Slider Control", RangeSliderControl);
@@ -394,13 +409,6 @@
             return panel;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void TestImputation()
-        {
-            TestAlgorithm.TestImputationAlgorithm(this.UnityContainer);
-        }
 
         #endregion
 

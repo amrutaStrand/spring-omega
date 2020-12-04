@@ -77,6 +77,7 @@
     <Compile Include="Cube\SortedIntArray.cs" />
     <Compile Include="FileChooserControl.cs" />
     <Compile Include="FileControl.cs" />
+    <Compile Include="DoubleControl.cs" />
     <Compile Include="FloatControl.cs" />
     <Compile Include="GroupControl.cs" />
     <Compile Include="IntControl.cs" />

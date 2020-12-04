@@ -14,9 +14,11 @@ namespace Agilent.OpenLab.Spring.Omega
         /// <param name="container"></param>
         public static void RegisterUIControls(IUnityContainer container)
         {
+            OmegaFactory.InitializeOmegaFactory(container);
             container.RegisterType<IUIControl, StringControl>("String");
             container.RegisterType<IUIControl, IntControl>("Int");
             container.RegisterType<IUIControl, FloatControl>("Float");
+            container.RegisterType<IUIControl, DoubleControl>("Double");
             container.RegisterType<IUIControl, RadioCardUIControl>("RadioCard");
             container.RegisterType<IUIControl, BooleanControl>("Boolean");
             container.RegisterType<IUIControl, XamSliderControl>("XamSlider");

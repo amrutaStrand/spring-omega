@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Agilent.OpenLab.Spring.Omega.AbstractUIContainer" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgABAQAAA=</HashCode>
+      <FileName>AbstractUIContainer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.AbstractUIControl" Collapsed="true">
+    <Position X="12.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAkAEAAAEAABAAAAAAAgCAAQAIA=</HashCode>
+      <FileName>AbstractUIControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.BooleanControl" Collapsed="true">
+    <Position X="15" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAgAAEAAAA=</HashCode>
+      <FileName>BooleanControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.ComboBoxControl" Collapsed="true">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAECASCAAAAAIAAAABAAAAAAAgAAIQAAQ=</HashCode>
+      <FileName>ComboBoxControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.CommandHandler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAEAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>CommandHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.CONSTANTS" Collapsed="true">
+    <Position X="30" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CONSTANTS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.FileChooserControl" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileChooserControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.FileControl" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAABACAAAAASEAAEARYAAAAAAgAAAQAAA=</HashCode>
+      <FileName>FileControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.FloatControl" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAgCAAAAAA=</HashCode>
+      <FileName>FloatControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.GroupControl" Collapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GroupControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.IntControl" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAgCAAAAAA=</HashCode>
+      <FileName>IntControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.ListControl" Collapsed="true">
+    <Position X="8.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAQgAAAAABABEAQAAAAACARhAAAAAAAgAAAQAAA=</HashCode>
+      <FileName>ListControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.MessageInfo" Collapsed="true">
+    <Position X="28.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAgAAAAAAAIAAAAAAQAAAAAAAAAAgAAAEAA=</HashCode>
+      <FileName>MessageInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.OmegaDialog" Collapsed="true">
+    <Position X="3.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAwQAAAECAAAEEAAAAAAAAAAAAAACAAAAAAAQ=</HashCode>
+      <FileName>OmegaDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.OmegaFactory" Collapsed="true">
+    <Position X="30" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQAAAAAABAA=</HashCode>
+      <FileName>OmegaFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.RadioCardUIControl" Collapsed="true">
+    <Position X="19.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAEAAABAAAAABABACgAAAAgAgBQAAA=</HashCode>
+      <FileName>RadioCardUIControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.RangeSliderControl" Collapsed="true">
+    <Position X="21.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwFCQAAACQJhAJwtgqAggAgAAFAGIAigBgSEAQDAA=</HashCode>
+      <FileName>RangeSliderControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.SimpleDialog" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAEACRgEAgIAAQACAEpgAwAGhIAAAEAAAAACAA=</HashCode>
+      <FileName>SimpleDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.StringControl" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAoAEAKQAAAAAEgAAgAAAAABAACAQAAgCAAQAAA=</HashCode>
+      <FileName>StringControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.TabOmegaControl" Collapsed="true">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TabOmegaControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.UIControlRegistry" Collapsed="true">
+    <Position X="28.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIControlRegistry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.UIInput" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIIAAAAAAAA=</HashCode>
+      <FileName>UIInput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.InvalidKeyException" Collapsed="true">
+    <Position X="31.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Agilent.OpenLab.Spring.Omega.XamSliderControl" Collapsed="true">
+    <Position X="24" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQMCgAAACwAhADQNiACgAAgAEFACIgQAAkCEAQCAA=</HashCode>
+      <FileName>XamSliderControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.Cube.AbstractIntArray" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cube\AbstractIntArray.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OmegaUIControls.Cube.AbstractIntIterator" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAQAAAQAAAAAAAAAQAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Cube\AbstractIntIterator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OmegaUIControls.Cube.AbstractIntSet" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Cube\AbstractIntSet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OmegaUIControls.Cube.ArrayUtil" Collapsed="true">
+    <Position X="26.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAAEAA=</HashCode>
+      <FileName>Cube\ArrayUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.Cube.BitSetIntSet" Collapsed="true">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAGAgAAAABAAAAIAAAAAAAAAAAAAAAAAAAgBQAIA=</HashCode>
+      <FileName>Cube\BitSetIntSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.Cube.HelperAbstractIntIterator" Collapsed="true">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAIA=</HashCode>
+      <FileName>Cube\BitSetIntSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.Cube.DefaultIntArray" Collapsed="true">
+    <Position X="3.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAgAAAgBADAAIAAAAAAAAQAAAAAAAAQAABAAAA=</HashCode>
+      <FileName>Cube\DefaultIntArray.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.Cube.SortedIntArray" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAGAAECAgAQDAgICERAAAACAAAAAAAAAQAkBQAAA=</HashCode>
+      <FileName>Cube\SortedIntArray.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OmegaUIControls.OmegaUIUtils.LayoutPanel" Collapsed="true">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAGAAAIAACAAQAAAAgAAAAAAAAIAAAAAAAAAQAA=</HashCode>
+      <FileName>OmegaUIUtils\LayoutPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.OmegaUIUtils.UIConstants" Collapsed="true">
+    <Position X="26.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAFAAAAAAAAAAAARACAAAAYAAgAAoAABBAAIAAEA=</HashCode>
+      <FileName>OmegaUIUtils\UIConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OmegaUIControls.OmegaUIUtils.UtilityMethods" Collapsed="true">
+    <Position X="31.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>OmegaUIUtils\UtilityMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIContainer" Collapsed="true">
+    <Position X="6.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>IUIContainer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIControl" Collapsed="true">
+    <Position X="6.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAEAAAAAEAABAAAAAAAgAAAQAIA=</HashCode>
+      <FileName>IUIControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Agilent.OpenLab.Spring.Omega.IUIInput" Collapsed="true">
+    <Position X="28.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIIAAAAAAAA=</HashCode>
+      <FileName>IUIInput.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaUIControls.Cube.IndexedIntArray" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cube\IndexedIntArray.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaUIControls.Cube.IntArray" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cube\IntArray.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaUIControls.Cube.IntIterator" Collapsed="true">
+    <Position X="26.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cube\IntIterator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OmegaUIControls.Cube.IntSet" Collapsed="true">
+    <Position X="15.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Cube\IntSet.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

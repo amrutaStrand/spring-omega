@@ -10,6 +10,7 @@ namespace Agilent.OpenLab.Spring.Omega
     {
         public static string INT_ERROR_MESSAGE = "Input should be in Integer format";
         public static string FLOAT_ERROR_MESSAGE = "Input should be in float format";
+        public static string DOUBLE_ERROR_MESSAGE = "Input should be in double format";
         public static string STRING_ERROR_MESSAGE = "Input value should not be null";
         public static string OUT_OF_RANGE_ERROR_MESSAGE = "Input value must be between {0} and {1}";
         public static string LESS_THAN_ERROR_MESSAGE = "Input value must be less than {0}";

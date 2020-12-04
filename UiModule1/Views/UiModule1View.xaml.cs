@@ -73,21 +73,7 @@
         {
             StackPanel panel = new StackPanel { Orientation = Orientation.Vertical };
             panel.Children.Add(Model.UIControl.GetUIElement());
-            Button button = new Button()
-            {
-                Width = 100,
-                Height = 50,
-                Margin = new Thickness(50, 50, 50, 50),
-                Content = "Test Imputation Algorithm",
-            };
-            button.Click += TestImputationClick;
-            panel.Children.Add(button);
             this.UIControlHost.Children.Add(panel);            
-        }
-
-        private void TestImputationClick(object sender, RoutedEventArgs e)
-        {
-            Model.TestImputation();
         }
 
         /// <summary>

@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiModule1", "UiModule1\UiMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaUIControls", "OmegaUIControls\OmegaUIControls.csproj", "{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "algorithm", "..\algorithmrep\algorithm\algorithm.csproj", "{3D538642-A490-4999-99B7-EAF6D4564D30}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,14 +61,6 @@ Global
 		{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}.Release|x86.ActiveCfg = Release|Any CPU
 		{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}.Release|x86.Build.0 = Release|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Debug|x86.Build.0 = Debug|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Release|x86.ActiveCfg = Release|Any CPU
-		{3D538642-A490-4999-99B7-EAF6D4564D30}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

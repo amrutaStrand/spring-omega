@@ -4,7 +4,6 @@
 
     using Agilent.OpenLab.Framework.UI.Module;
     using Agilent.OpenLab.Spring.Omega;
-    using global::OpenLab.Agilent.Spring.Algorithm;
     using Microsoft.Practices.Unity;
 
     #endregion
@@ -24,7 +23,6 @@
             this.SubscribeEvents();
             UIControlRegistry.RegisterUIControls(container);
             OmegaFactory.InitializeOmegaFactory(container);
-            AlgorithmRegistry.RegisterAlgorithms(container);
         }
 
         #endregion                    

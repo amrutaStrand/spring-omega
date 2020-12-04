@@ -39,11 +39,6 @@
         /// </summary>
         IUIControl UIControl { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        void TestImputation();
-
         #endregion
     }
 }

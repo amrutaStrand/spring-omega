@@ -44,5 +44,11 @@ namespace Agilent.OpenLab.Spring.Omega
         /// </summary>
         /// <returns></returns>
         UIElement GetUIElement();
+
+        /// <summary>
+        /// Checks if value is valid
+        /// </summary>
+        /// <returns></returns>
+        bool IsValid(object val);
     }
 }
