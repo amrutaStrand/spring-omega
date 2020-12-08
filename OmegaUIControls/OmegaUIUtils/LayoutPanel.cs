@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace OmegaUIControls.OmegaUIUtils
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// LayoutPanel is a <see cref="Grid"/> inside a <see cref="GroupBox"/> with given number of rows and columns. 

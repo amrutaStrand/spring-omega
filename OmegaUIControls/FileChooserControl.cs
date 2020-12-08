@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// FileChooserControl is a container encapsulating a <see cref="TextBox"/> and <see cref="Button"/>. 

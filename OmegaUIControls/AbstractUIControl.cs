@@ -3,9 +3,9 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Markup;
 using System.Xml;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// Abstract implementation of <see cref="IUIControl"/> interface.

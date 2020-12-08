@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// Abstract implementation of the <see cref="IUIContainer"/> interface. 

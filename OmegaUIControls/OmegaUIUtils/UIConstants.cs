@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace OmegaUIControls.OmegaUIUtils
+namespace Agilent.MHDA.Omega
 {
 	public class UIConstants
 	{

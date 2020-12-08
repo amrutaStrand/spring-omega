@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// Dialog to display omega controls.

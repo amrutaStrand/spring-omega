@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// <see cref="CheckBox"/> control.

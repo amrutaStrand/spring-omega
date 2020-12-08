@@ -7,9 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Xml;
 using System.Windows.Media;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// SimpleDialog is a dialog box encapsulating the controls in the <see cref="DialogContent"/> property 

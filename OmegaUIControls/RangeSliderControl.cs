@@ -6,9 +6,9 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 using Infragistics.Controls.Editors;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// Contains a slider with two thumbs corresponding to the min and max values. Parameters 

@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// FileControl is a container encapsulating a <see cref="Label"/>, <see cref="TextBox"/> and 

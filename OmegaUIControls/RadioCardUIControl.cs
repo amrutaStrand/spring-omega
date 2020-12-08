@@ -1,10 +1,10 @@
-﻿using OmegaUIControls.OmegaUIUtils;
+﻿using Agilent.MHDA.Omega;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// RadioCardUIControl displays a set of radio buttons and the control corrresponding 

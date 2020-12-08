@@ -1,9 +1,9 @@
-﻿using OmegaUIControls.OmegaUIUtils;
+﻿using Agilent.MHDA.Omega;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// This class groups multiple <see cref="UIElement"/> or <see cref="IUIControl"/>.

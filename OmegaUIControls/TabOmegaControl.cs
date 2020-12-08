@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using Infragistics.Windows.Controls;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// TabOmegaControl is a <see cref="TabControl"/> with each control in one tab.

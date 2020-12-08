@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:OmegaUIControls.OmegaUIUtils">
+                    xmlns:local="clr-namespace:Agilent.MHDA.Omega">
 
     <Color x:Key="ErrorRed">#fc5236</Color>
     

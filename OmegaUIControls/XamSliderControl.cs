@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using OmegaUIControls.OmegaUIUtils;
+using Agilent.MHDA.Omega;
 using Infragistics.Controls.Editors;
 using System.Collections;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// Parameters of this class are<list type="bullet" >

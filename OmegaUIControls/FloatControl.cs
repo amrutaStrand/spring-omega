@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// This class is responsible for creating the Float control which internally is a string 

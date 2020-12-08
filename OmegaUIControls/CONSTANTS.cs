@@ -1,4 +1,4 @@
-﻿namespace Agilent.OpenLab.Spring.Omega
+﻿namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// 

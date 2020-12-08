@@ -3,7 +3,7 @@
     #region
 
     using Agilent.OpenLab.Framework.UI.Module;
-    using Agilent.OpenLab.Spring.Omega;
+    using Agilent.MHDA.Omega;
     using Microsoft.Practices.Unity;
     using System.Collections;
     using System.Collections.Generic;

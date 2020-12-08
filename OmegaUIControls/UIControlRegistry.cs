@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using OmegaUIControls;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// This class is responsible for registering the controls

@@ -1,4 +1,4 @@
-﻿using OmegaUIControls.OmegaUIUtils;
+﻿using Agilent.MHDA.Omega;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// A combo box of <see cref="CheckBox"/>. Parameter of this class is "options" which can be a <see cref="IDictionary"/> 

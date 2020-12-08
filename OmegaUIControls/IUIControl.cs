@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Agilent.OpenLab.Spring.Omega
+namespace Agilent.MHDA.Omega
 {
     /// <summary>
     /// Interface that defines ui control for a datatype.
