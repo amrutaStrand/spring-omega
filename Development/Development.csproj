@@ -82,10 +82,6 @@
       <Project>{3b066cce-3da3-4bc3-8112-93b45717d827}</Project>
       <Name>OmegaController</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OmegaUIControls\OmegaUIControls.csproj">
-      <Project>{ec9a0909-04d1-46ca-bc71-7d14b8ab3ca1}</Project>
-      <Name>OmegaUIControls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UiModule1\UiModule1.csproj">
       <Project>{af6ab015-d2b3-4c22-abf6-ad81799200a5}</Project>
       <Name>UiModule1</Name>

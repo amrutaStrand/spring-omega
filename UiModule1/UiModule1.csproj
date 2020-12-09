@@ -193,8 +193,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OmegaUIControls\OmegaUIControls.csproj">
-      <Project>{EC9A0909-04D1-46CA-BC71-7D14B8AB3CA1}</Project>
+    <ProjectReference Include="..\..\Omega\OmegaUIControls\OmegaUIControls.csproj">
+      <Project>{af3af3ef-c540-47d7-83f9-f63dc322e4b6}</Project>
       <Name>OmegaUIControls</Name>
     </ProjectReference>
   </ItemGroup>
