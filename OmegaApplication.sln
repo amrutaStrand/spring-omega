@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaController", "OmegaCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiModule1", "UiModule1\UiModule1.csproj", "{AF6AB015-D2B3-4C22-ABF6-AD81799200A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmegaUIControls", "..\Omega\OmegaUIControls\OmegaUIControls.csproj", "{AF3AF3EF-C540-47D7-83F9-F63DC322E4B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega", "..\Omega\Omega\Omega.csproj", "{AF3AF3EF-C540-47D7-83F9-F63DC322E4B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cube", "Cube\Cube.csproj", "{A2D43370-EE6E-4957-86AF-89AB69E2DE91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,14 @@ Global
 		{AF3AF3EF-C540-47D7-83F9-F63DC322E4B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF3AF3EF-C540-47D7-83F9-F63DC322E4B6}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF3AF3EF-C540-47D7-83F9-F63DC322E4B6}.Release|x86.Build.0 = Release|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Debug|x86.Build.0 = Debug|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Release|x86.ActiveCfg = Release|Any CPU
+		{A2D43370-EE6E-4957-86AF-89AB69E2DE91}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

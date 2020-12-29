@@ -9,6 +9,8 @@
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
+    using Cube;
+    using System;
 
     #endregion
 
@@ -39,8 +41,57 @@
             this.SubscribeEvents();
             this.InitializeCommands();
 
-            UIControl = CreateRadioCardControl();
+            //UIControl = CreateRadioCardControl();
 
+            UIControl = CreateTreeControl();
+
+        }
+
+        private IUIControl CreateTreeControl()
+        {
+            UIInput input = new UIInput();
+            List<IDataNode> dataNodes = new List<IDataNode>();
+
+            ExperimentNode experiment1 = new ExperimentNode("Experiment1");
+
+            CompoundsGroupNode compoundsGroup = new CompoundsGroupNode("CompoundsGroup1");
+
+            ClusterNode cluster = new ClusterNode("Cluster1");
+            cluster.AddChild(new ExperimentNode("Experiment2"));
+
+            ExperimentNode experiment3 = new ExperimentNode("Experiment3");
+            experiment3.HoverText = "My experiment";
+            experiment3.AddChild(new CompoundsGroupNode("CompoundsGroup2"));
+            experiment3.AddChild(new CompoundsGroupNode("CompoundsGroup3"));
+
+            cluster.AddChild(experiment3);
+
+            experiment1.AddChild(compoundsGroup);
+            experiment1.AddChild(cluster);
+
+            dataNodes.Add(experiment1);
+            input.AddInput("TreeRoots", dataNodes);
+
+            Action SingleClickAction = SingleClick;
+            input.AddInput("SingleClickAction", SingleClickAction);
+
+            Action DoubleClickAction = DoubleClick;
+            input.AddInput("DoubleClickAction", DoubleClickAction);
+
+            IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Tree");
+            //(panel as TreeUIControl).
+            panel.SetInput(input);
+            return panel;
+        }
+
+        private void SingleClick()
+        {
+            MessageBox.Show("Hello world - single click!");
+        }
+
+        private void DoubleClick()
+        {
+            MessageBox.Show("Hello world - double click!");
         }
 
         private IUIControl CreateStringControl()
@@ -332,7 +383,8 @@
             SimpleDialog dialog = CreateSimpleDialog();
             try
             {
-                MessageBox.Show(dialog.ShowSimpleDialog().ToString());
+                dialog.ShowSimpleDialog();
+                //MessageBox.Show(dialog.ShowSimpleDialog().ToString());
             }
             catch
             {
