@@ -18,6 +18,8 @@ namespace Cube
 
         public string Type { get; set; }
 
+        public string IconPath { get; set; }
+
         public string Notes { get; set; }
 
         public string HoverText { get; set; }
@@ -29,10 +31,6 @@ namespace Cube
         public MouseButtonEventHandler Node_MouseLeftButtonDown { get; set; }
 
         public Dictionary<string, ActionCommand> ContextMenuOptions { get; set; }
-
-        public List<string> ContextMenuHeaders { get; set; }
-
-        public List<ActionCommand> ContextMenuCommands { get; set; }
 
         //protected List<IDataNode> childrens;
         //public ObservableCollection<IDataNode> childrens;
@@ -141,10 +139,6 @@ namespace Cube
                 {"Delete Childs",  DeleteChilds},
                 {"Add Child", AddChildCmd}
             };
-
-            ContextMenuHeaders = new List<string> { "Delete Childs", "Add Child" };
-
-            ContextMenuCommands = new List<ActionCommand> { DeleteChilds, AddChildCmd };
 
             InitializeNode();
 

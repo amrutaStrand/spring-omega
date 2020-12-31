@@ -21,6 +21,8 @@ namespace Cube
         /// </summary>
         string Type { get; set; }
 
+        string IconPath { get; set; }
+
         string Notes { get; set; }
 
         string HoverText { get; set; }
@@ -33,20 +35,12 @@ namespace Cube
 
         Dictionary<string, ActionCommand> ContextMenuOptions { get; set; }
 
-        List<string> ContextMenuHeaders { get; set; }
-
-        List<ActionCommand> ContextMenuCommands { get; set; }
-
+        /// <summary>
+        /// This delegate fires the single and double click actions
+        /// </summary>
         MouseButtonEventHandler Node_MouseLeftButtonDown { get; set; }
 
         ObservableCollection<IDataNode> Childrens { get; set; }
-
-        /// <summary>
-        /// This method returns the TreeViewItem corresponding to current node. TreeViewItem of child nodes is also
-        /// added to it.
-        /// </summary>
-        /// <returns></returns>
-        //TreeViewItem GetItem();
 
         /// <summary>
         /// Adds a child to the node.

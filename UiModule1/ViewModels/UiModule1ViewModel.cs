@@ -79,7 +79,6 @@
             input.AddInput("DoubleClickAction", DoubleClickAction);
 
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Tree");
-            //(panel as TreeUIControl).
             panel.SetInput(input);
             return panel;
         }

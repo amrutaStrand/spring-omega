@@ -12,7 +12,7 @@ namespace Cube
 {
     public class Util
     {
-        static Dictionary<string, string> IconRegistry = new Dictionary<string, string>
+        static public Dictionary<string, string> IconRegistry = new Dictionary<string, string>
         {
             { "AbstractDataNode", "pack://application:,,,/Cube;component/Icons/exp.png" },
             { "Experiment", "pack://application:,,,/Cube;component/Icons/exp.png" },

@@ -17,6 +17,7 @@ namespace Cube
         {
             Name = expName;
             Type = "Experiment";
+            IconPath = Util.IconRegistry[Type];
             HoverText = string.Format("This is a {0} node", Type);
         }
 
