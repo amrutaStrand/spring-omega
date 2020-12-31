@@ -29,6 +29,14 @@ namespace Cube
 
         ActionCommand DeleteChilds { get; set; }
 
+        ActionCommand AddChildCmd { get; set; }
+
+        Dictionary<string, ActionCommand> ContextMenuOptions { get; set; }
+
+        List<string> ContextMenuHeaders { get; set; }
+
+        List<ActionCommand> ContextMenuCommands { get; set; }
+
         MouseButtonEventHandler Node_MouseLeftButtonDown { get; set; }
 
         ObservableCollection<IDataNode> Childrens { get; set; }

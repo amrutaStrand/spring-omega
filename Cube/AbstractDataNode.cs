@@ -24,7 +24,15 @@ namespace Cube
 
         public ActionCommand DeleteChilds { get; set; }
 
+        public ActionCommand AddChildCmd { get; set; }
+
         public MouseButtonEventHandler Node_MouseLeftButtonDown { get; set; }
+
+        public Dictionary<string, ActionCommand> ContextMenuOptions { get; set; }
+
+        public List<string> ContextMenuHeaders { get; set; }
+
+        public List<ActionCommand> ContextMenuCommands { get; set; }
 
         //protected List<IDataNode> childrens;
         //public ObservableCollection<IDataNode> childrens;
@@ -92,6 +100,11 @@ namespace Cube
             //Node.Items.Clear();
         }
 
+        private void AddChildExecute(object p)
+        {
+            MessageBox.Show("Adding child...");
+        }
+
         #endregion
 
         private TreeViewItem node = new TreeViewItem();
@@ -119,8 +132,19 @@ namespace Cube
             BoldFont = new ActionCommand(BoldFontExecute);
             NormalFont = new ActionCommand(NormalFontExecute);
             DeleteChilds = new ActionCommand(DeleteChildsExecute);
+            AddChildCmd = new ActionCommand(AddChildExecute);
 
             Node_MouseLeftButtonDown = new MouseButtonEventHandler(TextBlock1_MouseLeftButtonDown);
+
+            ContextMenuOptions = new Dictionary<string, ActionCommand>
+            {
+                {"Delete Childs",  DeleteChilds},
+                {"Add Child", AddChildCmd}
+            };
+
+            ContextMenuHeaders = new List<string> { "Delete Childs", "Add Child" };
+
+            ContextMenuCommands = new List<ActionCommand> { DeleteChilds, AddChildCmd };
 
             InitializeNode();
 
@@ -174,14 +198,6 @@ namespace Cube
 
         private void TextBlock1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //if (e.ClickCount == 1)
-            //{
-            //    MessageBox.Show(string.Format("Single clicked on {0} which is of type {1}", Name, Type));
-            //}
-            //if (e.ClickCount == 2)
-            //{
-            //    MessageBox.Show(string.Format("Double clicked on {0} which is of type {1}", Name, Type));
-            //}
             ClickTimer.Stop();
             ClickCounter++;
             ClickTimer.Start();
@@ -192,20 +208,23 @@ namespace Cube
             ClickTimer.Stop();
             if (ClickCounter == 1)
             {
-                MessageBox.Show(string.Format("Single clicked on {0} which is of type {1}", Name, Type));
+                OnSingleClick();
             }
             if (ClickCounter == 2)
             {
-                MessageBox.Show(string.Format("Double clicked on {0} which is of type {1}", Name, Type));
+                OnDoubleClick();
             }
             ClickCounter = 0;
         }
 
-        private void Node_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        protected virtual void OnSingleClick()
         {
-            //if(node.IsMouseOver)
-            //    MessageBox.Show( string.Format("Double clicked on {0} which is of type {1}", Name, Type));
-            e.Handled = true;
+            MessageBox.Show(string.Format("Single clicked on {0} which is of type {1}", Name, Type));
+        }
+
+        protected virtual void OnDoubleClick()
+        {
+            MessageBox.Show(string.Format("Double clicked on {0} which is of type {1}", Name, Type));
         }
 
         private ContextMenu CreateContextMenu()
@@ -243,13 +262,11 @@ namespace Cube
 
         public void AddChild(IDataNode node)
         {
-            //Childrens.Add(node as ExperimentNode);
             Childrens.Add(node);
         }
 
         public void RemoveChild(IDataNode node)
         {
-            //Childrens.Remove(node as ExperimentNode);
             Childrens.Remove(node);
         }
 
