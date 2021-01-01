@@ -27,12 +27,6 @@ namespace Cube
 
         string HoverText { get; set; }
 
-        TreeViewItem Node { get; set; }
-
-        ActionCommand DeleteChilds { get; set; }
-
-        ActionCommand AddChildCmd { get; set; }
-
         Dictionary<string, ActionCommand> ContextMenuOptions { get; set; }
 
         /// <summary>

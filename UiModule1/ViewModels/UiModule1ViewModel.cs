@@ -72,11 +72,11 @@
             dataNodes.Add(experiment1);
             input.AddInput("TreeRoots", dataNodes);
 
-            Action SingleClickAction = SingleClick;
-            input.AddInput("SingleClickAction", SingleClickAction);
+            //Action SingleClickAction = SingleClick;
+            //input.AddInput("SingleClickAction", SingleClickAction);
 
-            Action DoubleClickAction = DoubleClick;
-            input.AddInput("DoubleClickAction", DoubleClickAction);
+            //Action DoubleClickAction = DoubleClick;
+            //input.AddInput("DoubleClickAction", DoubleClickAction);
 
             IUIControl panel = this.UnityContainer.Resolve<IUIControl>("Tree");
             panel.SetInput(input);

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-//using Infragistics.Windows.DataPresenter;
 
 namespace Cube
 {
@@ -41,7 +40,7 @@ namespace Cube
         static public TreeView GetTree(IDataNode RootNode)
         {
             TreeView tree = new TreeView();
-            tree.Items.Add(RootNode.Node);
+            //tree.Items.Add(RootNode.Node);
             return tree;
         }
     }
